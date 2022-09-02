@@ -21,7 +21,13 @@ function ViewGames() {
         <>
             <h1>Games</h1>
             <button onClick={() => getGames()}>View Games!</button>
-            <p>{games}</p>
+            {games.map( game => (
+                <div key={game.ScoreId}>
+                    <h1>Date: {game.DateTime}</h1>
+                    <p>Home: {game.HomeTeamName}</p>
+                    <p>Away: {game.AwayTeamName}</p>
+                </div>
+            ))}
         </>
     )
 }
