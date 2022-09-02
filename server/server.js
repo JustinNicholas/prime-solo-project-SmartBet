@@ -9,6 +9,8 @@ const passport = require('./strategies/user.strategy');
 
 // Route includes
 const userRouter = require('./routes/user.router');
+// const { default: gamesReducer } = require('../src/redux/reducers/games.reducer');
+const gamesRouter = require('./routes/games.router.js')
 
 // Body parser middleware
 app.use(bodyParser.json());
@@ -23,6 +25,7 @@ app.use(passport.session());
 
 /* Routes */
 app.use('/api/user', userRouter);
+app.use('/api/games', gamesRouter)
 
 // Serve static files
 app.use(express.static('build'));
