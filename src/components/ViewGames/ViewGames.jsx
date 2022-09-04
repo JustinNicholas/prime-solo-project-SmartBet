@@ -24,8 +24,11 @@ function ViewGames() {
             {games.map( game => (
                 <div key={game.ScoreId}>
                     <h1>Date: {game.DateTime}</h1>
-                    <p>Home: {game.HomeTeamName}</p>
-                    <p>Away: {game.AwayTeamName}</p>
+                    <p>Home: {game.HomeTeam}</p>
+                    <p>Home Moneyline: {game.HomeTeamMoneyLine}</p>
+                    <p>Away: {game.AwayTeam}</p>
+                    <p>Away Moneyline: {game.AwayTeamMoneyLine}</p>
+                    <p>Channel: {game.Channel}</p>
                 </div>
             ))}
         </>
