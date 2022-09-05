@@ -44,11 +44,15 @@ router.post('/', (req, res) => {
       res.sendStatus(201);
 });
 
-/**
- * POST route template
- */
-router.post('/', (req, res) => {
-  // POST route code here
+router.delete('/', (req, res) => {
+    const queryText = 'DELETE FROM "games"'
+    pool.query(queryText)
+    .then( result => {
+      res.sendStatus(204)
+    }).catch( err => {
+      console.log(err);
+      res.sendStatus(500)
+    });
 });
 
 module.exports = router;
