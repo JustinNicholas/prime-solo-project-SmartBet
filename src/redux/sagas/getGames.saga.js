@@ -6,7 +6,7 @@ function* getGames() {
     try {
         const response = yield axios.get('/database/games');
         console.log('sent get games to server');
-        console.log(response.data);
+        // console.log(response.data);
         yield put({ type: 'SET_GAMES', payload: response.data });
 
       } catch (error) {
@@ -19,3 +19,6 @@ function* getGamesSaga() {
 }
 
 export default getGamesSaga;
+
+  // will need this in the update week router
+  // yield put({ type: 'SET_WEEK', payload: week.data.currentWeek})

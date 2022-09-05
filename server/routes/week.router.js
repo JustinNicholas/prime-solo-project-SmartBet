@@ -1,6 +1,6 @@
 const { default: axios } = require('axios');
 const express = require('express');
-// const pool = require('../modules/pool');
+const pool = require('../modules/pool');
 const router = express.Router();
 
 /**
@@ -19,11 +19,34 @@ router.get('/', (req, res) => {
 
 });
 
-/**
- * POST route template
- */
 router.post('/', (req, res) => {
-  // POST route code here
+  const week = req.body.week;
+
+    let queryText = `INSERT INTO "week" ("week")
+    VALUES ($1);`;
+    let queryValues = [week];
+    console.log(queryValues);
+
+    pool.query(queryText, queryValues)
+      .then( result => {
+        res.sendStatus(201);
+      }).catch( err => {
+        console.log(err);
+        res.sendStatus(500)
+      })
+    // }
+
+});
+
+router.delete('/', (req, res) => {
+  const queryText = 'DELETE FROM "week"'
+  pool.query(queryText)
+  .then( result => {
+    res.sendStatus(204)
+  }).catch( err => {
+    console.log(err);
+    res.sendStatus(500)
+  });
 });
 
 module.exports = router;

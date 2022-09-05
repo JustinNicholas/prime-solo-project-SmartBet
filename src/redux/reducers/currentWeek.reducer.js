@@ -1,4 +1,6 @@
 const currentWeekReducer = (state = 0, action) => {
+    console.log(action.payload);
+    console.log('IN SET WEEK NOWWW', action.payload);
     switch (action.type) {
       case 'SET_WEEK':
         return action.payload;

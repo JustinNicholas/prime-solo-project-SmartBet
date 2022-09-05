@@ -28,6 +28,9 @@ function ViewGames() {
 
     const getGamesFromDatabase = () => {
         dispatch({
+            type: 'GET_WEEK'
+        })
+        dispatch({
             type: 'GET_GAMES'
         })
         console.log('dipatched!');
@@ -38,7 +41,7 @@ function ViewGames() {
             <h1>Games</h1>
             <button onClick={() => getGamesFromDatabase()}>View Games!</button>
             {games.map( game => {
-                if ( game.week === 1 ) {
+                if ( game.week === currentWeek ) {
                 return (
                 <div key={game.score_id}>
                     <h1>Date: {game.time}</h1>
