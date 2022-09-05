@@ -21,7 +21,9 @@ function ViewGames() {
         <>
             <h1>Games</h1>
             <button onClick={() => getGames()}>View Games!</button>
-            {games.map( game => (
+            {games.map( game => {
+                if ( game.Week === 1 ) {
+                return (
                 <div key={game.ScoreId}>
                     <h1>Date: {game.DateTime}</h1>
                     <p>Home: {game.HomeTeam}</p>
@@ -30,7 +32,9 @@ function ViewGames() {
                     <p>Away Moneyline: {game.AwayTeamMoneyLine}</p>
                     <p>Channel: {game.Channel}</p>
                 </div>
-            ))}
+                )
+                }
+})}
         </>
     )
 }
