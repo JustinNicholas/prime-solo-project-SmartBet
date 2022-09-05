@@ -1,4 +1,4 @@
-const currentWeeReducer = (state = 0, action) => {
+const currentWeekReducer = (state = 0, action) => {
     switch (action.type) {
       case 'SET_WEEK':
         return action.payload;
@@ -11,4 +11,4 @@ const currentWeeReducer = (state = 0, action) => {
   
   // user will be on the redux state at:
   // state.user
-  export default gamesReducer;
+  export default currentWeekReducer;

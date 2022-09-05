@@ -22,14 +22,15 @@ router.get('/', (req, res) => {
 });
 
 router.post('/', (req, res) => {
-    const games = req.body;
+    const games = req.body.games;
 
       let queryText = `INSERT INTO "games" ("score_id", "time", "home_team", "away_team", "home_moneyline", "away_moneyline", "channel", "week")
       VALUES ($1, $2, $3, $4, $5, $6, $7, $8);`;
 
       for( let i=0; i<games.length; i++) {
+      // if ( games[i].Week === currentWeek ){
       let queryValues = [ games[i].ScoreID, games[i].DateTime, games[i].HomeTeam, games[i].AwayTeam, games[i].HomeTeamMoneyLine, games[i].AwayTeamMoneyLine, games[i].Channel, games[i].Week ];
-      
+      console.log(queryValues);
 
       pool.query(queryText, queryValues)
         .then( result => {
@@ -39,6 +40,7 @@ router.post('/', (req, res) => {
           res.sendStatus(500)
         })
       }
+      // }
       res.sendStatus(201);
 });
 

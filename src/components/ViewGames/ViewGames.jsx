@@ -5,6 +5,7 @@ import { useDispatch } from 'react-redux';
 function ViewGames() {
 
     const games = useSelector(store => store.games)
+    const currentWeek = useSelector(store => store.week)
 
     const dispatch = useDispatch();
 
@@ -22,7 +23,7 @@ function ViewGames() {
             <h1>Games</h1>
             <button onClick={() => getGames()}>View Games!</button>
             {games.map( game => {
-                if ( game.Week === 1 ) {
+                if ( game.Week === currentWeek ) {
                 return (
                 <div key={game.ScoreId}>
                     <h1>Date: {game.DateTime}</h1>

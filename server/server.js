@@ -14,8 +14,8 @@ const weekRouter = require('./routes/week.router.js');
 
 
 // Body parser middleware
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json({limit: '50mb'}));
+app.use(bodyParser.urlencoded({limit: '50mb'}));
 
 // Passport Session Configuration //
 app.use(sessionMiddleware);
