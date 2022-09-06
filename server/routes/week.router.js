@@ -19,36 +19,6 @@ router.get('/', (req, res) => {
 
 });
 
-router.post('/', (req, res) => {
-  const week = req.body.week;
-
-    let queryText = `INSERT INTO "week" ("week")
-    VALUES ($1);`;
-    let queryValues = [week];
-    console.log(queryValues);
-
-    pool.query(queryText, queryValues)
-      .then( result => {
-        res.sendStatus(201);
-      }).catch( err => {
-        console.log(err);
-        res.sendStatus(500)
-      })
-    // }
-
-});
-
-router.delete('/', (req, res) => {
-  const queryText = 'DELETE FROM "week"'
-  pool.query(queryText)
-  .then( result => {
-    res.sendStatus(204)
-  }).catch( err => {
-    console.log(err);
-    res.sendStatus(500)
-  });
-});
-
 module.exports = router;
 
 // current week https://api.sportsdata.io/v3/nfl/scores/json/CurrentWeek?key=

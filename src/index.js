@@ -6,12 +6,6 @@ import store from './redux/store';
 
 import App from './components/App/App';
 
-// const cron = require('node-cron');
-
-//     cron.schedule('* * * * * *', () => {
-//     console.log('running a task every minute');
-//     });
-
 ReactDOM.render(
   <Provider store={store}>
     <App />

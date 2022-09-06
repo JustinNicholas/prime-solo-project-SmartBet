@@ -2,29 +2,17 @@ import React from 'react';
 import {useSelector} from 'react-redux';
 import { useDispatch } from 'react-redux';
 import { useEffect } from 'react';
-// const cron = require('node-cron');
 
 function ViewGames() {
     useEffect(() => {
         getGamesFromDatabase();
-        // updateGames();
     }, []);
 
-    // cron.schedule('* * * * * *', () => {
-    // console.log('running a task every minute');
-    // });
 
     const games = useSelector(store => store.games)
     const currentWeek = useSelector(store => store.week)
 
     const dispatch = useDispatch();
-
-    const updateGames = () => {
-        dispatch({
-            type: 'UPDATE_GAMES'
-        })
-        console.log('dipatched!');
-    }
 
     const getGamesFromDatabase = () => {
         dispatch({
