@@ -32,6 +32,18 @@ function Nav() {
               Info Page
             </Link>
 
+            <Link className="navLink" to="/viewGames">
+              View Games
+            </Link>
+
+            <Link className="navLink" to="/addBet">
+              Add Bet
+            </Link>
+
+            <Link className="navLink" to="/betHistory">
+              Bet History
+            </Link>
+
             <LogOutButton className="navLink" />
           </>
         )}

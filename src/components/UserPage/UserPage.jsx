@@ -1,7 +1,6 @@
 import React from 'react';
 import LogOutButton from '../LogOutButton/LogOutButton';
 import {useSelector} from 'react-redux';
-import ViewGames from '../ViewGames/ViewGames';
 import { useDispatch } from 'react-redux';
 
 function UserPage() {
@@ -35,7 +34,6 @@ function UserPage() {
       <p>Your ID is: {user.id}</p>
       <LogOutButton className="btn" />
 
-      <ViewGames />
     </div>
   );
 }

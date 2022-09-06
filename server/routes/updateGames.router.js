@@ -18,6 +18,8 @@ router.get('/', (req, res) => {
 
 });
 
+
+
 module.exports = router;
 
 // current week https://api.sportsdata.io/v3/nfl/scores/json/CurrentWeek?key=

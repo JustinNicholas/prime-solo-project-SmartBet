@@ -13,6 +13,7 @@ const gamesRouter = require('./routes/updateGames.router.js');
 const weekRouter = require('./routes/week.router.js');
 const getGamesRouter = require('./routes/getGames.router');
 const getWeekRouter = require('./routes/getWeek.router');
+const betOnThisRouter  = require('./routes/betOnThis.router');
 
 // Body parser middleware
 app.use(bodyParser.json({limit: '50mb'}));
@@ -30,7 +31,8 @@ app.use('/api/user', userRouter);
 app.use('/api/games', gamesRouter);
 app.use('/api/week', weekRouter);
 app.use('/database/games', getGamesRouter);
-app.use('/database/week', getWeekRouter)
+app.use('/database/week', getWeekRouter);
+app.use('/database/thisGame', betOnThisRouter);
 
 // Serve static files
 app.use(express.static('build'));

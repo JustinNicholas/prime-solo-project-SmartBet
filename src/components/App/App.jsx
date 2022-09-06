@@ -19,6 +19,10 @@ import InfoPage from '../InfoPage/InfoPage';
 import LandingPage from '../LandingPage/LandingPage';
 import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
+import ViewGames from '../ViewGames/ViewGames';
+import AddBet from '../AddBet/AddBet';
+import BetHistory from '../BetHistory/BetHistory';
+import BetOnThis from '../BetOnThis/BetOnThis';
 
 import './App.css';
 
@@ -66,6 +70,38 @@ function App() {
             path="/info"
           >
             <InfoPage />
+          </ProtectedRoute>
+
+          <ProtectedRoute
+            // logged in shows InfoPage else shows LoginPage
+            exact
+            path="/viewGames"
+          >
+            <ViewGames />
+          </ProtectedRoute>
+
+          <ProtectedRoute
+            // logged in shows InfoPage else shows LoginPage
+            exact
+            path="/database/bets/:score_id"
+          >
+            <BetOnThis />
+          </ProtectedRoute>
+
+          <ProtectedRoute
+            // logged in shows InfoPage else shows LoginPage
+            exact
+            path="/addBet"
+          >
+            <AddBet />
+          </ProtectedRoute>
+
+          <ProtectedRoute
+            // logged in shows InfoPage else shows LoginPage
+            exact
+            path="/betHistory"
+          >
+            <BetHistory />
           </ProtectedRoute>
 
           <Route
