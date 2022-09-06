@@ -2,6 +2,7 @@ import React from 'react';
 import {useSelector} from 'react-redux';
 import { useDispatch } from 'react-redux';
 import { useEffect } from 'react';
+import moment from 'moment';
 
 function ViewGames() {
     useEffect(() => {
@@ -30,9 +31,11 @@ function ViewGames() {
             <button onClick={() => getGamesFromDatabase()}>View Games!</button>
             {games.map( game => {
                 if ( game.week === currentWeek ) {
+                    // use moment js to parse time into easy to read text.
+                    const date = moment(game.time).format('LLLL')
                 return (
                 <div key={game.score_id}>
-                    <h1>Date: {game.time}</h1>
+                    <h1>Date/Time: {date} EST</h1>
                     <p>Home: {game.home_team}</p>
                     <p>Home Moneyline: {game.home_moneyline}</p>
                     <p>Away: {game.away_team}</p>
