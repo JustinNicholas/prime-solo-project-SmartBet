@@ -7,6 +7,7 @@ import getGamesSaga from './getGames.saga';
 import getWeekSaga from './getWeek.saga';
 import betOnThisSaga from './betOnThis.saga';
 import getBetsSaga from './getBets.saga';
+import teamsSaga from './teams.saga';
 
 // rootSaga is the primary saga.
 // It bundles up all of the other sagas so our project can use them.
@@ -25,5 +26,6 @@ export default function* rootSaga() {
     getWeekSaga(),
     betOnThisSaga(),
     getBetsSaga(),
+    teamsSaga(),
   ]);
 }

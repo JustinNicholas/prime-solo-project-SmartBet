@@ -8,7 +8,9 @@ const router = express.Router();
  */
 router.get('/', (req, res) => {
   // GET route code here
-    const queryText = 'SELECT * FROM games;';
+    const queryText = `
+    SELECT * FROM games
+    ORDER BY time;`;
 
     pool.query(queryText)
     .then( result => {
