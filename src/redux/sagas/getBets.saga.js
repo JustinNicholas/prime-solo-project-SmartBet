@@ -13,8 +13,18 @@ function* getBets(action) {
       }
 }
 
+function* deleteBet(action) {
+    try {
+        yield axios.delete(`/database/bets/${action.payload}`)
+        yield put({ type: 'GET_BET_HISTORY' });
+    } catch (error) {
+        console.log(error);
+    }
+}
+
 function* getBetsSaga() {
-    yield takeEvery('GET_BET_HISTORY', getBets)
+    yield takeEvery('GET_BET_HISTORY', getBets);
+    yield takeEvery('DELETE_BET', deleteBet)
 }
 
 export default getBetsSaga;

@@ -26,6 +26,21 @@ router.get('/', rejectUnauthenticated, (req, res) => {
 
 });
 
+router.delete('/:id', rejectUnauthenticated, (req, res) => {
+    const queryText = `
+    DELETE FROM "user_auto_bets"
+    WHERE id = $1;`;
+    const queryValues = [req.params.id];
+
+    pool.query(queryText, queryValues)
+        .then( result => {
+            res.sendStatus(204);
+        }).catch( err => {
+            console.log(err);
+            res.sendStatus(500);
+        })
+})
+
 // router.post('/', (req, res) => {
 //     const games = req.body.games;
 

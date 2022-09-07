@@ -24,8 +24,16 @@ function BetHistory() {
         console.log('dipatched!');
     }
 
-    const editBet = () => {
+    const editBet = (bet) => {
         console.log('clicked edit bet');
+    }
+
+    const deleteBet = (bet) => {
+        console.log('delete', bet.id);
+        dispatch({
+            type: 'DELETE_BET',
+            payload: bet.id
+        })
     }
 
     return(
@@ -46,6 +54,7 @@ function BetHistory() {
                         <p>Pick to lose: {bet.unchosen_team}</p>
                         <p>Moneyline: {bet.unchosen_moneyline}</p>
                         <p>Channel: {bet.channel}</p> */}
+                        <button onClick={() => deleteBet(bet)}>Delete</button>
                         <button onClick={() => editBet(bet)}>EDIT</button>
                     </div>
                     )
