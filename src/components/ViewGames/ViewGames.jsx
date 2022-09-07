@@ -46,6 +46,7 @@ function ViewGames() {
                 return (
                 <div key={game.score_id}>
                     <h1>Date/Time: {date} EST</h1>
+                    <img src="../../../public/nflPngLogos/MIN.png"/>
                     <p>Home: {game.home_team}</p>
                     <p>Home Moneyline: {game.home_moneyline}</p>
                     <p>Away: {game.away_team}</p>

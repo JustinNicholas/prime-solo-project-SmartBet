@@ -83,6 +83,7 @@ function BetOnThis() {
                     <form onSubmit={ () => addBet(event) }>
                         <div onClick={() => homeTeam(game)}>
                             <p>THIS IS THE HOME TEAM</p>
+                            <img src= { "../../.././public/nflLogos/" + game.home_team + ".svg" }/>
                             <p>Home: {game.home_team}</p>
                             <p>Home Moneyline: {game.home_moneyline}</p>
                         </div>
