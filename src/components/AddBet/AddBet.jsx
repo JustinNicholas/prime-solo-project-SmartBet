@@ -14,6 +14,7 @@ function AddBet() {
 
     const teams = useSelector(store => store.teams);
     const dispatch = useDispatch();
+    const userID = useSelector( store => store.user.id);
 
     const getTeamsFromDatabase = () => {
         dispatch({
@@ -21,17 +22,98 @@ function AddBet() {
         })
     }
 
-    const [startDate, setStartDate] = useState(new Date());
-
-    const dateChange = (date) => {
-        setStartDate(date);
-        console.log(moment(date).format());
-    }
-
     const addBet = (event) => {
         event.preventDefault();
 
+        if( betAmount <= 0) {
+            alert('please select a winning team and enter a valid bet amount.')
+        } else {
+            // console.log({ user_id: userID, score_id: chosenTeam.score_id, chosen_team: chosenTeam.chosen_team, global_team_id: chosenTeam.global_team_id, chosen_moneyline: chosenTeam.chosen_moneyline, week: chosenTeam.week, bet_amount: betAmount });
+            //this is sent to the bet on this saga.
+            dispatch({
+                type: 'ADD_BET',
+                payload: { 
+                    user_id: userID,
+                    score_id: 0,
+                    chosen_team: chosenTeam.chosen_team,
+                    chosen_team_id: chosenTeam.chosen_team_id,
+                    chosen_moneyline: chosenTeam.chosen_moneyline,
+                    un_chosen_team: chosenTeam.un_chosen_team,
+                    un_chosen_team_id: chosenTeam.un_chosen_team_id,
+                    un_chosen_moneyline: chosenTeam.un_chosen_moneyline,
+                    week: chosenTeam.week,
+                    time: chosenTeam.time,
+                    bet_amount: Number(betAmount) }
+            })
+        }
         console.log(startDate);
+    }
+
+    const [chosenTeam, setChosenTeam] = useState({
+        score_id: 0,
+        chosen_team: '',
+        chosen_team_id: 0,
+        chosen_moneyline: 0,
+        un_chosen_team: '',
+        un_chosen_team_id: 0,
+        un_chosen_moneyline: 0,
+        week: 0,
+        time: '',
+        bet_amount: 0
+    });
+
+    const [startDate, setStartDate] = useState(new Date());
+
+    const dateChange = (date) => {
+        // this sets the date that is visible to users in a nice legible way
+        setStartDate(date);
+        console.log(moment(date).format());
+        // this sets the date in the object we are sending to the database in a way that matches the dates we get from the api.
+        setChosenTeam({
+            ...chosenTeam,
+            time: moment(date).format()
+        })
+    }
+
+    const betChange = (event) => {
+        console.log(event.target.value);
+        setChosenTeam({
+            ...chosenTeam,
+            bet_amount: event.target.value
+        })
+    }
+
+    const pickChange = (event) => {
+        let team = event.target.value
+        let pickId = team.split(',')[0];
+        let pickName = team.split(',')[1];
+        console.log(Number(pickId));
+        console.log(pickName);
+        setChosenTeam({
+            ...chosenTeam,
+            chosen_team_id: Number(pickId),
+            chosen_team: pickName
+        })
+    }
+
+    const oppChange = (event) => {
+        let oppTeam = event.target.value
+        let oppId = oppTeam.split(',')[0];
+        let oppName = oppTeam.split(',')[1];
+        console.log(Number(oppId));
+        console.log(oppName);
+        setChosenTeam({
+            ...chosenTeam,
+            un_chosen_team_id: Number(oppId),
+            un_chosen_team: oppName
+        })
+    }
+    const pickMoneylingChange = (event) => {
+        console.log(event.target.value);
+    }
+
+    const oppMoneylingChange = (event) => {
+        console.log(event.target.value);
     }
 
     return(
@@ -39,29 +121,32 @@ function AddBet() {
             <h1>Add a bet!</h1>
             <form onSubmit={() => addBet(event)}>
             <h3>Pick to win</h3>
-            <select name="" id="">
+            <select onChange={() => pickChange(event)}>
                 <option value="0">Select a Team</option>
                 {teams.map( team => {
                     return(
-                        <option key={team.id} value={team}>{team.team_full_name}</option>
+                        <option key={team.id} value={[team.id, team.team_abv_city]} >{team.team_full_name}</option>
                     )
                 })}
             </select>
-            <input type="text" placeholder="Your picks moneyline" />
+            <br />
+            <input type="text" placeholder="Your picks moneyline" onChange={() => pickMoneylingChange(event)} />
             <h3>Opponent</h3>
-            <select name="" id="">
+            <select onChange={() => oppChange(event)}>
                 <option value="0">Select a Team</option>
                 {teams.map( team => {
                     return(
-                        <option key={team.id} value={team}>{team.team_full_name}</option>
+                        <option key={team.id} value={[team.id, team.team_abv_city]} >{team.team_full_name}</option>
                     )
                 })}
             </select>
-
-            <input type="text" placeholder="Opponents moneyline"/>
+            <br />
+            <input type="text" placeholder="Opponents moneyline" onChange={() => oppMoneylingChange(event)} />
             <h3>Date/Time</h3>
             {/* Would like this to be a calendar select and a time select... */}
             <DatePicker selected={startDate} showTimeSelect dateFormat="Pp" onChange={(date) => dateChange(date)} />
+            <input type="number" placeholder="Bet Amount" onChange={() => betChange(event)}/>
+            <br />
             <button type="submit">Submit</button>
             </form>
         </div>

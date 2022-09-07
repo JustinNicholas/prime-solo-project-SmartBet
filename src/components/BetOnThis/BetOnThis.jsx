@@ -36,17 +36,47 @@ function BetOnThis() {
 
     const homeTeam = (game) => {
         console.log('home team clicked');
-        setChosenTeam({score_id: game.score_id, chosen_team: game.home_team, global_team_id: game.global_home_team_id, chosen_moneyline: game.home_moneyline, week: game.week });
+        setChosenTeam({
+            score_id: game.score_id,
+            chosen_team: game.home_team,
+            chosen_team_id: game.global_home_team_id,
+            chosen_moneyline: game.home_moneyline,
+            un_chosen_team: game.away_team,
+            un_chosen_team_id: game.global_away_team_id,
+            un_chosen_moneyline: game.away_moneyline,
+            week: game.week,
+            time: game.time
+        });
         console.log(chosenTeam);
     }
     const awayTeam = (game) => {
         console.log('away team clicked');
-        setChosenTeam({score_id: game.score_id, chosen_team: game.away_team, global_team_id: game.global_away_team_id, chosen_moneyline: game.away_moneyline, week: game.week });
-        console.log(chosenTeam);
+        setChosenTeam({
+            score_id: game.score_id,
+            chosen_team: game.away_team,
+            chosen_team_id: game.global_away_team_id,
+            chosen_moneyline: game.away_moneyline,
+            un_chosen_team: game.home_team,
+            un_chosen_team_id: game.global_home_team_id,
+            un_chosen_moneyline: game.home_moneyline,
+            week: game.week,
+            time: game.time
+        });
+        // console.log(chosenTeam);
     }
 
     // need to update the info going into this state in the object
-    const [chosenTeam, setChosenTeam] = useState({score_id: 0, chosen_team: '', global_team_id: 0, chosen_moneyline: 0, week: 0 });
+    const [chosenTeam, setChosenTeam] = useState({
+        score_id: 0,
+        chosen_team: '',
+        chosen_team_id: 0,
+        chosen_moneyline: 0,
+        un_chosen_team: '',
+        un_chosen_team_id: 0,
+        un_chosen_moneyline: 0,
+        week: 0,
+        time: ''
+    });
     const [betAmount, setBetAmount] = useState(0);
 
     const updateBet = (event) => {
@@ -64,7 +94,18 @@ function BetOnThis() {
             //this is sent to the bet on this saga.
             dispatch({
                 type: 'ADD_BET',
-                payload: { user_id: userID, score_id: chosenTeam.score_id, chosen_team: chosenTeam.chosen_team, global_team_id: chosenTeam.global_team_id, chosen_moneyline: chosenTeam.chosen_moneyline, week: chosenTeam.week, bet_amount: Number(betAmount) }
+                payload: { 
+                    user_id: userID,
+                    score_id: chosenTeam.score_id,
+                    chosen_team: chosenTeam.chosen_team,
+                    chosen_team_id: chosenTeam.chosen_team_id,
+                    chosen_moneyline: chosenTeam.chosen_moneyline,
+                    un_chosen_team: chosenTeam.un_chosen_team,
+                    un_chosen_team_id: chosenTeam.un_chosen_team_id,
+                    un_chosen_moneyline: chosenTeam.un_chosen_moneyline,
+                    week: chosenTeam.week,
+                    time: chosenTeam.time,
+                    bet_amount: Number(betAmount) }
             })
         }
     }
