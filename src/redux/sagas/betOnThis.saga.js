@@ -25,7 +25,7 @@ function* addBet(action) {
 
 function* betOnThisSaga() {
     yield takeEvery('BET_ON_THIS', betOnThis);
-    yield takeEvery('ADD_BET', addBet)
+    yield takeEvery('ADD_BET', addBet);
 }
 
 export default betOnThisSaga;

@@ -26,6 +26,11 @@ function BetHistory() {
 
     const editBet = (bet) => {
         console.log('clicked edit bet');
+            dispatch({
+                type: 'EDIT_THIS_BET',
+                payload: bet
+            })
+            history.push(`/database/bets/edit/${bet.id}`)
     }
 
     const deleteBet = (bet) => {

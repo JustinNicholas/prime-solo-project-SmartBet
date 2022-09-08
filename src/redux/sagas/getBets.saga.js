@@ -22,9 +22,19 @@ function* deleteBet(action) {
     }
 }
 
+function* editBet(action) {
+    try {
+      let response = yield axios.get(`/database/bets/${action.payload.id}`)
+      yield put({type: 'SET_THIS_GAME', payload: response.data})
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
 function* getBetsSaga() {
     yield takeEvery('GET_BET_HISTORY', getBets);
-    yield takeEvery('DELETE_BET', deleteBet)
+    yield takeEvery('DELETE_BET', deleteBet);
+    yield takeEvery('EDIT_THIS_BET', editBet);
 }
 
 export default getBetsSaga;

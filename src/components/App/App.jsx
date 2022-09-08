@@ -23,6 +23,7 @@ import ViewGames from '../ViewGames/ViewGames';
 import AddBet from '../AddBet/AddBet';
 import BetHistory from '../BetHistory/BetHistory';
 import BetOnThis from '../BetOnThis/BetOnThis';
+import EditBet from '../EditBet/EditBet';
 
 import './App.css';
 
@@ -86,6 +87,14 @@ function App() {
             path="/database/bets/:score_id"
           >
             <BetOnThis />
+          </ProtectedRoute>
+
+          <ProtectedRoute
+            // logged in shows InfoPage else shows LoginPage
+            exact
+            path="/database/bets/edit/:id"
+          >
+            <EditBet />
           </ProtectedRoute>
 
           <ProtectedRoute

@@ -32,7 +32,7 @@ function BetOnThis() {
     }
 
     const thisGame = useSelector( store => store.thisGame);
-    const userID = useSelector( store => store.user.id)
+    const userID = useSelector( store => store.user.id);
 
     const homeTeam = (game) => {
         console.log('home team clicked');
@@ -45,7 +45,9 @@ function BetOnThis() {
             un_chosen_team_id: game.global_away_team_id,
             un_chosen_moneyline: game.away_moneyline,
             week: game.week,
-            time: game.time
+            time: game.time,
+            is_completed: game.is_completed,
+            profit: game.profit
         });
         console.log(chosenTeam);
     }
@@ -60,7 +62,9 @@ function BetOnThis() {
             un_chosen_team_id: game.global_home_team_id,
             un_chosen_moneyline: game.home_moneyline,
             week: game.week,
-            time: game.time
+            time: game.time,
+            is_completed: game.is_completed,
+            profit: game.profit
         });
         // console.log(chosenTeam);
     }
@@ -75,7 +79,9 @@ function BetOnThis() {
         un_chosen_team_id: 0,
         un_chosen_moneyline: 0,
         week: 0,
-        time: ''
+        time: '',
+        is_completed: null,
+        profit: 0
     });
     const [betAmount, setBetAmount] = useState(0);
 
@@ -92,6 +98,9 @@ function BetOnThis() {
         } else {
             // console.log({ user_id: userID, score_id: chosenTeam.score_id, chosen_team: chosenTeam.chosen_team, global_team_id: chosenTeam.global_team_id, chosen_moneyline: chosenTeam.chosen_moneyline, week: chosenTeam.week, bet_amount: betAmount });
             //this is sent to the bet on this saga.
+
+            console.log(chosenTeam);
+
             dispatch({
                 type: 'ADD_BET',
                 payload: { 
@@ -105,7 +114,10 @@ function BetOnThis() {
                     un_chosen_moneyline: chosenTeam.un_chosen_moneyline,
                     week: chosenTeam.week,
                     time: chosenTeam.time,
-                    bet_amount: Number(betAmount) }
+                    bet_amount: Number(betAmount),
+                    is_completed: chosenTeam.is_completed,
+                    profit: chosenTeam.profit
+                }
             })
         }
     }

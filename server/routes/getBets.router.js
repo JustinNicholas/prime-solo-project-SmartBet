@@ -41,6 +41,24 @@ router.delete('/:id', rejectUnauthenticated, (req, res) => {
         })
 })
 
+router.get('/:id', (req, res) => {
+
+    let queryText = `SELECT * FROM "user_bets"
+    WHERE id = $1;`;
+  
+    let queryValues = [ req.params.id ];
+    console.log(queryValues);
+  
+    pool.query(queryText, queryValues)
+      .then( result => {
+          res.send(result.rows);
+      }).catch( err => {
+        console.log(err);
+        res.sendStatus(500);
+      })
+    
+  });
+
 // router.post('/', (req, res) => {
 //     const games = req.body.games;
 
