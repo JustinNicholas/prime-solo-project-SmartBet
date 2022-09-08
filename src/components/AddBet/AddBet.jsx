@@ -24,11 +24,7 @@ function AddBet() {
 
     const addBet = (event) => {
         event.preventDefault();
-
-        if( betAmount <= 0) {
-            alert('please select a winning team and enter a valid bet amount.')
-        } else {
-            // console.log({ user_id: userID, score_id: chosenTeam.score_id, chosen_team: chosenTeam.chosen_team, global_team_id: chosenTeam.global_team_id, chosen_moneyline: chosenTeam.chosen_moneyline, week: chosenTeam.week, bet_amount: betAmount });
+            console.log({ user_id: userID, score_id: chosenTeam.score_id, chosen_team: chosenTeam.chosen_team, global_team_id: chosenTeam.global_team_id, chosen_moneyline: chosenTeam.chosen_moneyline, week: chosenTeam.week, bet_amount: chosenTeam.bet_amount });
             //this is sent to the bet on this saga.
             dispatch({
                 type: 'ADD_BET',
@@ -43,10 +39,11 @@ function AddBet() {
                     un_chosen_moneyline: chosenTeam.un_chosen_moneyline,
                     week: chosenTeam.week,
                     time: chosenTeam.time,
-                    bet_amount: Number(betAmount) }
+                    bet_amount: Number(chosenTeam.bet_amount),
+                    winLoss: chosenTeam.winLoss
+                }
             })
-        }
-        console.log(startDate);
+        console.log(chosenTeam);
     }
 
     const [chosenTeam, setChosenTeam] = useState({
@@ -58,8 +55,11 @@ function AddBet() {
         un_chosen_team_id: 0,
         un_chosen_moneyline: 0,
         week: 0,
-        time: '',
-        bet_amount: 0
+        time: moment(new Date()).format(),
+        bet_amount: 0,
+        is_complete: true,
+        profit: 0,
+        winLoss: null
     });
 
     const [startDate, setStartDate] = useState(new Date());
@@ -69,8 +69,7 @@ function AddBet() {
         setStartDate(date);
         console.log(moment(date).format());
         // this sets the date in the object we are sending to the database in a way that matches the dates we get from the api.
-        setChosenTeam({
-            ...chosenTeam,
+        setStartDate({
             time: moment(date).format()
         })
     }
@@ -110,10 +109,26 @@ function AddBet() {
     }
     const pickMoneylingChange = (event) => {
         console.log(event.target.value);
+        setChosenTeam({
+            ...chosenTeam,
+            chosen_moneyline: event.target.value
+        })
     }
 
     const oppMoneylingChange = (event) => {
         console.log(event.target.value);
+        setChosenTeam({
+            ...chosenTeam,
+            un_chosen_moneyline: event.target.value
+        })
+    }
+
+    const winLossChange = (event) => {
+        console.log(event);
+        setChosenTeam({
+            ...chosenTeam,
+            winLoss: event
+        })
     }
 
     return(
@@ -146,6 +161,9 @@ function AddBet() {
             {/* Would like this to be a calendar select and a time select... */}
             <DatePicker selected={startDate} showTimeSelect dateFormat="Pp" onChange={(date) => dateChange(date)} />
             <input type="number" placeholder="Bet Amount" onChange={() => betChange(event)}/>
+            <br />
+            <button type="button" onClick={() => winLossChange(true)} >WIN</button>
+            <button type="button" onClick={() => winLossChange(false)} >LOSS</button>
             <br />
             <button type="submit">Submit</button>
             </form>

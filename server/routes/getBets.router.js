@@ -13,7 +13,7 @@ const {rejectUnauthenticated} = require('../modules/authentication-middleware');
 router.get('/', rejectUnauthenticated, (req, res) => {
   // GET route code here
     const queryText = `
-    SELECT * FROM "user_auto_bets"
+    SELECT * FROM "user_bets"
     WHERE user_id = $1;`;
 
     pool.query(queryText, [req.user.id])
@@ -28,7 +28,7 @@ router.get('/', rejectUnauthenticated, (req, res) => {
 
 router.delete('/:id', rejectUnauthenticated, (req, res) => {
     const queryText = `
-    DELETE FROM "user_auto_bets"
+    DELETE FROM "user_bets"
     WHERE id = $1;`;
     const queryValues = [req.params.id];
 

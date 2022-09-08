@@ -22,10 +22,52 @@ router.get('/:score_id', (req, res) => {
 router.post('/', (req, res) => {
     const bet = req.body;
     const queryText = `
-    INSERT INTO "user_bets" ("user_id", "score_id", "chosen_team", "chosen_team_id", "chosen_moneyline", "un_chosen_team", "un_chosen_team_id", "un_chosen_moneyline", "week", "time", "bet_amount")
-    VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11);`;
+    INSERT INTO "user_bets" ("user_id", "score_id", "chosen_team", "chosen_team_id", "chosen_moneyline", "un_chosen_team", "un_chosen_team_id", "un_chosen_moneyline", "week", "time", "bet_amount", "profit", "is_completed")
+    VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13);`;
 
-    const queryValues = [ bet.user_id, bet.score_id, bet.chosen_team, bet.chosen_team_id, bet.chosen_moneyline, bet.un_chosen_team, bet.un_chosen_team_id, bet.un_chosen_moneyline, bet.week, bet.time, bet.bet_amount ];
+    let profit = 0;
+    let is_completed = false;
+
+    function profitCalc() {
+          console.log('our negative bet amount is', -bet.bet_amount);
+          if (bet.winLoss === false) {
+              console.log('we lost the bet', -bet.bet_amount);
+              profit = -bet.bet_amount;
+              is_completed = true;
+          } else if (bet.winLoss === true) {
+              if (bet.chosen_moneyline > 99) {
+                  let profitAnswer = ((Number(bet.chosen_moneyline) / 100) * Number(bet.bet_amount)) + Number(bet.bet_amount);
+                  console.log('making profit equal to',profitAnswer);
+                  profit = profitAnswer;
+                  is_completed = true;
+              } else if (bet.chosen_moneyline < -99) {
+                  let profitAnswer = (Number(bet.bet_amount) / (Number(bet.chosen_moneyline) / -100)) + Number(bet.bet_amount);
+                  console.log('making profit equal to',profitAnswer);
+                  profit = profitAnswer,
+                  is_completed = true;
+              }
+          } else {
+              console.log('must be null still');
+          }
+  }
+
+    profitCalc();
+
+    const queryValues = [
+      bet.user_id,
+      bet.score_id,
+      bet.chosen_team,
+      bet.chosen_team_id,
+      bet.chosen_moneyline,
+      bet.un_chosen_team,
+      bet.un_chosen_team_id,
+      bet.un_chosen_moneyline,
+      bet.week,
+      bet.time,
+      bet.bet_amount,
+      profit,
+      is_completed
+    ];
 
     pool.query(queryText, queryValues)
     .then( result => {
