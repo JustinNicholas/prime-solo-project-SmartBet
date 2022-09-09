@@ -69,7 +69,7 @@ function AddBet() {
         setStartDate(date);
         console.log(moment(date).format());
         // this sets the date in the object we are sending to the database in a way that matches the dates we get from the api.
-        setStartDate({
+        setChosenTeam({
             time: moment(date).format()
         })
     }

@@ -4,6 +4,8 @@ import axios from 'axios';
 function* updateGames() {
 
     try {
+
+    // Need to move this to the server side and use .then instead of yield
         //clear out the table of games
         yield axios.delete('/database/games');
         // clear out the table of week

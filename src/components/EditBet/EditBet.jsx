@@ -12,6 +12,7 @@ function EditBet() {
     const history = useHistory();
     const {id} = useParams();
     const dispatch = useDispatch();
+    console.log(id);
 
     const thisGame = useSelector( store => store.thisGame);
     const userID = useSelector( store => store.user.id);

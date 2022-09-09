@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {useSelector} from 'react-redux';
 import { useDispatch } from 'react-redux';
 import { useEffect } from 'react';
@@ -10,6 +10,8 @@ function BetHistory() {
     useEffect(() => {
         getBetsFromDatabase();
     }, []);
+
+    let profitTotal = 0;
 
     const bets = useSelector(store => store.betHistory)
     const userId = useSelector(store => store.user.id)
@@ -44,8 +46,13 @@ function BetHistory() {
     return(
         <>
             <h1>Bet History Page</h1>
+            {bets.map(bet => {
+                profitTotal += bet.profit
+            })}
+            <h1>GRAND TOTAL = ${profitTotal.toFixed(2)}</h1>
             {bets.map( bet => {
                 if (userId === bet.user_id) {
+
                     // use moment js to parse time into easy to read text.
                     // const date = moment(bet.time).format('LLLL')
                     return (
