@@ -31,10 +31,20 @@ function* editBet(action) {
     }
   }
 
+  function* submitEditBet(action) {
+    try {
+      yield axios.put(`/database/bets/${action.payload.id}`, action.payload)
+      yield put({type: 'GET_BET_HISTORY'})
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
 function* getBetsSaga() {
     yield takeEvery('GET_BET_HISTORY', getBets);
     yield takeEvery('DELETE_BET', deleteBet);
     yield takeEvery('EDIT_THIS_BET', editBet);
+    yield takeEvery('SUBMIT_EDIT_BET', submitEditBet);
 }
 
 export default getBetsSaga;

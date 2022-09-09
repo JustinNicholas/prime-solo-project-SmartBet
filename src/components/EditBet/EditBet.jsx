@@ -44,7 +44,10 @@ function EditBet() {
             un_chosen_team_id: game.un_chosen_team_id,
             un_chosen_moneyline: game.un_chosen_moneyline,
             week: game.week,
-            time: game.time
+            time: game.time,
+            is_completed: game.is_completed,
+            profit: game.profit,
+            winner_same: true
         });
         console.log(chosenTeam);
     }
@@ -59,7 +62,10 @@ function EditBet() {
             un_chosen_team_id: game.chosen_team_id,
             un_chosen_moneyline: game.chosen_moneyline,
             week: game.week,
-            time: game.time
+            time: game.time,
+            is_completed: game.is_completed,
+            profit: game.profit,
+            winner_same: false
         });
         // console.log(chosenTeam);
     }
@@ -73,7 +79,10 @@ function EditBet() {
         un_chosen_team_id: 0,
         un_chosen_moneyline: 0,
         week: 0,
-        time: ''
+        time: '',
+        is_completed: null,
+        profit: 0,
+        winner_same: null
     });
     const [betAmount, setBetAmount] = useState(0);
 
@@ -85,29 +94,34 @@ function EditBet() {
     const updateThisBet = (event) => {
         event.preventDefault;
 
-        if(chosenTeam.score_id === 0 || betAmount <= 0) {
+        if(chosenTeam.chosen_team_id === 0 || betAmount <= 0) {
             alert('please select a winning team and enter a valid bet amount.')
         } else {
             // console.log({ user_id: userID, score_id: chosenTeam.score_id, chosen_team: chosenTeam.chosen_team, global_team_id: chosenTeam.global_team_id, chosen_moneyline: chosenTeam.chosen_moneyline, week: chosenTeam.week, bet_amount: betAmount });
             //this is sent to the bet on this saga.
 
-            console.log(chosenTeam);
+            console.log('CHOSENTEAM', chosenTeam);
 
-            // dispatch({
-            //     type: 'UPDATE_BET',
-            //     payload: { 
-            //         user_id: userID,
-            //         score_id: chosenTeam.score_id,
-            //         chosen_team: chosenTeam.chosen_team,
-            //         chosen_team_id: chosenTeam.chosen_team_id,
-            //         chosen_moneyline: chosenTeam.chosen_moneyline,
-            //         un_chosen_team: chosenTeam.un_chosen_team,
-            //         un_chosen_team_id: chosenTeam.un_chosen_team_id,
-            //         un_chosen_moneyline: chosenTeam.un_chosen_moneyline,
-            //         week: chosenTeam.week,
-            //         time: chosenTeam.time,
-            //         bet_amount: Number(betAmount) }
-            // })
+            dispatch({
+                type: 'SUBMIT_EDIT_BET',
+                payload: { 
+                    user_id: userID,
+                    score_id: chosenTeam.score_id,
+                    chosen_team: chosenTeam.chosen_team,
+                    chosen_team_id: chosenTeam.chosen_team_id,
+                    chosen_moneyline: chosenTeam.chosen_moneyline,
+                    un_chosen_team: chosenTeam.un_chosen_team,
+                    un_chosen_team_id: chosenTeam.un_chosen_team_id,
+                    un_chosen_moneyline: chosenTeam.un_chosen_moneyline,
+                    week: chosenTeam.week,
+                    time: chosenTeam.time,
+                    bet_amount: Number(betAmount),
+                    is_completed: chosenTeam.is_completed,
+                    profit: chosenTeam.profit,
+                    winner_same: chosenTeam.winner_same,
+                    id: id
+                }
+            })
         }
     }
 

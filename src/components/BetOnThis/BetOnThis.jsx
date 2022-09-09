@@ -45,9 +45,7 @@ function BetOnThis() {
             un_chosen_team_id: game.global_away_team_id,
             un_chosen_moneyline: game.away_moneyline,
             week: game.week,
-            time: game.time,
-            is_completed: game.is_completed,
-            profit: game.profit
+            time: game.time
         });
         console.log(chosenTeam);
     }
@@ -63,8 +61,6 @@ function BetOnThis() {
             un_chosen_moneyline: game.home_moneyline,
             week: game.week,
             time: game.time,
-            is_completed: game.is_completed,
-            profit: game.profit
         });
         // console.log(chosenTeam);
     }
@@ -79,9 +75,7 @@ function BetOnThis() {
         un_chosen_team_id: 0,
         un_chosen_moneyline: 0,
         week: 0,
-        time: '',
-        is_completed: null,
-        profit: 0
+        time: ''
     });
     const [betAmount, setBetAmount] = useState(0);
 
@@ -114,9 +108,7 @@ function BetOnThis() {
                     un_chosen_moneyline: chosenTeam.un_chosen_moneyline,
                     week: chosenTeam.week,
                     time: chosenTeam.time,
-                    bet_amount: Number(betAmount),
-                    is_completed: chosenTeam.is_completed,
-                    profit: chosenTeam.profit
+                    bet_amount: Number(betAmount)
                 }
             })
         }
