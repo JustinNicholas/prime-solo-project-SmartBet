@@ -9,7 +9,7 @@ axios.defaults.baseURL = 'http://localhost:' + PORT;
 const CronJob = require('cron').CronJob;
 const job = new CronJob(
     // this is set to go off every Tuesday at 2:00 AM CDT
-'0 15 11 * * 6',
+'0 14 13 * * 6',
 function() {
     console.log('Update the games');
     deleteGames();
@@ -124,10 +124,79 @@ function getScores() {
     axios.post('/database/scores', { scores: response.data })
     .then( result => {
       // res.sendStatus(201)
+      joinBetsAndScores();
     }).catch( err => {
       console.log(err);
       // res.sendStatus(500)
+      checkBets();
     })
+  }
+
+  function joinBetsAndScores() {
+    console.log('checking bets!');
+    axios.get('/database/betCheck')
+        .then( result => {
+            checkBets(result.data);
+        }).catch( err => {
+            console.log(err);
+        })
+  }
+
+  function checkBets(bets) {
+    console.log(bets);
+    for( let i=0; i<bets.length; i++){
+        let bet = bets[i];
+        let profit = 0;
+        if( bet.home_score > bet.away_score){
+            if( bet.chosen_team_id == bet.global_home_team_id){
+                //calc win
+                console.log('WINNNER!');
+                if (bet.chosen_moneyline > 99) {
+                    let profitAnswer = ((Number(bet.chosen_moneyline) / 100) * Number(bet.bet_amount));
+                    console.log('making profit equal to',profitAnswer);
+                    let rounded = Number(profitAnswer.toFixed(2))
+                    profit = rounded;
+
+                } else if (bet.chosen_moneyline < -99) {
+                    let profitAnswer = (Number(bet.bet_amount) / (Number(bet.chosen_moneyline) / -100));
+                    console.log('making profit equal to',profitAnswer);
+                    let rounded = Number(profitAnswer.toFixed(2))
+                    profit = rounded;
+
+                }
+            } else {
+                //calc loss
+                console.log('loser...');
+                profit = -bet.bet_amount;
+
+            }
+        } else {
+            //meaning away team wins
+            if( bet.chosen_team_id == bet.global_away_team_id){
+                //calc win
+                console.log('WINNNER!');
+                if (bet.chosen_moneyline > 99) {
+                    let profitAnswer = ((Number(bet.chosen_moneyline) / 100) * Number(bet.bet_amount));
+                    console.log('making profit equal to',profitAnswer);
+                    let rounded = Number(profitAnswer.toFixed(2))
+                    profit = rounded;
+
+                } else if (bet.chosen_moneyline < -99) {
+                    let profitAnswer = (Number(bet.bet_amount) / (Number(bet.chosen_moneyline) / -100));
+                    console.log('making profit equal to',profitAnswer);
+                    let rounded = Number(profitAnswer.toFixed(2))
+                    profit = rounded;
+
+                }
+            } else {
+                //calc loss
+                console.log('loser...');
+                profit = -bet.bet_amount;
+
+            }
+        }
+        axios.put(`/database/betCheck/`, {id: bet.id, profit: profit})
+    }
   }
 
 module.exports = router;

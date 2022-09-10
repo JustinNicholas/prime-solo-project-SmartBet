@@ -18,6 +18,7 @@ const getBetsRouter = require('./routes/getBets.router');
 const teamsRouter = require('./routes/teams.router');
 const scheduledUpdate = require('./routes/scheduledUpdate.router');
 const updateScores = require('./routes/updateScores.router');
+const checkBetsRouter = require('./routes/checkBets.router');
 
 // Body parser middleware
 app.use(bodyParser.json({limit: '50mb'}));
@@ -40,6 +41,7 @@ app.use('/database/thisGame', betOnThisRouter);
 app.use('/database/bets', getBetsRouter);
 app.use('/database/teams', teamsRouter);
 app.use('/database/scores', updateScores);
+app.use('/database/betCheck', checkBetsRouter)
 
 // Serve static files
 app.use(express.static('build'));
