@@ -16,6 +16,7 @@ const getWeekRouter = require('./routes/getWeek.router');
 const betOnThisRouter  = require('./routes/betOnThis.router');
 const getBetsRouter = require('./routes/getBets.router');
 const teamsRouter = require('./routes/teams.router');
+const scheduledUpdate = require('./routes/scheduledUpdate.router');
 
 // Body parser middleware
 app.use(bodyParser.json({limit: '50mb'}));
@@ -48,3 +49,4 @@ const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
   console.log(`Listening on port: ${PORT}`);
 });
+
