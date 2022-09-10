@@ -9,7 +9,7 @@ axios.defaults.baseURL = 'http://localhost:' + PORT;
 const CronJob = require('cron').CronJob;
 const job = new CronJob(
     // this is set to go off every Tuesday at 2:00 AM CDT
-'0 0 2 * * 2',
+'0 15 11 * * 6',
 function() {
     console.log('Update the games');
     deleteGames();
@@ -38,12 +38,25 @@ function deleteWeek() {
   // clear out the table of week
   axios.delete('/database/week')
   .then( result => {
-    getWeek();
+    deleteScores();
     // res.sendStatus(204)
   }).catch( err => {
     console.log(err);
     // res.sendStatus(500)
   })
+}
+
+function deleteScores() {
+    console.log('in delete scores')
+    // clear out the table of week
+    axios.delete('/database/scores')
+    .then( result => {
+      getWeek();
+      // res.sendStatus(204)
+    }).catch( err => {
+      console.log(err);
+      // res.sendStatus(500)
+    })
 }
 
 function getWeek() {
@@ -87,11 +100,34 @@ function postGames(response) {
   axios.post('/database/games', { games: response.data })
   .then( result => {
     // res.sendStatus(201)
+    getScores();
   }).catch( err => {
     console.log(err);
     // res.sendStatus(500)
   })
 }
 
+function getScores() {
+    console.log('in get scores')
+    axios.get('/database/scores')
+    .then( result => {
+      postScores(result);
+      // res.sendStatus(200)
+    }).catch( err => {
+      console.log(err);
+      // res.sendStatus(500)
+    })
+  }
+  
+  function postScores(response) {
+    console.log('in post scores')
+    axios.post('/database/scores', { scores: response.data })
+    .then( result => {
+      // res.sendStatus(201)
+    }).catch( err => {
+      console.log(err);
+      // res.sendStatus(500)
+    })
+  }
 
 module.exports = router;

@@ -22,12 +22,12 @@ router.get('/', (req, res) => {
 router.post('/', (req, res) => {
     const scores = req.body.scores;
 
-      let queryText = `INSERT INTO "games" ("score_id", "home_team", "global_home_team_id", "away_team", "global_away_team_id", "home_score", "away_score", "is_over")
+      let queryText = `INSERT INTO "scores" ("score_id", "home_team", "global_home_team_id", "away_team", "global_away_team_id", "home_score", "away_score", "is_over")
       VALUES ($1, $2, $3, $4, $5, $6, $7, $8);`;
 
-      for( let i=0; i<games.length; i++) {
+      for( let i=0; i<scores.length; i++) {
       // if ( games[i].Week === currentWeek ){
-      let queryValues = [ scores[i].ScoreID, scores[i].HomeTeam, scores[i].GlobalHomeTeamID, scores[i].AwayTeam, scores[i].GlobalAwayTeamID, scores[i].HomeScore, games[i].AwayScore ];
+      let queryValues = [ scores[i].ScoreID, scores[i].HomeTeam, scores[i].GlobalHomeTeamID, scores[i].AwayTeam, scores[i].GlobalAwayTeamID, scores[i].HomeScore, scores[i].AwayScore, scores[i].IsOver ];
       console.log(queryValues);
 
       pool.query(queryText, queryValues)
