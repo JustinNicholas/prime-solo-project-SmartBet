@@ -14,7 +14,8 @@ router.get('/', rejectUnauthenticated, (req, res) => {
   // GET route code here
     const queryText = `
     SELECT * FROM "user_bets"
-    WHERE user_id = $1;`;
+    WHERE user_id = $1
+    ORDER BY time;`;
 
     pool.query(queryText, [req.user.id])
     .then( result => {

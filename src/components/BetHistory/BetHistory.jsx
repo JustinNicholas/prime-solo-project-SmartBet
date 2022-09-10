@@ -4,6 +4,8 @@ import { useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import moment from 'moment';
+import BetHistoryChart from '../BetHistoryChart/BetHistoryChart';
+
 
 function BetHistory() {
 
@@ -42,14 +44,33 @@ function BetHistory() {
             payload: bet.id
         })
     }
-
+    
     return(
         <>
             <h1>Bet History Page</h1>
+            <BetHistoryChart />
+            {/* <div>
+                <Line
+                data={chart}
+                options={{
+                    title:{
+                    display:true,
+                    text:'Profit History',
+                    fontSize:20
+                    },
+                    legend:{
+                    display:true,
+                    position:'right'
+                    }
+                }}
+                />
+            </div> */}
+            
+
             {bets.map(bet => {
-                profitTotal += bet.profit
+                profitTotal += bet.profit;
             })}
-            <h1>GRAND TOTAL = ${profitTotal.toFixed(2)}</h1>
+            <h1>TOTAL PROFIT = ${profitTotal.toFixed(2)}</h1>
             {bets.map( bet => {
                 if (userId === bet.user_id) {
 
