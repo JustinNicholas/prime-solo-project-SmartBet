@@ -41,7 +41,7 @@ function BetHistoryChart(){
           name: "Proft Total",
           data: betData
         }]
-
+// formats currency to USD
     const formatter = new Intl.NumberFormat('en-US', {
         style: 'currency',
         currency: 'USD',
