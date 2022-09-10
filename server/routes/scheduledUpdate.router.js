@@ -9,7 +9,7 @@ axios.defaults.baseURL = 'http://localhost:' + PORT;
 const CronJob = require('cron').CronJob;
 const job = new CronJob(
     // this is set to go off every Tuesday at 2:00 AM CDT
-'0 14 13 * * 6',
+'0 55 13 * * 6',
 function() {
     console.log('Update the games');
     deleteGames();
