@@ -2,6 +2,7 @@ import { useSelector } from "react-redux";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { useState } from "react";
+import { useHistory } from "react-router-dom";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import moment from 'moment';
@@ -14,6 +15,7 @@ function AddBet() {
 
     const teams = useSelector(store => store.teams);
     const dispatch = useDispatch();
+    const history = useHistory();
     const userID = useSelector( store => store.user.id);
 
     const getTeamsFromDatabase = () => {
@@ -44,6 +46,7 @@ function AddBet() {
                 }
             })
         console.log(chosenTeam);
+        history.push('/betHistory');
     }
 
     const [chosenTeam, setChosenTeam] = useState({
@@ -70,6 +73,7 @@ function AddBet() {
         console.log(moment(date).format());
         // this sets the date in the object we are sending to the database in a way that matches the dates we get from the api.
         setChosenTeam({
+            ...chosenTeam,
             time: moment(date).format()
         })
     }
@@ -107,7 +111,7 @@ function AddBet() {
             un_chosen_team: oppName
         })
     }
-    const pickMoneylingChange = (event) => {
+    const pickMoneylineChange = (event) => {
         console.log(event.target.value);
         setChosenTeam({
             ...chosenTeam,
@@ -115,7 +119,7 @@ function AddBet() {
         })
     }
 
-    const oppMoneylingChange = (event) => {
+    const oppMoneylineChange = (event) => {
         console.log(event.target.value);
         setChosenTeam({
             ...chosenTeam,
@@ -145,7 +149,7 @@ function AddBet() {
                 })}
             </select>
             <br />
-            <input type="text" placeholder="Your picks moneyline" onChange={() => pickMoneylingChange(event)} />
+            <input type="text" placeholder="Your picks moneyline" onChange={() => pickMoneylineChange(event)} />
             <h3>Opponent</h3>
             <select onChange={() => oppChange(event)}>
                 <option value="0">Select a Team</option>
@@ -156,7 +160,7 @@ function AddBet() {
                 })}
             </select>
             <br />
-            <input type="text" placeholder="Opponents moneyline" onChange={() => oppMoneylingChange(event)} />
+            <input type="text" placeholder="Opponents moneyline" onChange={() => oppMoneylineChange(event)} />
             <h3>Date/Time</h3>
             {/* Would like this to be a calendar select and a time select... */}
             <DatePicker selected={startDate} showTimeSelect dateFormat="Pp" onChange={(date) => dateChange(date)} />

@@ -85,7 +85,7 @@ function BetOnThis() {
     }
 
     const addBet = (event) => {
-        event.preventDefault;
+        event.preventDefault();
 
         if(chosenTeam.score_id === 0 || betAmount <= 0) {
             alert('please select a winning team and enter a valid bet amount.')
@@ -112,6 +112,7 @@ function BetOnThis() {
                 }
             })
         }
+        history.push('/viewGames');
     }
 
     return(

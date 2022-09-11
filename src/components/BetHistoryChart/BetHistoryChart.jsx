@@ -55,10 +55,12 @@ function BetHistoryChart(){
     return(
         <>
             {bets.map(bet => {
+                if( bet.profit > 0 || bet.profit < 0 ){
                 runningTotal = runningTotal + bet.profit;
                 const date = moment(bet.time).format('LL')
                 labels.push(date)
                 betData.push(runningTotal);
+                }
             })}
          <h1>line graph for bet history</h1>
          <Chart

@@ -93,7 +93,7 @@ function EditBet() {
     }
 
     const updateThisBet = (event) => {
-        event.preventDefault;
+        event.preventDefault();
 
         if(chosenTeam.chosen_team_id === 0 || betAmount <= 0) {
             alert('please select a winning team and enter a valid bet amount.')
@@ -123,6 +123,7 @@ function EditBet() {
                     id: id
                 }
             })
+            history.push('/betHistory');
         }
     }
 

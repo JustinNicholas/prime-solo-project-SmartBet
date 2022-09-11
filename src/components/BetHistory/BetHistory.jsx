@@ -17,6 +17,9 @@ function BetHistory() {
 
     const bets = useSelector(store => store.betHistory)
     const userId = useSelector(store => store.user.id)
+    //slice makes a copy of the array. we reverse the copy so most recent bet is at the top
+    // without slice we were reversing the array globalling and it would change the chart order.
+    const reversedBets = bets.slice(0).reverse();
 
     const dispatch = useDispatch();
     const history = useHistory();
@@ -44,34 +47,25 @@ function BetHistory() {
             payload: bet.id
         })
     }
+
+    //money format
+    const formatter = new Intl.NumberFormat('en-US', {
+        style: 'currency',
+        currency: 'USD',
+        minimumFractionDigits: 2
+        })
     
     return(
         <>
             <h1>Bet History Page</h1>
             <BetHistoryChart />
-            {/* <div>
-                <Line
-                data={chart}
-                options={{
-                    title:{
-                    display:true,
-                    text:'Profit History',
-                    fontSize:20
-                    },
-                    legend:{
-                    display:true,
-                    position:'right'
-                    }
-                }}
-                />
-            </div> */}
-            
 
             {bets.map(bet => {
                 profitTotal += bet.profit;
             })}
             <h1>TOTAL PROFIT = ${profitTotal.toFixed(2)}</h1>
-            {bets.map( bet => {
+            {reversedBets.map( bet => {
+                const date = moment(bet.time).format('LLLL');
                 if (userId === bet.user_id) {
 
                     // use moment js to parse time into easy to read text.
@@ -83,10 +77,18 @@ function BetHistory() {
                         <img className='team-logo' src={process.env.PUBLIC_URL + '/NflLogos/' + bet.chosen_team + '.svg'} alt="logo" />
                         <p>Pick to Win: {bet.chosen_team}</p>
                         <p>Moneyline: {bet.chosen_moneyline}</p>
-                        {/* <img className='team-logo' src={process.env.PUBLIC_URL + '/NflLogos/' + bet.unchosen_team + '.svg'} alt="logo" />
-                        <p>Pick to lose: {bet.unchosen_team}</p>
-                        <p>Moneyline: {bet.unchosen_moneyline}</p>
-                        <p>Channel: {bet.channel}</p> */}
+                        <p>Profit: {bet.profit == 0 ? 'PENDING' : formatter.format(bet.profit)}</p>
+                        {bet.profit == 0 ? 
+                        <>
+                            <p>Time: {date}</p>
+                            <p>Channel: {bet.channel}</p>
+                        </>
+                        :
+                        <p>Final Score: </p>
+                        }
+                        {/* <img className='team-logo' src={process.env.PUBLIC_URL + '/NflLogos/' + bet.un_chosen_team + '.svg'} alt="logo" />
+                        <p>Pick to lose: {bet.un_chosen_team}</p>
+                        <p>Moneyline: {bet.un_chosen_moneyline}</p> */}
                         <button onClick={() => deleteBet(bet)}>Delete</button>
                         <button onClick={() => editBet(bet)}>EDIT</button>
                     </div>
