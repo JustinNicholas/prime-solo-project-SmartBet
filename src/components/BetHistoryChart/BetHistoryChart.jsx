@@ -8,6 +8,19 @@ function BetHistoryChart(){
     let betData = [];
 
     const options = {
+        chart: {animations: {
+            enabled: true,
+            easing: 'easeinout',
+            speed: 1000,
+            animateGradually: {
+                enabled: true,
+                delay: 100
+            },
+            dynamicAnimation: {
+                enabled: true,
+                speed: 1000
+            }
+        }},
         // chart: {background: '#bfbfbf'},
         xaxis: {categories: labels,
         labels: {
@@ -52,7 +65,7 @@ function BetHistoryChart(){
         },
         dynamicAnimation: {
             enabled: true,
-            speed: 350
+            speed: 35
         }
     }
 // formats currency to USD

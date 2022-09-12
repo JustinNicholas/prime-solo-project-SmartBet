@@ -13,9 +13,18 @@ const {rejectUnauthenticated} = require('../modules/authentication-middleware');
 router.get('/', rejectUnauthenticated, (req, res) => {
   // GET route code here
     const queryText = `
-    SELECT * FROM "user_bets"
+    SELECT "user_bets".*, "scores".score_id, "scores".away_score, "scores".home_score, "scores".away_team, "scores".home_team, "scores".is_over, "games".channel FROM "user_bets"
+    LEFT JOIN "scores"
+	ON "scores".score_id = "user_bets".score_id
+    LEFT JOIN "games"
+	ON "games".score_id = "scores".score_id
     WHERE user_id = $1
     ORDER BY time;`;
+
+    // `
+    // SELECT * FROM "user_bets"
+    // WHERE user_id = $1
+    // ORDER BY time;`;
 
     pool.query(queryText, [req.user.id])
     .then( result => {

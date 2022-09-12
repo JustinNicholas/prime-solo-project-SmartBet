@@ -43,7 +43,7 @@ function ViewGames() {
 
     return(
         <>
-            <h1>Games</h1>
+            <h1>Games for Week: {currentWeek}</h1>
             {/* <button onClick={() => getGamesFromDatabase()}>View Games!</button> */}
             {games.map( game => {
                 if ( game.week === currentWeek ) {
@@ -61,7 +61,7 @@ function ViewGames() {
                     <p>Away Moneyline: {game.away_moneyline}</p>
                     <p>Channel: {game.channel}</p>
                     {gameTime < timeNumber ?
-                    <p>Over</p>
+                    <p>Final Score: {game.home_team}:{game.home_score} {game.away_team}:{game.away_score}</p>
                     :
                     <>
                         <p>pending</p>

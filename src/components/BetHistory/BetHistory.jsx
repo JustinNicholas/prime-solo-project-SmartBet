@@ -79,8 +79,12 @@ function BetHistory() {
                         <p>Moneyline: {bet.chosen_moneyline}</p>
                         {bet.is_completed ? 
                         <>
+                            <p>Time: {date}</p>
                             <p>Profit: {formatter.format(bet.profit)}</p>
-                            <p>Final Score: </p>
+                            {bet.home_score ? <p>Final Score: {bet.home_team}:{bet.home_score} {bet.away_team}:{bet.away_score}</p>
+                            :
+                            <p>Manual Entry</p>
+                        }
                         </>
                         :
                         <>
