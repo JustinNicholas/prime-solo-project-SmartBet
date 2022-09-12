@@ -9,7 +9,7 @@ axios.defaults.baseURL = 'http://localhost:' + PORT;
 const CronJob = require('cron').CronJob;
 const job = new CronJob(
     // this is set to go off every Tuesday at 2:00 AM CDT
-'0 55 13 * * 6',
+'0 24 9 * * 1',
 function() {
     console.log('Update the games');
     deleteGames();
@@ -170,7 +170,7 @@ function getScores() {
                 profit = -bet.bet_amount;
 
             }
-        } else {
+        } else if ( bet.away_score > bet.home_score) {
             //meaning away team wins
             if( bet.chosen_team_id == bet.global_away_team_id){
                 //calc win
@@ -194,6 +194,8 @@ function getScores() {
                 profit = -bet.bet_amount;
 
             }
+        } else {
+            profit = 0;
         }
         axios.put(`/database/betCheck/`, {id: bet.id, profit: profit})
     }

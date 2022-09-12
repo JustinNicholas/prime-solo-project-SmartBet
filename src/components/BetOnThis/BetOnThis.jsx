@@ -80,7 +80,7 @@ function BetOnThis() {
     const [betAmount, setBetAmount] = useState(0);
 
     const updateBet = (event) => {
-        setBetAmount(event.target.value)
+        setBetAmount(event.target.value);
         console.log(event.target.value);
     }
 

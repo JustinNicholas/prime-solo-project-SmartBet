@@ -8,7 +8,7 @@ function BetHistoryChart(){
     let betData = [];
 
     const options = {
-        chart: {id: "line"},
+        // chart: {background: '#bfbfbf'},
         xaxis: {categories: labels,
         labels: {
             show: true,
@@ -34,13 +34,27 @@ function BetHistoryChart(){
                 return formatter.format(val)
               }
               }
-            }
+            }            
           }
 
     const series = [{
           name: "Proft Total",
           data: betData
         }]
+
+    const animations = {
+        enabled: true,
+        easing: 'easeinout',
+        speed: 80,
+        animateGradually: {
+            enabled: true,
+            delay: 150
+        },
+        dynamicAnimation: {
+            enabled: true,
+            speed: 350
+        }
+    }
 // formats currency to USD
     const formatter = new Intl.NumberFormat('en-US', {
         style: 'currency',
@@ -66,6 +80,7 @@ function BetHistoryChart(){
          <Chart
               options={options}
               series={series}
+              animations={animations}
               type="line"
               width="90%"
             />

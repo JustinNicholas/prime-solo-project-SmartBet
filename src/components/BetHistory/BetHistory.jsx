@@ -77,14 +77,17 @@ function BetHistory() {
                         <img className='team-logo' src={process.env.PUBLIC_URL + '/NflLogos/' + bet.chosen_team + '.svg'} alt="logo" />
                         <p>Pick to Win: {bet.chosen_team}</p>
                         <p>Moneyline: {bet.chosen_moneyline}</p>
-                        <p>Profit: {bet.profit == 0 ? 'PENDING' : formatter.format(bet.profit)}</p>
-                        {bet.profit == 0 ? 
+                        {bet.is_completed ? 
                         <>
+                            <p>Profit: {formatter.format(bet.profit)}</p>
+                            <p>Final Score: </p>
+                        </>
+                        :
+                        <>
+                            <p>Profit: Pending</p>
                             <p>Time: {date}</p>
                             <p>Channel: {bet.channel}</p>
                         </>
-                        :
-                        <p>Final Score: </p>
                         }
                         {/* <img className='team-logo' src={process.env.PUBLIC_URL + '/NflLogos/' + bet.un_chosen_team + '.svg'} alt="logo" />
                         <p>Pick to lose: {bet.un_chosen_team}</p>
