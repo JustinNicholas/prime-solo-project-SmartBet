@@ -96,13 +96,13 @@ function profitCalc(bet){
                 // now its a win
                 // recalc profit
                 if (bet.chosen_moneyline > 99) {
-                    let profitAnswer = ((Number(bet.chosen_moneyline) / 100) * Number(bet.bet_amount)) + Number(bet.bet_amount);
+                    let profitAnswer = ((Number(bet.chosen_moneyline) / 100) * Number(bet.bet_amount));
                     console.log('making profit equal to',profitAnswer);
                     let rounded = Number(profitAnswer.toFixed(2))
                     profit = rounded;
                     is_completed = true;
                 } else if (bet.chosen_moneyline < -99) {
-                    let profitAnswer = (Number(bet.bet_amount) / (Number(bet.chosen_moneyline) / -100)) + Number(bet.bet_amount);
+                    let profitAnswer = (Number(bet.bet_amount) / (Number(bet.chosen_moneyline) / -100));
                     console.log('making profit equal to',profitAnswer);
                     let rounded = Number(profitAnswer.toFixed(2))
                     profit = rounded,
@@ -124,13 +124,13 @@ function profitCalc(bet){
                 //now its a win
                 // recalc profit
                 if (bet.chosen_moneyline > 99) {
-                    let profitAnswer = ((Number(bet.chosen_moneyline) / 100) * Number(bet.bet_amount)) + Number(bet.bet_amount);
+                    let profitAnswer = ((Number(bet.chosen_moneyline) / 100) * Number(bet.bet_amount));
                     console.log('making profit equal to',profitAnswer);
                     let rounded = Number(profitAnswer.toFixed(2))
                     profit = rounded;
                     is_completed = true;
                 } else if (bet.chosen_moneyline < -99) {
-                    let profitAnswer = (Number(bet.bet_amount) / (Number(bet.chosen_moneyline) / -100)) + Number(bet.bet_amount);
+                    let profitAnswer = (Number(bet.bet_amount) / (Number(bet.chosen_moneyline) / -100));
                     console.log('making profit equal to',profitAnswer);
                     let rounded = Number(profitAnswer.toFixed(2))
                     profit = rounded,

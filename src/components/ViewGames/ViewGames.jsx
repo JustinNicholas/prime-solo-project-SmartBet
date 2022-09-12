@@ -37,6 +37,10 @@ function ViewGames() {
         history.push(`/database/bets/${game.score_id}`)
     }
 
+    const currentDate = new Date()
+    const timeNumber = currentDate.getTime();
+    console.log('current date', timeNumber);
+
     return(
         <>
             <h1>Games</h1>
@@ -45,6 +49,7 @@ function ViewGames() {
                 if ( game.week === currentWeek ) {
                     // use moment js to parse time into easy to read text.
                     const date = moment(game.time).format('LLLL')
+                    const gameTime = new Date(game.time).getTime();
                 return (
                 <div key={game.score_id}>
                     <h1>Date/Time: {date} EST</h1>
@@ -55,7 +60,14 @@ function ViewGames() {
                     <p>Away: {game.away_team}</p>
                     <p>Away Moneyline: {game.away_moneyline}</p>
                     <p>Channel: {game.channel}</p>
-                    <button onClick={() => betOnThis(game)}>Bet On This</button>
+                    {gameTime < timeNumber ?
+                    <p>Over</p>
+                    :
+                    <>
+                        <p>pending</p>
+                        <button onClick={() => betOnThis(game)}>Bet On This</button>
+                    </>
+                }
                 </div>
                 )
                 }

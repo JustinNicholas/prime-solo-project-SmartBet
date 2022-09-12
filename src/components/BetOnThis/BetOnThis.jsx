@@ -111,8 +111,9 @@ function BetOnThis() {
                     bet_amount: Number(betAmount)
                 }
             })
+            history.push('/viewGames');
         }
-        history.push('/viewGames');
+        
     }
 
     return(
