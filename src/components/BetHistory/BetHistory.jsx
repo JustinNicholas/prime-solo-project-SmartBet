@@ -5,6 +5,7 @@ import { useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import moment from 'moment';
 import BetHistoryChart from '../BetHistoryChart/BetHistoryChart';
+import './BetHistory.css'
 
 
 function BetHistory() {
@@ -80,7 +81,13 @@ function BetHistory() {
                         {bet.is_completed ? 
                         <>
                             <p>Time: {date}</p>
-                            <p>Profit: {formatter.format(bet.profit)}</p>
+                            {bet.profit > 0 ?
+                            <p className='positive-profit'>Profit: {formatter.format(bet.profit)}</p>
+                            :
+                            <p className='negative-profit'>Profit: {formatter.format(bet.profit)}</p>
+                            }
+
+                            {/* <p>Profit: {formatter.format(bet.profit)}</p> */}
                             {bet.home_score ? <p>Final Score: {bet.home_team}:{bet.home_score} {bet.away_team}:{bet.away_score}</p>
                             :
                             <p>Manual Entry</p>

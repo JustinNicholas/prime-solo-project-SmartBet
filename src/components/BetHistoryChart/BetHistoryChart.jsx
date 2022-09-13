@@ -1,6 +1,7 @@
 import {useSelector} from 'react-redux';
 import Chart from "react-apexcharts";
 import moment from 'moment';
+import './BetHistoryChart.css';
 
 function BetHistoryChart(){
 
@@ -8,7 +9,8 @@ function BetHistoryChart(){
     let betData = [];
 
     const options = {
-        chart: {animations: {
+        chart: {
+            animations: {
             enabled: true,
             easing: 'easeinout',
             speed: 1000,
@@ -21,6 +23,8 @@ function BetHistoryChart(){
                 speed: 1000
             }
         }},
+        colors: ['#f5d41a'],
+        // fill:{type: 'solid'},
         // chart: {background: '#bfbfbf'},
         xaxis: {categories: labels,
         labels: {
@@ -33,8 +37,8 @@ function BetHistoryChart(){
             minHeight: undefined,
             maxHeight: 120,
             style: {
-                colors: [],
-                fontSize: '10px',
+                colors: '#fff',
+                fontSize: '12px',
                 fontFamily: 'Helvetica, Arial, sans-serif',
                 fontWeight: 400,
                 cssClass: 'apexcharts-xaxis-label',
@@ -42,7 +46,14 @@ function BetHistoryChart(){
         }
         },
         yaxis: {
+            
             labels: {
+                style: {
+                    colors: '#fff',
+                    fontSize: '12px',
+                fontFamily: 'Helvetica, Arial, sans-serif',
+                fontWeight: 400,
+                },
               formatter: function(val, index) {
                 return formatter.format(val)
               }
@@ -84,18 +95,17 @@ function BetHistoryChart(){
             {bets.map(bet => {
                 if( bet.profit > 0 || bet.profit < 0 ){
                 runningTotal = runningTotal + bet.profit;
-                const date = moment(bet.time).format('LL')
+                const date = moment(bet.time).format('ll')
                 labels.push(date)
                 betData.push(runningTotal);
                 }
             })}
-         <h1>line graph for bet history</h1>
-         <Chart
+         <Chart className='chart'
               options={options}
               series={series}
               animations={animations}
               type="line"
-              width="90%"
+              width="70%"
             />
         </>
     )
