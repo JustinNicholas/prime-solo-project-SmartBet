@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {useSelector} from 'react-redux';
 import { useDispatch } from 'react-redux';
 import { useEffect } from 'react';
@@ -12,12 +12,23 @@ function ViewGames() {
         getGamesFromDatabase();
     }, []);
 
+    // we set the selected week to the current week so users don't have to use the select unless they need to see other weeks.
+    useEffect(() => {
+        setSelecetedWeek(currentWeek || 1);
+    }, [currentWeek]);
 
     const games = useSelector(store => store.games)
     const currentWeek = useSelector(store => store.week)
-
+    const [selectedWeek, setSelecetedWeek] = useState(1)
+    
+    // console.log(currentWeek)
     const dispatch = useDispatch();
     const history = useHistory();
+
+    const updateSelecetedWeek = (event) => {
+        console.log(event.target.value);
+        setSelecetedWeek(event.target.value)
+    }
 
     const getGamesFromDatabase = () => {
         dispatch({
@@ -26,7 +37,7 @@ function ViewGames() {
         dispatch({
             type: 'GET_GAMES'
         })
-        console.log('dipatched!');
+        // console.log('dipatched!');
     }
 
     const betOnThis = (game) => {
@@ -39,35 +50,62 @@ function ViewGames() {
 
     const currentDate = new Date()
     const timeNumber = currentDate.getTime();
-    console.log('current date', timeNumber);
+    // console.log('current date', timeNumber);
 
     return(
         <>
-            <h1>Games for Week: {currentWeek}</h1>
+            <h1>Games for Week: {selectedWeek || 1}</h1>
+            <select onChange={() => updateSelecetedWeek(event)}>
+                <option value={selectedWeek}>Select a Week</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+                <option value="10">10</option>
+                <option value="11">11</option>
+                <option value="12">12</option>
+                <option value="13">13</option>
+                <option value="14">14</option>
+                <option value="15">15</option>
+                <option value="16">16</option>
+                <option value="17">17</option>
+                <option value="18">18</option>
+            </select>
             {/* <button onClick={() => getGamesFromDatabase()}>View Games!</button> */}
             {games.map( game => {
-                if ( game.week === currentWeek ) {
+                if ( game.week == selectedWeek) {
                     // use moment js to parse time into easy to read text.
                     const date = moment(game.time).format('LLLL')
                     const gameTime = new Date(game.time).getTime();
                 return (
-                <div key={game.score_id}>
-                    <h1>Date/Time: {date} EST</h1>
-                    <img className='team-logo' src={process.env.PUBLIC_URL + '/NflLogos/' + game.home_team + '.svg'} alt="logo" />
-                    <p>Home: {game.home_team}</p>
-                    <p>Home Moneyline: {game.home_moneyline}</p>
-                    <img className='team-logo' src={process.env.PUBLIC_URL + '/NflLogos/' + game.away_team + '.svg'} alt="logo" />
-                    <p>Away: {game.away_team}</p>
-                    <p>Away Moneyline: {game.away_moneyline}</p>
-                    <p>Channel: {game.channel}</p>
-                    {gameTime < timeNumber ?
-                    <p>Final Score: {game.home_team}:{game.home_score} {game.away_team}:{game.away_score}</p>
-                    :
-                    <>
-                        <p>pending</p>
-                        <button onClick={() => betOnThis(game)}>Bet On This</button>
-                    </>
-                }
+                <div className='game-listing' key={game.score_id}>
+                    <h3>{date} EST</h3>
+                    <div className='away-team'>
+                        <img className='team-logo' src={process.env.PUBLIC_URL + '/NflLogos/' + game.away_team + '.svg'} alt="logo" />
+                        <p>{game.away_full_name}</p>
+                        {/* <p>Away Moneyline: {game.away_moneyline || 'TBD'}</p> */}
+                    </div>
+                    <p className='at-seperator'>at</p>
+                    <div className='home-team'>
+                        <img className='team-logo' src={process.env.PUBLIC_URL + '/NflLogos/' + game.home_team + '.svg'} alt="logo" />
+                        <p>{game.home_full_name}</p>
+                        {/* <p>Home Moneyline: {game.home_moneyline || 'TBD'}</p> */}
+                    </div>
+                    <div className='game-info'>
+                        {gameTime < timeNumber ?
+                        <p>Final Score: {game.home_team}:{game.home_score} {game.away_team}:{game.away_score}</p>
+                        :
+                        <>
+                            <p>Channel: {game.channel || 'TBD'}</p>
+                            {selectedWeek == currentWeek || selectedWeek == currentWeek+1? <button onClick={() => betOnThis(game)}>Bet On This</button>: <></>}
+                        </>
+                        }
+                    </div>
                 </div>
                 )
                 }

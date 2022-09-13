@@ -9,10 +9,20 @@ const router = express.Router();
 router.get('/', (req, res) => {
   // GET route code here
     const queryText = `
-    SELECT "games".*, "scores".score_id, "scores".away_score, "scores".home_score, "scores".is_over FROM games
+    SELECT "games".*, "scores".score_id, "scores".away_score, "scores".home_score, "scores".is_over, t1.team_full_name AS away_full_name, t2.team_full_name AS home_full_name  FROM games
     JOIN "scores"
 	  ON "scores".score_id = "games".score_id
-    ORDER BY time;`;
+	  JOIN teams t1
+	  ON t1.id = "games".global_away_team_id
+	  JOIN teams t2
+	  ON t2.id = "games".global_home_team_id
+    ORDER BY time;`
+    
+    // `
+    // SELECT "games".*, "scores".score_id, "scores".away_score, "scores".home_score, "scores".is_over FROM games
+    // JOIN "scores"
+	  // ON "scores".score_id = "games".score_id
+    // ORDER BY time;`;
 
     pool.query(queryText)
     .then( result => {
