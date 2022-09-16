@@ -140,7 +140,7 @@ function AddBet() {
         <div className="add-bet-container">
             <h1 className="form-header">PLACE A BET</h1>
             <form onSubmit={() => addBet(event)}>
-            {/* <h3>Pick to win</h3> */}
+            {/* <p className="pick-label">Pick to Win</p> */}
             <select className="form-input"  onChange={() => pickChange(event)}>
                 <option value="0">Pick to Win</option>
                 {teams.map( team => {
