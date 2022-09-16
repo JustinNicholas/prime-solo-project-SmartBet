@@ -1,11 +1,21 @@
 const express = require('express');
 const pool = require('../modules/pool');
 const router = express.Router();
+const {
+  rejectUnauthenticated,
+} = require('../modules/authentication-middleware');
 
-router.get('/:score_id', (req, res) => {
+router.get('/:score_id',rejectUnauthenticated, (req, res) => {
 
-      let queryText = `SELECT * FROM "games"
-      WHERE score_id = $1;`;
+      let queryText = `
+      SELECT "games".*, "scores".score_id, "scores".away_score, "scores".home_score, "scores".is_over, t1.team_full_name AS away_full_name, t2.team_full_name AS home_full_name  FROM games
+      JOIN "scores"
+      ON "scores".score_id = "games".score_id
+      JOIN teams t1
+      ON t1.id = "games".global_away_team_id
+      JOIN teams t2
+      ON t2.id = "games".global_home_team_id
+      WHERE "games".score_id = $1;`;
 
       let queryValues = [ req.params.score_id ];
 
@@ -19,7 +29,7 @@ router.get('/:score_id', (req, res) => {
       
 });
 
-router.post('/', (req, res) => {
+router.post('/', rejectUnauthenticated, (req, res) => {
     const bet = req.body;
     const queryText = `
     INSERT INTO "user_bets" ("user_id", "score_id", "chosen_team", "chosen_team_id", "chosen_moneyline", "un_chosen_team", "un_chosen_team_id", "un_chosen_moneyline", "week", "time", "bet_amount", "profit", "is_completed")

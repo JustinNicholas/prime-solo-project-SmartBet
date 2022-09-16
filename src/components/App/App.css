@@ -5,10 +5,14 @@ body,
 }
 
 body {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: 'Poppins', sans-serif;
+  /* font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; */
   margin: 0px;
-  background-color: black;
+  background-color: #030A19;
   color: white;
+  width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 img {
@@ -34,7 +38,7 @@ Button
   border-color: #014041;
   border-width: 1px 1px 3px;
   border-radius: 4px;
-  background-color: #f5d41a;
+  background-color: #FFF500;
   color: black;
   font-size: 1.1rem;
   outline: 0;
@@ -103,9 +107,9 @@ Form Treatment
   max-width: 100%;
   padding: 25px;
   margin: 0 auto 20px;
-  background-color: #efefef;
+  background-color: #030A19;
   border-radius: 3px;
-  box-shadow: 0 1px 2px rgb(0, 0, 0, 0.4);
+  /* box-shadow: 0 1px 2px rgb(0, 0, 0, 0.4); */
 }
 
 input {

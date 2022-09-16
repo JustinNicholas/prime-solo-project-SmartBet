@@ -92,7 +92,8 @@ function App() {
           <ProtectedRoute
             // logged in shows InfoPage else shows LoginPage
             exact
-            path="/database/bets/edit/:id"
+            // path="/database/bets/edit/:id"
+            path="/database/bets/edit"
           >
             <EditBet />
           </ProtectedRoute>

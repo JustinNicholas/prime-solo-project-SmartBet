@@ -2,11 +2,14 @@ const { default: axios } = require('axios');
 const express = require('express');
 const pool = require('../modules/pool');
 const router = express.Router();
+const {
+  rejectUnauthenticated,
+} = require('../modules/authentication-middleware');
 
 /**
  * GET route template
  */
-router.get('/', (req, res) => {
+router.get('/', rejectUnauthenticated, (req, res) => {
   // GET route code here
     const queryText = `
     SELECT "games".*, "scores".score_id, "scores".away_score, "scores".home_score, "scores".is_over, t1.team_full_name AS away_full_name, t2.team_full_name AS home_full_name  FROM games

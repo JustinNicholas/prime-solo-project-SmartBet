@@ -64,47 +64,88 @@ function BetHistory() {
             {bets.map(bet => {
                 profitTotal += bet.profit;
             })}
-            <h1>TOTAL PROFIT = ${profitTotal.toFixed(2)}</h1>
+               {profitTotal >= 0 ?
+                            <h1 className='positive-profit'>TOTAL PROFIT = {formatter.format(profitTotal)}</h1>
+                            :
+                            <h1 className='negative-profit'>TOTAL PROFIT = {formatter.format(profitTotal)}</h1>
+                            }
+            {/* <h1>TOTAL PROFIT = {formatter.format(profitTotal)}</h1> */}
             {reversedBets.map( bet => {
                 const date = moment(bet.time).format('LLLL');
                 if (userId === bet.user_id) {
 
+                    const day = moment(bet.time).format('dddd');
+                    const shortDate = moment(bet.time).format("MMM D");
+                    const hour = moment(bet.time).format('LT');
                     // use moment js to parse time into easy to read text.
                     // const date = moment(bet.time).format('LLLL')
                     return (
                         // changed this to bet id because there could be more than one bet on a game.
-                    <div key={bet.id}>
+                    <div className='bet-listing' key={bet.id}>
                         {/* <h1>Date/Time: {date} EST</h1> */}
-                        <img className='team-logo' src={process.env.PUBLIC_URL + '/NflLogos/' + bet.chosen_team + '.svg'} alt="logo" />
-                        <p>Pick to Win: {bet.chosen_team}</p>
-                        <p>Moneyline: {bet.chosen_moneyline}</p>
+                        <div className='time-box'>
+                            <h3 className='time-data'>{day}</h3>
+                            <h3 className='time-data'>{shortDate}</h3>
+                            <p className='time-data'>{hour} EST</p>
+                        </div>
+                        <div className='away-team'>
+                            <img className='team-logo' src={process.env.PUBLIC_URL + '/NflLogos/' + bet.chosen_team + '.svg'} alt="logo" />
+                        
+                        {/* <p>Away Moneyline: {game.away_moneyline || 'TBD'}</p> */}
+                        </div>
+                        <p className='at-seperator'>VS</p>
+                        <div className='home-team'>
+                            <img className='team-logo' src={process.env.PUBLIC_URL + '/NflLogos/' + bet.un_chosen_team + '.svg'} alt="logo" />
+                        </div>
+                        <div className='team-names'>
+                            <p>{bet.away_full_name}</p>
+                            <p>{bet.home_full_name}</p>
+                        </div>
+                        <div className='pick-info'>
+                            <p>Pick to Win: {bet.chosen_team}</p>
+                            <p>Moneyline: {bet.chosen_moneyline}</p>
+                        </div>
                         {bet.is_completed ? 
                         <>
-                            <p>Time: {date}</p>
-                            {bet.profit > 0 ?
-                            <p className='positive-profit'>Profit: {formatter.format(bet.profit)}</p>
-                            :
-                            <p className='negative-profit'>Profit: {formatter.format(bet.profit)}</p>
-                            }
+                            {/* <p>Time: {date}</p> */}
 
                             {/* <p>Profit: {formatter.format(bet.profit)}</p> */}
-                            {bet.home_score ? <p>Final Score: {bet.home_team}:{bet.home_score} {bet.away_team}:{bet.away_score}</p>
+                            <div className='bet-info'>
+                                {bet.home_score ? <p className='bet-info-piece'>Final Score: {bet.home_team}:{bet.home_score} {bet.away_team}:{bet.away_score}</p>
+                                :
+                                <p className='bet-info-piece'>Manual Entry</p>
+                                }
+
+                            {bet.profit > 0 ?
+                            <p className='positive-profit bet-info-piece'>{formatter.format(bet.profit)}</p>
                             :
-                            <p>Manual Entry</p>
-                        }
+                            <p className='negative-profit bet-info-piece'>{formatter.format(bet.profit)}</p>
+                            }
+                            <div className='bet-buttons-container'>
+                                <button className='bet-buttons' onClick={() => deleteBet(bet)}>DELETE</button>
+                                <button className='bet-buttons' onClick={() => editBet(bet)}>EDIT</button>
+                            </div>
+                            </div>
                         </>
                         :
                         <>
+                        <div className='bet-info'>
                             <p>Profit: Pending</p>
-                            <p>Time: {date}</p>
-                            <p>Channel: {bet.channel}</p>
+                            <div className='bet-buttons-container'>
+                                <button className='bet-buttons' onClick={() => deleteBet(bet)}>DELETE</button>
+                                <button className='bet-buttons' onClick={() => editBet(bet)}>EDIT</button>
+                            </div>
+                        </div>
+                        <div className='team-moneylines'>
+                            {/* <p>Time: {date}</p> */}
+                            <p>{bet.channel}</p>
+                        </div>
                         </>
                         }
                         {/* <img className='team-logo' src={process.env.PUBLIC_URL + '/NflLogos/' + bet.un_chosen_team + '.svg'} alt="logo" />
                         <p>Pick to lose: {bet.un_chosen_team}</p>
                         <p>Moneyline: {bet.un_chosen_moneyline}</p> */}
-                        <button onClick={() => deleteBet(bet)}>Delete</button>
-                        <button onClick={() => editBet(bet)}>EDIT</button>
+                        
                     </div>
                     )
                 }

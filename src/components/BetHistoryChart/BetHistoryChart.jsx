@@ -23,7 +23,7 @@ function BetHistoryChart(){
                 speed: 1000
             }
         }},
-        colors: ['#f5d41a'],
+        colors: ['#FFF500'],
         // fill:{type: 'solid'},
         // chart: {background: '#bfbfbf'},
         xaxis: {categories: labels,

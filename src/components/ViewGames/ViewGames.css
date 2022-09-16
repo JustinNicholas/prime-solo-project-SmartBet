@@ -1,6 +1,6 @@
 .team-logo {
-    width: 100px;
-    height: 100px;
+    width: 80px;
+    height: 80px;
     margin-left: auto;
     margin-right: auto;
 }
@@ -8,17 +8,19 @@
 .game-listing{
     text-align: center;
     position: relative;
-    background-color: black;
+    background-color: rgba(255, 255, 255, 0.100);
     color: white;
-    width: 600px;
-    height: 180px;
+    width: 100%;
+    height: 100px;
     margin-left: auto;
     margin-right: auto;
+    margin-bottom: 20px;
 }
 
 .away-team{
     position: absolute;
-    top: 25px;
+    top: 15px;
+    left: 115px;
     height: 150px;
     width: 150px;
     /* border: 1px solid white; */
@@ -26,8 +28,8 @@
 
 .home-team{
     position: absolute;
-    top: 25px;
-    left: 200px;
+    top: 15px;
+    left: 285px;
     height: 150px;
     width: 150px;
     /* border: 1px solid white; */
@@ -37,18 +39,171 @@
     height: 100px;
     width: 250px;
     position: absolute;
-    bottom: 40px;
+    top: 0px;
     right: 0;
     /* border: 1px solid white; */
 }
 
 .at-seperator{
-    height: 150px;
+    height: 100px;
     width: 10px;
     position: absolute;
-    top: 80px;
-    left: 165px;
+    top: 40px;
+    left: 265px;
     font-size: 16px;
     margin: 0;
     padding: 0;
+}
+
+.time-box{
+    position:absolute;
+    top: 0px;
+    left: 10px;
+    width: 100px;
+    height: 100px;
+    margin-top: 7px;
+    /* border: 1px solid white; */
+    margin-left: 0;
+    text-align: left;
+}
+
+.time-data {
+    padding: 0;
+    margin: 0;
+}
+
+.team-names {
+    position: absolute;
+    left: 480px;
+    width: 220px;
+    text-align: left;
+    /* border: 1px solid white; */
+}
+
+.team-moneylines {
+    position: absolute;
+    top: 0px;
+    left: 650px;
+    width: 100px;
+    height: 100px;
+    text-align: right;
+    /* border: 1px solid white; */
+}
+
+.game-score {
+    line-height: 100px;
+    margin: 0;
+}
+
+.game-channel {
+    position: absolute;
+    right: 290px;
+    line-height: 100px;
+    width: 80px;
+    height: 100px;
+}
+
+.game-channel-info {
+    padding: 0;
+    margin: 0;
+}
+
+.place-bet-button {
+    background-color: #FFF500;
+    border: none;
+    height: 30px;
+    width: 100px;
+    margin-top: 35px;
+}
+
+.hero-image-container {
+    position: relative;
+    width: 1200px;
+    height: 300px;
+
+}
+
+.hero-image {
+    /* position: absolute; */
+    /* z-index: 1; */
+}
+
+.hero-text {
+    width: 445px;
+    height: 145px;
+    position: absolute;
+    top: 70px;
+    left: 90px;
+}
+
+.hero-intro {
+    font-size: 20px;
+    font-weight: 400;
+    margin-top: 0;
+    margin-bottom: -25px;
+    padding: 0;
+}
+
+.hero-logo {
+    font-size: 80px;
+    font-weight: 800;
+    font-style: italic;
+    margin: 0;
+    padding: 0;
+}
+
+.hero-slogan {
+    font-size: 20px;
+    font-weight: 400;
+    margin-top: -15px;
+    /* margin-left: 5px; */
+    padding: 0;
+}
+
+.labels-container {
+    position: relative;
+    width: 1200px;
+    height: 25px;
+    margin-bottom: 5px;
+}
+
+.week-label {
+    position: absolute;
+}
+
+.week-label select {
+    background-color: transparent;
+    border: none;
+    color: white;
+}
+
+select:focus-visible {
+    border: none;
+    outline: none;
+}
+
+.teams-label {
+    position: absolute;
+    top: 0px;
+    left: 250px;
+    margin: 0;
+}
+
+.moneyline-label {
+    position: absolute;
+    left: 700px;
+    margin: 0;
+}
+
+.channel-label{
+    position: absolute;
+    margin: 0;
+    right: 290px;
+}
+
+.place-bet-label {
+    position: absolute;
+    margin: 0;
+    top: 0;
+    right: 80px;
 }

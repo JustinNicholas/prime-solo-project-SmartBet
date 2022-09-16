@@ -1,0 +1,32 @@
+.nfl-video-play{
+    position: relative;
+    height: 700px;
+    width: 400px;
+    border: 1px solid white;
+    text-align: center;
+    display: inline-block;
+}
+
+.nflVideo {
+    height: 700px;
+    object-fit: cover;
+}
+
+.video-still-img {
+    filter: grayscale(50%);
+}
+
+.video-overlay-text {
+    width: 400px;
+    height: 700px;
+    line-height: 700px;
+    background-color: rgba(0, 0, 0, 0.500);
+    color: white;
+    position: absolute;
+    top: 0px;
+    z-index: 1;
+    font-weight: 700;
+    font-size: 20px;
+    margin: 0;
+    padding: 0;
+}

@@ -6,6 +6,7 @@ import { useHistory } from "react-router-dom";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import moment from 'moment';
+import './AddBet.css';
 
 function AddBet() {
 
@@ -136,12 +137,12 @@ function AddBet() {
     }
 
     return(
-        <div>
-            <h1>Add a bet!</h1>
+        <div className="add-bet-container">
+            <h1 className="form-header">PLACE A BET</h1>
             <form onSubmit={() => addBet(event)}>
-            <h3>Pick to win</h3>
-            <select onChange={() => pickChange(event)}>
-                <option value="0">Select a Team</option>
+            {/* <h3>Pick to win</h3> */}
+            <select className="form-input"  onChange={() => pickChange(event)}>
+                <option value="0">Pick to Win</option>
                 {teams.map( team => {
                     return(
                         <option key={team.id} value={[team.id, team.team_abv_city]} >{team.team_full_name}</option>
@@ -149,10 +150,11 @@ function AddBet() {
                 })}
             </select>
             <br />
-            <input type="text" placeholder="Your picks moneyline" onChange={() => pickMoneylineChange(event)} />
-            <h3>Opponent</h3>
-            <select onChange={() => oppChange(event)}>
-                <option value="0">Select a Team</option>
+            <input className="form-input" type="text" placeholder="Your picks moneyline" onChange={() => pickMoneylineChange(event)} />
+            {/* <h3>Opponent</h3> */}
+            <br />
+            <select className="form-input" onChange={() => oppChange(event)}>
+                <option value="0">Opponent</option>
                 {teams.map( team => {
                     return(
                         <option key={team.id} value={[team.id, team.team_abv_city]} >{team.team_full_name}</option>
@@ -160,16 +162,16 @@ function AddBet() {
                 })}
             </select>
             <br />
-            <input type="text" placeholder="Opponents moneyline" onChange={() => oppMoneylineChange(event)} />
-            <h3>Date/Time</h3>
+            <input className="form-input" type="text" placeholder="Opponents moneyline" onChange={() => oppMoneylineChange(event)} />
+            {/* <h3>Date/Time</h3> */}
             {/* Would like this to be a calendar select and a time select... */}
-            <DatePicker selected={startDate} showTimeSelect dateFormat="Pp" onChange={(date) => dateChange(date)} />
-            <input type="number" placeholder="Bet Amount" onChange={() => betChange(event)}/>
+            <DatePicker className="form-input" selected={startDate} showTimeSelect dateFormat="Pp" onChange={(date) => dateChange(date)} />
+            <input className="form-input" type="number" placeholder="Bet Amount" onChange={() => betChange(event)}/>
             <br />
-            <button type="button" onClick={() => winLossChange(true)} >WIN</button>
-            <button type="button" onClick={() => winLossChange(false)} >LOSS</button>
+            <button className="win-loss-button" type="button" onClick={() => winLossChange(true)} >WIN</button>
+            <button className="win-loss-button" type="button" onClick={() => winLossChange(false)} >LOSS</button>
             <br />
-            <button type="submit">Submit</button>
+            <button className="submit-button" type="submit">Submit</button>
             </form>
         </div>
     )
@@ -179,3 +181,5 @@ export default AddBet;
 
 // showTimeSelect dateFormat="Pp"
 //2022-09-08T20:20:00
+
+//merged

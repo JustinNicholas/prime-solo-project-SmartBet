@@ -7,6 +7,8 @@ import { useParams } from 'react-router-dom';
 import { useState } from 'react';
 import moment from 'moment';
 
+import './BetOnThis.css';
+
 function BetOnThis() {
     let {score_id} = useParams();
     const dispatch = useDispatch();
@@ -35,6 +37,7 @@ function BetOnThis() {
     const userID = useSelector( store => store.user.id);
 
     const homeTeam = (game) => {
+        showHomeClicked();
         console.log('home team clicked');
         setChosenTeam({
             score_id: game.score_id,
@@ -50,6 +53,7 @@ function BetOnThis() {
         console.log(chosenTeam);
     }
     const awayTeam = (game) => {
+        showAwayClicked();
         console.log('away team clicked');
         setChosenTeam({
             score_id: game.score_id,
@@ -116,37 +120,97 @@ function BetOnThis() {
         
     }
 
+    const [homeSelected, setHomeSeleceted] = useState(false);
+    const [awaySelected, setAwaySeleceted] = useState(false);
+
+    const showHomeClicked = () => {
+        console.log('home clicked');
+        setHomeSeleceted( true );
+        setAwaySeleceted( false );
+    }
+
+    const showAwayClicked = () => {
+        console.log('away clicked');
+        setAwaySeleceted( true );
+        setHomeSeleceted( false );
+    }
+
     return(
         <>
-            <h1>Bet On This Game!</h1>
+        <h1>SELECT A TEAM TO WIN</h1>
+                    {/* <h1>Upcoming Games</h1> */}
+                    {thisGame.map( game => {
+                        console.log(game);
+                    // use moment js to parse time into easy to read text.
+                    //Full Date
+                    const date = moment(game.time).format('LLLL')
+                    const gameTime = new Date(game.time).getTime();
+                    // used to display time on listings
+                    const day = moment(game.time).format('dddd');
+                    const shortDate = moment(game.time).format("MMM D");
+                    const hour = moment(game.time).format('LT');
+                return (
+                <div>
+                <div className='labels-container'>
+                    {/* need to style this class in css */}
+                    <p className='game-time-label'>TIME</p> 
+                    <p className='teams-label'>TEAMS</p>
+                    <p className='moneyline-label'>MONEYLINE</p>
+                    <p className='channel-label'>CHANNEL</p>
+                </div>
+                <div className='game-listing rounded-listing' key={game.score_id}>
+                    {/* <h1>upcoming games</h1> */}
+                    <div className='time-box'>
+                        <h3 className='time-data'>{day}</h3>
+                        <h3 className='time-data'>{shortDate}</h3>
+                        <p className='time-data'>{hour} EST</p>
+                    </div>
+                    <div className='away-team'>
+                        <img className='team-logo' src={process.env.PUBLIC_URL + '/NflLogos/' + game.away_team + '.svg'} alt="logo" />
+                    </div>
+                    <p className='at-seperator'>at</p>
+                    <div className='home-team'>
+                        <img className='team-logo' src={process.env.PUBLIC_URL + '/NflLogos/' + game.home_team + '.svg'} alt="logo" />
+                    </div>
+                    <div className='team-names'>
+                        <p>{game.away_full_name}</p>
+                        <p>{game.home_full_name}</p>
+                    </div>
+                    <div className='team-moneylines'>
+                        <p>{game.away_moneyline || 'TBD'}</p>
+                        <p>{game.home_moneyline || 'TBD'}</p>
+                    </div>
+                    <div className='game-channel'>
+                        <p className='game-channel-info'>{game.channel || 'TBD'}</p>
+                    </div>
+                </div>
+                </div>
+                )
+})}
+            
             {thisGame.map( game => {
                     // use moment js to parse time into easy to read text.
                     const date = moment(game.time).format('LLLL')
                 return (
                 <div key={game.score_id}>
-                    <h3>Date/Time: {date} EST</h3>
-                    
-                    <h2>Select a team to win!</h2>
                     <form onSubmit={ () => addBet(event) }>
-                        <div onClick={() => homeTeam(game)}>
-                            <p>THIS IS THE HOME TEAM</p>
-                            <img className='team-logo' src={process.env.PUBLIC_URL + '/NflLogos/' + game.home_team + '.svg'} alt="logo" />
-                            <p>Home: {game.home_team}</p>
-                            <p>Home Moneyline: {game.home_moneyline}</p>
+                        <div className='select-logos'>
+                            <div className='home-logo-container' onClick={() => homeTeam(game)}>
+                                <img className={ homeSelected ? 'team-logo selected-team home-select-logo' : 'unselected-team-logo home-select-logo' } src={process.env.PUBLIC_URL + '/NflLogos/' + game.home_team + '.svg'} alt="logo" />
+                                <p className='select-team-name'>{game.home_full_name}</p>
+                            </div>
+                            <div className='away-logo-container' onClick={() => awayTeam(game)}>
+                                <img className={ awaySelected ? 'team-logo selected-team away-select-logo' : 'unselected-team-logo away-select-logo' } src={process.env.PUBLIC_URL + '/NflLogos/' + game.away_team + '.svg'} alt="logo" />
+                                <p className='select-team-name'>{game.away_full_name}</p>
+                            </div>
                         </div>
-                        <div onClick={() => awayTeam(game)}>
-                            <p>THIS IS THE AWAY TEAM</p>
-                            <img className='team-logo' src={process.env.PUBLIC_URL + '/NflLogos/' + game.away_team + '.svg'} alt="logo" />
-                            <p>Away: {game.away_team}</p>
-                            <p>Away Moneyline: {game.away_moneyline}</p>
+                        <div className='bet-amount-container'>
+                            <p className='bet-input-label'>BET AMOUNT</p>
+                            <input className='bet-input' onChange={() => updateBet(event)} type="number" placeholder='Amount of bet'/>
+                            <button className='bet-input-button' type='submit'>SUBMIT</button>
+                            <br />
+                            <button  className='cancel-bet-button' onClick={() => returnToGames()}>CANCEL</button>
                         </div>
-                        <p>Channel: {game.channel}</p>
-
-                        <h2>How much are you betting?</h2>
-                        <input onChange={() => updateBet(event)} type="number" placeholder='Amount of bet'/>
-                        <button type='submit'>Submit the Bet</button>
-                        <br />
-                        <button onClick={() => returnToGames()}>Return to Games</button>
                     </form>
                 </div>
                 )

@@ -53,10 +53,20 @@ function ViewGames() {
     // console.log('current date', timeNumber);
 
     return(
-        <>
-            <h1>Games for Week: {selectedWeek || 1}</h1>
+        <div>
+        <div className='hero-image-container'>
+            <img className='hero-image' src={process.env.PUBLIC_URL + '/HeroImage/HeroImage.svg'} />
+            <div className='hero-text'>
+                <p className='hero-intro'>WELCOME TO</p>
+                <h1 className='hero-logo'>SMARTBET</h1>
+                <p className='hero-slogan'>The tracking app for <strong>BET</strong>ter decision making</p>
+            </div>
+        </div>
+            <h4>WEEK {selectedWeek || 1}</h4>
+        <div className='labels-container'>
+            <div className='week-label'>
             <select onChange={() => updateSelecetedWeek(event)}>
-                <option value={selectedWeek}>Select a Week</option>
+                <option value={selectedWeek}>SELECT WEEK</option>
                 <option value="1">1</option>
                 <option value="2">2</option>
                 <option value="3">3</option>
@@ -76,33 +86,59 @@ function ViewGames() {
                 <option value="17">17</option>
                 <option value="18">18</option>
             </select>
-            {/* <button onClick={() => getGamesFromDatabase()}>View Games!</button> */}
+            </div>
+            <p className='teams-label'>TEAMS</p>
+            <p className='moneyline-label'>MONEYLINE</p>
+            <p className='channel-label'>CHANNEL</p>
+            <p className='place-bet-label'>PLACE BET</p>
+        </div>
+            {/* <h1>Upcoming Games</h1> */}
             {games.map( game => {
-                if ( game.week == selectedWeek) {
+                if ( game.week == selectedWeek && game.is_over === false) {
                     // use moment js to parse time into easy to read text.
+                    //Full Date
                     const date = moment(game.time).format('LLLL')
                     const gameTime = new Date(game.time).getTime();
+                    // used to display time on listings
+                    const day = moment(game.time).format('dddd');
+                    const shortDate = moment(game.time).format("MMM D");
+                    const hour = moment(game.time).format('LT');
                 return (
                 <div className='game-listing' key={game.score_id}>
-                    <h3>{date} EST</h3>
+                    {/* <h1>upcoming games</h1> */}
+                    <div className='time-box'>
+                        <h3 className='time-data'>{day}</h3>
+                        <h3 className='time-data'>{shortDate}</h3>
+                        <p className='time-data'>{hour} EST</p>
+                    </div>
                     <div className='away-team'>
                         <img className='team-logo' src={process.env.PUBLIC_URL + '/NflLogos/' + game.away_team + '.svg'} alt="logo" />
-                        <p>{game.away_full_name}</p>
+                        
                         {/* <p>Away Moneyline: {game.away_moneyline || 'TBD'}</p> */}
                     </div>
                     <p className='at-seperator'>at</p>
                     <div className='home-team'>
                         <img className='team-logo' src={process.env.PUBLIC_URL + '/NflLogos/' + game.home_team + '.svg'} alt="logo" />
-                        <p>{game.home_full_name}</p>
+                        
                         {/* <p>Home Moneyline: {game.home_moneyline || 'TBD'}</p> */}
+                    </div>
+                    <div className='team-names'>
+                        <p>{game.away_full_name}</p>
+                        <p>{game.home_full_name}</p>
+                    </div>
+                    <div className='team-moneylines'>
+                        <p>{game.away_moneyline || 'TBD'}</p>
+                        <p>{game.home_moneyline || 'TBD'}</p>
+                    </div>
+                    <div className='game-channel'>
+                        <p className='game-channel-info'>{game.channel || 'TBD'}</p>
                     </div>
                     <div className='game-info'>
                         {gameTime < timeNumber ?
-                        <p>Final Score: {game.home_team}:{game.home_score} {game.away_team}:{game.away_score}</p>
+                        <p className='game-score'>Final Score: {game.home_team}:{game.home_score || ' TBD'} {game.away_team}:{game.away_score || ' TBD'}</p>
                         :
                         <>
-                            <p>Channel: {game.channel || 'TBD'}</p>
-                            {selectedWeek == currentWeek || selectedWeek == currentWeek+1? <button onClick={() => betOnThis(game)}>Bet On This</button>: <></>}
+                            {selectedWeek == currentWeek || selectedWeek == currentWeek+1? <button className='place-bet-button' onClick={() => betOnThis(game)}>PLACE BET</button>: <></>}
                         </>
                         }
                     </div>
@@ -110,7 +146,63 @@ function ViewGames() {
                 )
                 }
 })}
-        </>
+
+            {/* <h1>Completed Games</h1> */}
+            {games.map( game => {
+                if ( game.week == selectedWeek && game.is_over === true) {
+                    // use moment js to parse time into easy to read text.
+                    //Full Date
+                    const date = moment(game.time).format('LLLL')
+                    const gameTime = new Date(game.time).getTime();
+
+                    const day = moment(game.time).format('dddd');
+                    const shortDate = moment(game.time).format("MMM D");
+                    const hour = moment(game.time).format('LT');
+                return (
+                <div className='game-listing' key={game.score_id}>
+                    {/* <h1>upcoming games</h1> */}
+                    <div className='time-box'>
+                        <h3 className='time-data'>{day}</h3>
+                        <h3 className='time-data'>{shortDate}</h3>
+                        <p className='time-data'>{hour} EST</p>
+                    </div>
+                    <div className='away-team'>
+                        <img className='team-logo' src={process.env.PUBLIC_URL + '/NflLogos/' + game.away_team + '.svg'} alt="logo" />
+                        
+                        {/* <p>Away Moneyline: {game.away_moneyline || 'TBD'}</p> */}
+                    </div>
+                    <p className='at-seperator'>at</p>
+                    <div className='home-team'>
+                        <img className='team-logo' src={process.env.PUBLIC_URL + '/NflLogos/' + game.home_team + '.svg'} alt="logo" />
+                        
+                        {/* <p>Home Moneyline: {game.home_moneyline || 'TBD'}</p> */}
+                    </div>
+                    <div className='team-names'>
+                        <p>{game.away_full_name}</p>
+                        <p>{game.home_full_name}</p>
+                    </div>
+                    <div className='team-moneylines'>
+                        <p>{game.away_moneyline || 'TBD'}</p>
+                        <p>{game.home_moneyline || 'TBD'}</p>
+                    </div>
+                    <div className='game-channel'>
+                        <p className='game-channel-info'>{game.channel || 'TBD'}</p>
+                    </div>
+                    <div className='game-info'>
+                        {gameTime < timeNumber ?
+                        <p  className='game-score'>Final Score: {game.home_team}:{game.home_score} {game.away_team}:{game.away_score}</p>
+                        :
+                        <>
+                            {/* <p>{game.channel || 'TBD'}</p>
+                            {selectedWeek == currentWeek || selectedWeek == currentWeek+1? <button onClick={() => betOnThis(game)}>Bet On This</button>: <></>} */}
+                        </>
+                        }
+                    </div>
+                </div>
+                )
+                }
+})}
+        </div>
     )
 }
 
