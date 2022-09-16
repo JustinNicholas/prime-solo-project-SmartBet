@@ -14,12 +14,12 @@ function ViewGames() {
 
     // we set the selected week to the current week so users don't have to use the select unless they need to see other weeks.
     useEffect(() => {
-        setSelecetedWeek(currentWeek || 1);
+        setSelecetedWeek(currentWeek || 2);
     }, [currentWeek]);
 
     const games = useSelector(store => store.games)
     const currentWeek = useSelector(store => store.week)
-    const [selectedWeek, setSelecetedWeek] = useState(1)
+    const [selectedWeek, setSelecetedWeek] = useState(2)
     
     // console.log(currentWeek)
     const dispatch = useDispatch();
@@ -190,7 +190,7 @@ function ViewGames() {
                     </div>
                     <div className='game-info'>
                         {gameTime < timeNumber ?
-                        <p  className='game-score'>Final Score: {game.home_team}:{game.home_score} {game.away_team}:{game.away_score}</p>
+                        <p  className='game-score'>Final Score: {game.home_team}: {game.home_score} {game.away_team}: {game.away_score}</p>
                         :
                         <>
                             {/* <p>{game.channel || 'TBD'}</p>

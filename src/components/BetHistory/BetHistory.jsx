@@ -69,6 +69,15 @@ function BetHistory() {
                             :
                             <h1 className='negative-profit'>TOTAL PROFIT = {formatter.format(profitTotal)}</h1>
                             }
+            <div className='labels-container'>
+                {/* need to style this class in css */}
+                <p className='game-time-label'>TIME</p> 
+                <p className='teams-label'>TEAMS</p>
+                <p className='pick-label'>PICK</p>
+                <p className='bet-moneyline-label'>MONEYLINE</p>
+                <p className='bet-channel-label'>CHANNEL</p>
+                <p className='bet-profit-label'>PROFIT</p>
+            </div>
             {/* <h1>TOTAL PROFIT = {formatter.format(profitTotal)}</h1> */}
             {reversedBets.map( bet => {
                 const date = moment(bet.time).format('LLLL');
@@ -97,30 +106,36 @@ function BetHistory() {
                         <div className='home-team'>
                             <img className='team-logo' src={process.env.PUBLIC_URL + '/NflLogos/' + bet.un_chosen_team + '.svg'} alt="logo" />
                         </div>
-                        <div className='team-names'>
+                        {/* <div className='team-names'>
                             <p>{bet.away_full_name}</p>
                             <p>{bet.home_full_name}</p>
+                        </div> */}
+                        {/* <div className='pick-info'> */}
+                        <div className='centered-pick-team'>
+                            <p className='pick-team-info'>{bet.chosen_team}</p>
                         </div>
-                        <div className='pick-info'>
-                            <p>Pick to Win: {bet.chosen_team}</p>
-                            <p>Moneyline: {bet.chosen_moneyline}</p>
+                        <div className='centered-moneyline-info'>
+                            <p className='moneyline-info'>{bet.chosen_moneyline}</p>
                         </div>
+                            
+                            
+                        {/* </div> */}
                         {bet.is_completed ? 
                         <>
                             {/* <p>Time: {date}</p> */}
-
+                            <div className='centered-text'>
+                                {bet.profit > 0 ?
+                                <p className='positive-profit bet-profit-piece'>{formatter.format(bet.profit)}</p>
+                                :
+                                <p className='negative-profit bet-profit-piece'>{formatter.format(bet.profit)}</p>
+                                }
+                            </div>
                             {/* <p>Profit: {formatter.format(bet.profit)}</p> */}
                             <div className='bet-info'>
-                                {bet.home_score ? <p className='bet-info-piece'>Final Score: {bet.home_team}:{bet.home_score} {bet.away_team}:{bet.away_score}</p>
+                                {bet.home_score ? <p className='bet-info-piece'>Final Score: {bet.home_team}: {bet.home_score} {bet.away_team}: {bet.away_score}</p>
                                 :
                                 <p className='bet-info-piece'>Manual Entry</p>
                                 }
-
-                            {bet.profit > 0 ?
-                            <p className='positive-profit bet-info-piece'>{formatter.format(bet.profit)}</p>
-                            :
-                            <p className='negative-profit bet-info-piece'>{formatter.format(bet.profit)}</p>
-                            }
                             <div className='bet-buttons-container'>
                                 <button className='bet-buttons' onClick={() => deleteBet(bet)}>DELETE</button>
                                 <button className='bet-buttons' onClick={() => editBet(bet)}>EDIT</button>
@@ -129,8 +144,12 @@ function BetHistory() {
                         </>
                         :
                         <>
+                        <div className='centered-text'>
+                            <p className="bet-profit-piece">Pending</p>
+                        </div>
+
                         <div className='bet-info'>
-                            <p>Profit: Pending</p>
+                            
                             <div className='bet-buttons-container'>
                                 <button className='bet-buttons' onClick={() => deleteBet(bet)}>DELETE</button>
                                 <button className='bet-buttons' onClick={() => editBet(bet)}>EDIT</button>
@@ -138,7 +157,7 @@ function BetHistory() {
                         </div>
                         <div className='team-moneylines'>
                             {/* <p>Time: {date}</p> */}
-                            <p>{bet.channel}</p>
+                            <p className='bet-channel-info'>{bet.channel}</p>
                         </div>
                         </>
                         }

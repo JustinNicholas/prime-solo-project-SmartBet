@@ -73,7 +73,7 @@
 .bet-info-piece {
     padding: 0;
     margin: 0;
-    margin-top: 5px;
+    margin-top: 15px;
 }
 
 .pick-info {
@@ -106,4 +106,76 @@
     background-color: rgb(90, 90, 90);
     border: none;
     margin: 10px
+}
+
+.pick-label {
+    position: absolute;
+    left: 475px;
+    margin: 0;
+}
+
+.bet-moneyline-label {
+    position: absolute;
+    left: 550px;
+    margin: 0;
+}
+
+.bet-channel-label {
+    position: absolute;
+    left: 700px;
+    margin: 0;
+}
+
+.bet-profit-label {
+    position: absolute;
+    left: 840px;
+    margin: 0; 
+}
+
+.pick-team-info {
+    margin: 0;
+    padding: 0;
+    line-height: 100px;
+}
+
+.centered-pick-team {
+    position: absolute;
+    left: 467px;
+    width: 50px;
+    text-align: center;
+}
+
+.moneyline-info {
+    margin: 0;
+    padding: 0;
+    line-height: 100px;
+}
+
+.centered-moneyline-info {
+    position: absolute;
+    left: 568px;
+    width: 50px;
+    text-align: center;
+}
+
+.bet-channel-info {
+        margin: 0;
+        padding: 0;
+        position: absolute;
+        left: 70px;
+        line-height: 100px;
+}
+
+.bet-profit-piece {
+    margin: 0;
+    padding: 0;
+    line-height: 100px;
+}
+
+.centered-text {
+    width: 100px;
+    height: 100px;
+    text-align: center;
+    position: absolute;
+    left: 815px;
 }
