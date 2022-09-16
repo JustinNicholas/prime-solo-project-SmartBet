@@ -195,18 +195,18 @@ function BetOnThis() {
                 <div key={game.score_id}>
                     <form onSubmit={ () => addBet(event) }>
                         <div className='select-logos'>
-                            <div className='home-logo-container' onClick={() => homeTeam(game)}>
-                                <img className={ homeSelected ? 'team-logo selected-team home-select-logo' : 'unselected-team-logo home-select-logo' } src={process.env.PUBLIC_URL + '/NflLogos/' + game.home_team + '.svg'} alt="logo" />
+                            <div className={ homeSelected ? 'home-logo-container-selected' : 'home-logo-container' } onClick={() => homeTeam(game)}>
+                                <img className='away-select-logo' src={process.env.PUBLIC_URL + '/NflLogos/' + game.home_team + '.svg'} alt="logo" />
                                 <p className='select-team-name'>{game.home_full_name}</p>
                             </div>
-                            <div className='away-logo-container' onClick={() => awayTeam(game)}>
-                                <img className={ awaySelected ? 'team-logo selected-team away-select-logo' : 'unselected-team-logo away-select-logo' } src={process.env.PUBLIC_URL + '/NflLogos/' + game.away_team + '.svg'} alt="logo" />
+                            <div className={ awaySelected ? 'away-logo-container-selected ' : 'away-logo-container' } onClick={() => awayTeam(game)}>
+                                <img className='home-select-logo' src={process.env.PUBLIC_URL + '/NflLogos/' + game.away_team + '.svg'} alt="logo" />
                                 <p className='select-team-name'>{game.away_full_name}</p>
                             </div>
                         </div>
                         <div className='bet-amount-container'>
                             <p className='bet-input-label'>BET AMOUNT</p>
-                            <input className='bet-input' onChange={() => updateBet(event)} type="number" placeholder='Amount of bet'/>
+                            <input className='bet-input' onChange={() => updateBet(event)} type="number" placeholder=' Amount of bet'/>
                             <button className='bet-input-button' type='submit'>SUBMIT</button>
                             <br />
                             <button  className='cancel-bet-button' onClick={() => returnToGames()}>CANCEL</button>
