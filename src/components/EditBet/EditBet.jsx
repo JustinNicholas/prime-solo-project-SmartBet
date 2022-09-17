@@ -6,6 +6,7 @@ import { useParams } from 'react-router-dom';
 import { useState } from 'react';
 import moment from 'moment';
 import { select } from 'redux-saga/effects';
+import './EditBet.css';
 
 function EditBet() {
 

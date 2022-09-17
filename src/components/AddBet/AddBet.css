@@ -1,40 +1,143 @@
+.form-page-container {
+    position: relative;
+    height: 700px;
+}
+
 .add-bet-container {
-    width: 600px;
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 595px;
     margin-left: auto;
+    margin-right: 0;
+    text-align: center;
+    /* background-color: #00a2ff20; */
+    background-color: rgba(255, 255, 255, 0.100);
+    border-radius: 20px;
+    padding-top: 50px;
+}
+
+.add-bet-description-container {
+    position: absolute;
+    width: 595px;
+    height: 480px;
+    margin-left: 0;
     margin-right: auto;
     text-align: center;
-    border: 2px solid yellow;
+    /* background-color: #00a2ff20; */
+    background-color: rgba(255, 255, 255, 0.100);
     border-radius: 20px;
-    padding-bottom: 30px;
+    padding-top: 50px;
 }
 
-.form-header {
-    text-align: left;
-    width: 400px;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-.form-input {
-    width: 400px;
-    height: 40px;
-    margin: 0;
-    margin-bottom: 20px;
-    padding: 0;
-    border: none;
+.playbook-image {
+    position: absolute;
+    bottom: 0;
+    left: 0;
 }
 
 .win-loss-button {
-    width: 200px;
+    width: 240px;
     height: 40px;
+    background-color: rgba(255, 255, 255, 0.100);
+    font-weight: 700;
+    font-size: 20px;
+    color: white;
+    border: none;
+    margin-left: 7.5px;
+    margin-right: 7.5px;
+    border-radius: 3px;
 }
 
 .submit-button {
     margin-top: 20px;
-    width: 400px;
+    margin-bottom: 50px;
+    width: 495px;
     height: 40px;
+    background-color: yellow;
+    border: none;
+    border-radius: 3px;
+    font-weight: 700;
+    font-size: 20px;
 }
 
-.pick-label {
+.form-input-container {
+    position: relative;
+    width: 495px;
+    height: 40px;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: rgba(255, 255, 255, 0.100);
+    margin-bottom: 15px;
+    border-radius: 3px;
+}
+
+.form-label-styles {
+    text-align: right;
+    position: absolute;
+    left: 0px;
     color: white;
+    line-height: 40px;
+    margin: 0;
+    padding: 0;
+}
+
+.form-input-styles {
+    position: absolute;
+    right: 0;
+    height: 40px;
+    background-color: transparent;
+    color: #bfbfbf;
+    border: none;
+    padding: 0;
+    margin: 0;
+}
+
+.pick-to-win-label {
+    width: 120px;
+}
+
+.pick-input {
+    width: 375px;
+}
+
+.picks-moneyline-label {
+    width: 160px;
+}
+
+.pick-moneyline-input {
+    width: 330px;
+}
+
+.pick-opponent-label {
+    width: 106px;
+}
+
+.pick-opponent-input {
+    width: 390px;
+}
+
+.opponents-moneyline-label {
+    width: 208px
+}
+
+.opponents-moneyline-input {
+    width: 282px;
+}
+
+.form-date-label {
+    width: 63px;
+}
+
+.form-date-input {
+    width: 427px;
+    margin-top: -18px;
+}
+
+.bet-amount-label {
+    width: 137px;
+}
+
+.bet-amount-input {
+    width: 353px;
 }

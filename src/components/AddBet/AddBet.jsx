@@ -137,23 +137,32 @@ function AddBet() {
     }
 
     return(
+    <div className="form-page-container">
+        <div className="add-bet-description-container">
+        <img className='playbook-image' src={process.env.PUBLIC_URL + '/PlaybookImage/playbook.svg'} />
+        </div>
         <div className="add-bet-container">
-            <h1 className="form-header">PLACE A BET</h1>
+            {/* <h1 className="form-header">PLACE A BET</h1> */}
             <form onSubmit={() => addBet(event)}>
-            {/* <p className="pick-label">Pick to Win</p> */}
-            <select className="form-input"  onChange={() => pickChange(event)}>
-                <option value="0">Pick to Win</option>
-                {teams.map( team => {
-                    return(
-                        <option key={team.id} value={[team.id, team.team_abv_city]} >{team.team_full_name}</option>
-                    )
-                })}
-            </select>
-            <br />
-            <input className="form-input" type="text" placeholder="Your picks moneyline" onChange={() => pickMoneylineChange(event)} />
-            {/* <h3>Opponent</h3> */}
-            <br />
-            <select className="form-input" onChange={() => oppChange(event)}>
+            <div className="form-input-container">
+                <p className="pick-to-win-label form-label-styles">PICK TO WIN |</p>
+                <select className="pick-input form-input-styles"  onChange={() => pickChange(event)}>
+                    <option value="0">Pick to Win</option>
+                    {teams.map( team => {
+                        return(
+                            <option key={team.id} value={[team.id, team.team_abv_city]} >{team.team_full_name}</option>
+                        )
+                    })}
+                </select>
+            </div>
+
+        <div className="form-input-container">
+            <p className="picks-moneyline-label form-label-styles">PICK'S MONEYLINE |</p>
+            <input className="pick-moneyline-input form-input-styles" type="text" placeholder="Your picks moneyline" onChange={() => pickMoneylineChange(event)} />
+        </div>
+        <div className="form-input-container">
+            <p className="pick-opponent-label form-label-styles">OPPONENT |</p>
+            <select className="pick-opponent-input form-input-styles" onChange={() => oppChange(event)}>
                 <option value="0">Opponent</option>
                 {teams.map( team => {
                     return(
@@ -161,19 +170,26 @@ function AddBet() {
                     )
                 })}
             </select>
-            <br />
-            <input className="form-input" type="text" placeholder="Opponents moneyline" onChange={() => oppMoneylineChange(event)} />
-            {/* <h3>Date/Time</h3> */}
-            {/* Would like this to be a calendar select and a time select... */}
-            <DatePicker className="form-input" selected={startDate} showTimeSelect dateFormat="Pp" onChange={(date) => dateChange(date)} />
-            <input className="form-input" type="number" placeholder="Bet Amount" onChange={() => betChange(event)}/>
-            <br />
+        </div>
+        <div className="form-input-container">
+            <p className="opponents-moneyline-label form-label-styles">OPPONENT'S MONEYLINE |</p>
+            <input className="opponents-moneyline-input form-input-styles" type="text" placeholder="Opponents moneyline" onChange={() => oppMoneylineChange(event)} />
+        </div>
+        <div className="form-input-container">
+            <p className="form-date-label form-label-styles">DATE |</p>
+            <DatePicker className="form-date-input form-input-styles" selected={startDate} showTimeSelect dateFormat="Pp" onChange={(date) => dateChange(date)} />
+        </div>
+        <div className="form-input-container">
+            <p className="bet-amount-label form-label-styles">BET AMOUNT | $</p>
+            <input className="bet-amount-input form-input-styles" type="number" placeholder="Bet Amount" onChange={() => betChange(event)}/>
+        </div>
             <button className="win-loss-button" type="button" onClick={() => winLossChange(true)} >WIN</button>
             <button className="win-loss-button" type="button" onClick={() => winLossChange(false)} >LOSS</button>
             <br />
-            <button className="submit-button" type="submit">Submit</button>
+            <button className="submit-button" type="submit">SUBMIT</button>
             </form>
         </div>
+    </div>
     )
 }
 
