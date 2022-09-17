@@ -35,6 +35,7 @@ function EditBet() {
     }
 
     const pickToWin = (game) => {
+        showHomeClicked();
         console.log('home team clicked');
         setChosenTeam({
             score_id: game.score_id,
@@ -53,6 +54,7 @@ function EditBet() {
         console.log(chosenTeam);
     }
     const predictedLoser = (game) => {
+        showAwayClicked();
         console.log('away team clicked');
         setChosenTeam({
             score_id: game.score_id,
@@ -134,6 +136,21 @@ function EditBet() {
             currency: 'USD',
             minimumFractionDigits: 2
             })
+
+        const [homeSelected, setHomeSeleceted] = useState(false);
+        const [awaySelected, setAwaySeleceted] = useState(false);
+    
+        const showHomeClicked = () => {
+            console.log('home clicked');
+            setHomeSeleceted( true );
+            setAwaySeleceted( false );
+        }
+    
+        const showAwayClicked = () => {
+            console.log('away clicked');
+            setAwaySeleceted( true );
+            setHomeSeleceted( false );
+        }
 
     return(
         <>
@@ -248,24 +265,29 @@ function EditBet() {
                     {/* <h3>Date/Time: {date} EST</h3> */}
 
                     <form onSubmit={ () => updateThisBet(event) }>
-                        <div onClick={() => pickToWin(game)}>
+                    <div className='select-logos'>
+                        <div className={ homeSelected ? 'home-logo-container-selected' : 'home-logo-container' } onClick={() => pickToWin(game)}>
                             {/* <p>THIS IS THE TEAM YOU PICKED TO WIN</p> */}
-                            <img className='team-logo' src={process.env.PUBLIC_URL + '/NflLogos/' + game.chosen_team + '.svg'} alt="logo" />
+                            <img className='home-select-logo' src={process.env.PUBLIC_URL + '/NflLogos/' + game.chosen_team + '.svg'} alt="logo" />
                             {/* <p>Home: {game.chosen_team}</p>
                             <p>Home Moneyline: {game.chosen_moneyline}</p> */}
                         </div>
-                        <div onClick={() => predictedLoser(game)}>
+                        <div className={ awaySelected ? 'away-logo-container-selected' : 'away-logo-container' } onClick={() => predictedLoser(game)}>
                             {/* <p>THIS IS THE PREDICTED LOSER</p> */}
-                            <img className='team-logo' src={process.env.PUBLIC_URL + '/NflLogos/' + game.un_chosen_team + '.svg'} alt="logo" />
+                            <img className='away-select-logo' src={process.env.PUBLIC_URL + '/NflLogos/' + game.un_chosen_team + '.svg'} alt="logo" />
                             {/* <p>Away: {game.un_chosen_team}</p>
                             <p>Away Moneyline: {game.un_chosen_moneyline}</p> */}
                         </div>
+                    </div>
 
                         {/* <h2>Edit Bet?</h2> */}
-                        <input onChange={() => updateBet(event)} type="number" placeholder='Amount of bet'/>
-                        <button type='submit'>Submit Edits</button>
+                    <div className='bet-amount-container'>
+                        <p className='bet-input-label'>BET AMOUNT</p>
+                        <input className='bet-input' onChange={() => updateBet(event)} type="number" placeholder='Amount of bet'/>
+                        <button className='bet-input-button' type='submit'>SUBMIT</button>
                         <br />
-                        <button type='button' onClick={() => returnToBets()}>Return to Bets</button>
+                        <button className='cancel-bet-button' type='button' onClick={() => returnToBets()}>CANCEL</button>
+                    </div>
                     </form>
                 </div>
                 )
