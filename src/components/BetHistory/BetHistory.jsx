@@ -134,7 +134,7 @@ function BetHistory() {
                             <div className='bet-info'>
                                 {bet.home_score ? <p className='bet-info-piece'>Final Score: {bet.home_team}: {bet.home_score} {bet.away_team}: {bet.away_score}</p>
                                 :
-                                <p className='bet-info-piece'>Manual Entry</p>
+                                <p className='bet-info-piece'>MANUAL ENTRY</p>
                                 }
                             <div className='bet-buttons-container'>
                                 <button className='bet-buttons' onClick={() => deleteBet(bet)}>DELETE</button>
@@ -158,7 +158,7 @@ function BetHistory() {
                         </div>
 
                         <div className='bet-info'>
-                            
+                        <p className='bet-info-piece'>FINAL SCORE: PENDING</p>
                             <div className='bet-buttons-container'>
                                 <button className='bet-buttons' onClick={() => deleteBet(bet)}>DELETE</button>
                                 <button className='bet-buttons' onClick={() => editBet(bet)}>EDIT</button>

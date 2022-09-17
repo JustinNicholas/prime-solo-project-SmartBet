@@ -20,15 +20,8 @@ function EditBet() {
 
     useEffect(() => {
         refresh(id);
-        setTimeout(setCurrentBet, 300)
         
     }, [])
-
-    const setCurrentBet = () => {
-        console.log('current bet info', thisGame[0]);
-        pickToWin(thisGame[0]);
-        setBetAmount(thisGame[0].bet_amount);
-    }
 
     const refresh = (id) => {
         dispatch({
@@ -150,7 +143,7 @@ function EditBet() {
             })
 
         const [homeSelected, setHomeSeleceted] = useState(false);
-        const [awaySelected, setAwaySeleceted] = useState(true);
+        const [awaySelected, setAwaySeleceted] = useState(false);
     
         const showAwayClicked = () => {
             console.log('home clicked');
@@ -174,7 +167,7 @@ function EditBet() {
                 <p className='teams-label'>TEAMS</p>
                 <p className='pick-label'>PICK</p>
                 <p className='bet-moneyline-label'>MONEYLINE</p>
-                <p className='bet-channel-label'>CHANNEL</p>
+                <p className='bet-channel-label'>WAGER</p>
                 <p className='bet-profit-label'>PROFIT</p>
             </div>
             {/* <h1>TOTAL PROFIT = {formatter.format(profitTotal)}</h1> */}
@@ -216,9 +209,9 @@ function EditBet() {
                         <div className='centered-moneyline-info'>
                             <p className='moneyline-info'>{bet.chosen_moneyline}</p>
                         </div>
-                        <div className='team-moneylines'>
+                        <div className='bet-wager-container'>
                             {/* <p>Time: {date}</p> */}
-                            <p className='bet-channel-info'>{bet.channel || 'N/A'}</p>
+                            <p className='bet-wager-info'>{formatter.format(bet.bet_amount)}</p>
                         </div>
                             
                             
@@ -236,9 +229,9 @@ function EditBet() {
                             {/* <p>Profit: {formatter.format(bet.profit)}</p> */}
                             <div className='bet-info'>
                                 { bet.home_score ? 
-                                <p className='bet-info-piece'>FINAL SCORE: {bet.home_team}: {bet.home_score} {bet.away_team}: {bet.away_score}</p>
+                                <p className='bet-profit-piece'>FINAL SCORE: {bet.home_team}: {bet.home_score} {bet.away_team}: {bet.away_score}</p>
                                 :
-                                <p>MANUAL ENTRY</p>
+                                <p className='bet-profit-piece'>MANUAL ENTRY</p>
                                 }
                             <div className='bet-buttons-container'>
                                 {/* <button className='bet-buttons' onClick={() => deleteBet(bet)}>DELETE</button>
@@ -253,7 +246,7 @@ function EditBet() {
                         </div>
 
                         <div className='bet-info'>
-                            <p className='bet-info-piece'>FINAL SCORE: PENDING</p>
+                            <p className='bet-profit-piece'>FINAL SCORE: PENDING</p>
                             {/* <div className='bet-buttons-container'>
                                 <button className='bet-buttons' onClick={() => deleteBet(bet)}>DELETE</button>
                                 <button className='bet-buttons' onClick={() => editBet(bet)}>EDIT</button>
@@ -285,14 +278,14 @@ function EditBet() {
                     <div className={ awaySelected ? 'away-logo-container-selected' : 'away-logo-container' } onClick={() => pickToWin(game)}>
                             {/* <p>THIS IS THE TEAM YOU PICKED TO WIN</p> */}
                             <img className='home-select-logo' src={process.env.PUBLIC_URL + '/NflLogos/' + game.chosen_team + '.svg'} alt="logo" />
-                            <p className='select-team-name'>{game.un_chosen_full_name}</p>
+                            <p className='select-team-name'>{game.chosen_full_name}</p>
                             {/* <p>Home: {game.chosen_team}</p>
                             <p>Home Moneyline: {game.chosen_moneyline}</p> */}
                         </div>
                         <div className={ homeSelected ? 'home-logo-container-selected' : 'home-logo-container' } onClick={() => predictedLoser(game)}>
                             {/* <p>THIS IS THE PREDICTED LOSER</p> */}
                             <img className='away-select-logo' src={process.env.PUBLIC_URL + '/NflLogos/' + game.un_chosen_team + '.svg'} alt="logo" />
-                            <p className='select-team-name'>{game.chosen_full_name}</p>
+                            <p className='select-team-name'>{game.un_chosen_full_name}</p>
                             {/* <p>Away: {game.un_chosen_team}</p>
                             <p>Away Moneyline: {game.un_chosen_moneyline}</p> */}
                         </div>
@@ -302,7 +295,7 @@ function EditBet() {
                     <div className='bet-amount-container'>
                         <p className='bet-input-label'>BET AMOUNT</p>
                         <p className='dollar-sign'>$</p>
-                        <input className='bet-input' onChange={() => updateBet(event)} type="number" placeholder='bet amount'/>
+                        <input className='bet-input' onChange={() => updateBet(event)} type="number" placeholder='BET AMOUNT'/>
                         <button className='bet-input-button' type='submit'>SUBMIT</button>
                         <br />
                         
