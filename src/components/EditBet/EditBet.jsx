@@ -13,14 +13,22 @@ function EditBet() {
     const history = useHistory();
     const {id} = useParams();
     const dispatch = useDispatch();
-    console.log(id);
+    // console.log(id);
 
     const thisGame = useSelector( store => store.thisGame);
     const userID = useSelector( store => store.user.id);
 
     useEffect(() => {
         refresh(id);
+        setTimeout(setCurrentBet, 300)
+        
     }, [])
+
+    const setCurrentBet = () => {
+        console.log('current bet info', thisGame[0]);
+        pickToWin(thisGame[0]);
+        setBetAmount(thisGame[0].bet_amount);
+    }
 
     const refresh = (id) => {
         dispatch({
@@ -52,7 +60,7 @@ function EditBet() {
             profit: game.profit,
             winner_same: true
         });
-        console.log(chosenTeam);
+        // console.log(chosenTeam);
     }
     const predictedLoser = (game) => {
         showAwayClicked();
@@ -88,6 +96,9 @@ function EditBet() {
         profit: 0,
         winner_same: null
     });
+
+    const currentBetAmount = thisGame[0]
+    // console.log('current bet', currentBetAmount);
     const [betAmount, setBetAmount] = useState(0);
 
     const updateBet = (event) => {
@@ -139,19 +150,20 @@ function EditBet() {
             })
 
         const [homeSelected, setHomeSeleceted] = useState(false);
-        const [awaySelected, setAwaySeleceted] = useState(false);
+        const [awaySelected, setAwaySeleceted] = useState(true);
     
-        const showHomeClicked = () => {
+        const showAwayClicked = () => {
             console.log('home clicked');
             setHomeSeleceted( true );
             setAwaySeleceted( false );
         }
     
-        const showAwayClicked = () => {
+        const showHomeClicked = () => {
             console.log('away clicked');
             setAwaySeleceted( true );
             setHomeSeleceted( false );
         }
+
 
     return(
         <>
@@ -167,6 +179,7 @@ function EditBet() {
             </div>
             {/* <h1>TOTAL PROFIT = {formatter.format(profitTotal)}</h1> */}
             {thisGame.map( bet => {
+                 
                 const date = moment(bet.time).format('LLLL');
 
                     const day = moment(bet.time).format('dddd');
@@ -203,6 +216,10 @@ function EditBet() {
                         <div className='centered-moneyline-info'>
                             <p className='moneyline-info'>{bet.chosen_moneyline}</p>
                         </div>
+                        <div className='team-moneylines'>
+                            {/* <p>Time: {date}</p> */}
+                            <p className='bet-channel-info'>{bet.channel || 'N/A'}</p>
+                        </div>
                             
                             
                         {/* </div> */}
@@ -218,9 +235,10 @@ function EditBet() {
                             </div>
                             {/* <p>Profit: {formatter.format(bet.profit)}</p> */}
                             <div className='bet-info'>
-                                {bet.home_score ? <p className='bet-info-piece'>Final Score: {bet.home_team}: {bet.home_score} {bet.away_team}: {bet.away_score}</p>
+                                { bet.home_score ? 
+                                <p className='bet-info-piece'>FINAL SCORE: {bet.home_team}: {bet.home_score} {bet.away_team}: {bet.away_score}</p>
                                 :
-                                <p className='bet-info-piece'>Manual Entry</p>
+                                <p>MANUAL ENTRY</p>
                                 }
                             <div className='bet-buttons-container'>
                                 {/* <button className='bet-buttons' onClick={() => deleteBet(bet)}>DELETE</button>
@@ -235,15 +253,11 @@ function EditBet() {
                         </div>
 
                         <div className='bet-info'>
-                            
+                            <p className='bet-info-piece'>FINAL SCORE: PENDING</p>
                             {/* <div className='bet-buttons-container'>
                                 <button className='bet-buttons' onClick={() => deleteBet(bet)}>DELETE</button>
                                 <button className='bet-buttons' onClick={() => editBet(bet)}>EDIT</button>
                             </div> */}
-                        </div>
-                        <div className='team-moneylines'>
-                            {/* <p>Time: {date}</p> */}
-                            <p className='bet-channel-info'>{bet.channel}</p>
                         </div>
                         </>
                         }
@@ -261,21 +275,24 @@ function EditBet() {
             {thisGame.map( game => {
                     // use moment js to parse time into easy to read text.
                     const date = moment(game.time).format('LLLL')
+                    console.log(game.bet_amount);
                 return (
                 <div key={game.score_id}>
                     {/* <h3>Date/Time: {date} EST</h3> */}
 
                     <form onSubmit={ () => updateThisBet(event) }>
                     <div className='select-logos'>
-                        <div className={ homeSelected ? 'home-logo-container-selected' : 'home-logo-container' } onClick={() => pickToWin(game)}>
+                    <div className={ awaySelected ? 'away-logo-container-selected' : 'away-logo-container' } onClick={() => pickToWin(game)}>
                             {/* <p>THIS IS THE TEAM YOU PICKED TO WIN</p> */}
                             <img className='home-select-logo' src={process.env.PUBLIC_URL + '/NflLogos/' + game.chosen_team + '.svg'} alt="logo" />
+                            <p className='select-team-name'>{game.un_chosen_full_name}</p>
                             {/* <p>Home: {game.chosen_team}</p>
                             <p>Home Moneyline: {game.chosen_moneyline}</p> */}
                         </div>
-                        <div className={ awaySelected ? 'away-logo-container-selected' : 'away-logo-container' } onClick={() => predictedLoser(game)}>
+                        <div className={ homeSelected ? 'home-logo-container-selected' : 'home-logo-container' } onClick={() => predictedLoser(game)}>
                             {/* <p>THIS IS THE PREDICTED LOSER</p> */}
                             <img className='away-select-logo' src={process.env.PUBLIC_URL + '/NflLogos/' + game.un_chosen_team + '.svg'} alt="logo" />
+                            <p className='select-team-name'>{game.chosen_full_name}</p>
                             {/* <p>Away: {game.un_chosen_team}</p>
                             <p>Away Moneyline: {game.un_chosen_moneyline}</p> */}
                         </div>
@@ -284,14 +301,17 @@ function EditBet() {
                         {/* <h2>Edit Bet?</h2> */}
                     <div className='bet-amount-container'>
                         <p className='bet-input-label'>BET AMOUNT</p>
-                        <input className='bet-input' onChange={() => updateBet(event)} type="number" placeholder='Amount of bet'/>
+                        <p className='dollar-sign'>$</p>
+                        <input className='bet-input' onChange={() => updateBet(event)} type="number" placeholder='bet amount'/>
                         <button className='bet-input-button' type='submit'>SUBMIT</button>
                         <br />
+                        
                         <button className='cancel-bet-button' type='button' onClick={() => returnToBets()}>CANCEL</button>
                     </div>
                     </form>
                 </div>
                 )
+                
 })}
         </>
     )

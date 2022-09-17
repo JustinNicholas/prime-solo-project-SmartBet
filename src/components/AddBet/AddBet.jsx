@@ -128,7 +128,9 @@ function AddBet() {
         })
     }
 
-    const winLossChange = (event) => {
+    const winChange = (event) => {
+        setWinSeleceted(true);
+        setLossSeleceted(false);
         console.log(event);
         setChosenTeam({
             ...chosenTeam,
@@ -136,9 +138,29 @@ function AddBet() {
         })
     }
 
+    const lossChange = (event) => {
+        setWinSeleceted(false);
+        setLossSeleceted(true);
+        console.log(event);
+        setChosenTeam({
+            ...chosenTeam,
+            winLoss: event
+        })
+    }
+
+    const [winSelected, setWinSeleceted] = useState(false);
+    const [lossSelected, setLossSeleceted] = useState(false);
+
     return(
     <div className="form-page-container">
         <div className="add-bet-description-container">
+            <div className="add-bet-description">
+                <h1 className="description-header">LOG YOUR</h1>
+                <h1 className="description-header">BETTING HISTORY</h1>
+                <p className="add-bet-description-body">Don't lose track of your betting history. Add entries from previous bets to your betting log using the form on this page. 
+                Adding to your bet history makes data predictions more accurate and keeps you on the right track.</p>
+            </div>
+
         <img className='playbook-image' src={process.env.PUBLIC_URL + '/PlaybookImage/playbook.svg'} />
         </div>
         <div className="add-bet-container">
@@ -183,8 +205,8 @@ function AddBet() {
             <p className="bet-amount-label form-label-styles">BET AMOUNT | $</p>
             <input className="bet-amount-input form-input-styles" type="number" placeholder="Bet Amount" onChange={() => betChange(event)}/>
         </div>
-            <button className="win-loss-button" type="button" onClick={() => winLossChange(true)} >WIN</button>
-            <button className="win-loss-button" type="button" onClick={() => winLossChange(false)} >LOSS</button>
+            <button className={ winSelected ? "clicked-win-button" : "win-button" } type="button" onClick={() => winChange(true)} >WIN</button>
+            <button className={ lossSelected ? "clicked-loss-button" : "loss-button" } type="button" onClick={() => lossChange(false)} >LOSS</button>
             <br />
             <button className="submit-button" type="submit">SUBMIT</button>
             </form>

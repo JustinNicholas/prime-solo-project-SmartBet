@@ -179,3 +179,16 @@
     position: absolute;
     left: 815px;
 }
+
+.time-box-full {
+    position: absolute;
+    top: 25px;
+    left: 10px;
+}
+
+.time-box-short {
+    position: absolute;
+    top: 25px;
+    left: 10px;
+    text-align: left;
+}

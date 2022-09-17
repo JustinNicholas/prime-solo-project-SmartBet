@@ -206,6 +206,7 @@ function BetOnThis() {
                         </div>
                         <div className='bet-amount-container'>
                             <p className='bet-input-label'>BET AMOUNT</p>
+                            <p className='dollar-sign'>$</p>
                             <input className='bet-input' onChange={() => updateBet(event)} type="number" placeholder=' Amount of bet'/>
                             <button className='bet-input-button' type='submit'>SUBMIT</button>
                             <br />

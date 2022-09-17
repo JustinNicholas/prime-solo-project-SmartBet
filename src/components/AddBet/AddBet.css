@@ -30,13 +30,33 @@
     padding-top: 50px;
 }
 
+.add-bet-description {
+    width: 495px;
+    text-align: left;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.description-header {
+    margin: 0;
+    padding: 0;
+    font-weight: 800;
+    font-size: 40px;
+    font-style: italic;
+    margin-top: -20px;
+}
+
+.add-bet-description-body {
+    margin-top: 5px;
+}
+
 .playbook-image {
     position: absolute;
     bottom: 0;
     left: 0;
 }
 
-.win-loss-button {
+.win-button {
     width: 240px;
     height: 40px;
     background-color: rgba(255, 255, 255, 0.100);
@@ -49,6 +69,54 @@
     border-radius: 3px;
 }
 
+.win-button:hover {
+    background-color: #00a2ff3b;
+}
+
+.clicked-win-button {
+    background-color: #00a2ff3b;
+    border: 1px solid #00A3FF;
+    width: 240px;
+    height: 40px;
+    font-weight: 700;
+    font-size: 20px;
+    color: white;
+    margin-left: 7.5px;
+    margin-right: 7.5px;
+    border-radius: 3px;
+}
+
+.loss-button {
+    width: 240px;
+    height: 40px;
+    background-color: rgba(255, 255, 255, 0.100);
+    font-weight: 700;
+    font-size: 20px;
+    color: white;
+    border: none;
+    margin-left: 7.5px;
+    margin-right: 7.5px;
+    border-radius: 3px;
+}
+
+.loss-button:hover {
+    background-color: #00a2ff3b;
+}
+
+.clicked-loss-button {
+    background-color: #00a2ff3b;
+    border: 1px solid #00A3FF;
+    width: 240px;
+    height: 40px;
+    font-weight: 700;
+    font-size: 20px;
+    color: white;
+    margin-left: 7.5px;
+    margin-right: 7.5px;
+    border-radius: 3px;
+}
+
+
 .submit-button {
     margin-top: 20px;
     margin-bottom: 50px;
@@ -59,6 +127,10 @@
     border-radius: 3px;
     font-weight: 700;
     font-size: 20px;
+}
+
+.submit-button:hover {
+    background-color: rgba(255, 255, 0, 0.500);
 }
 
 .form-input-container {

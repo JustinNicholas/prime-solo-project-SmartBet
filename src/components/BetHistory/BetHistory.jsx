@@ -82,8 +82,8 @@ function BetHistory() {
             {reversedBets.map( bet => {
                 const date = moment(bet.time).format('LLLL');
                 if (userId === bet.user_id) {
-
-                    const day = moment(bet.time).format('dddd');
+                    const fullDate = moment(bet.time).format('l');
+                    const day = moment(bet.time).format('ddd');
                     const shortDate = moment(bet.time).format("MMM D");
                     const hour = moment(bet.time).format('LT');
                     // use moment js to parse time into easy to read text.
@@ -92,11 +92,7 @@ function BetHistory() {
                         // changed this to bet id because there could be more than one bet on a game.
                     <div className='bet-listing' key={bet.id}>
                         {/* <h1>Date/Time: {date} EST</h1> */}
-                        <div className='time-box'>
-                            <h3 className='time-data'>{day}</h3>
-                            <h3 className='time-data'>{shortDate}</h3>
-                            <p className='time-data'>{hour} EST</p>
-                        </div>
+
                         <div className='away-team'>
                             <img className='team-logo' src={process.env.PUBLIC_URL + '/NflLogos/' + bet.chosen_team + '.svg'} alt="logo" />
                         
@@ -123,6 +119,10 @@ function BetHistory() {
                         {bet.is_completed ? 
                         <>
                             {/* <p>Time: {date}</p> */}
+                            <div className='time-box-full'>
+                                <h3 className='time-data'>{fullDate}</h3>
+                                <p className='time-data'>{hour} EST</p>
+                            </div>
                             <div className='centered-text'>
                                 {bet.profit > 0 ?
                                 <p className='positive-profit bet-profit-piece'>{formatter.format(bet.profit)}</p>
@@ -141,9 +141,18 @@ function BetHistory() {
                                 <button className='bet-buttons' onClick={() => editBet(bet)}>EDIT</button>
                             </div>
                             </div>
+                            <div className='team-moneylines'>
+                            {/* <p>Time: {date}</p> */}
+                            <p className='bet-channel-info'>{bet.channel || 'N/A'}</p>
+                            </div>
                         </>
                         :
                         <>
+                        <div className='time-box-short'>
+                            {/* <h3 className='time-data'>{day}</h3> */}
+                            <h3 className='time-data'>{day}, {shortDate}</h3>
+                            <p className='time-data'>{hour} EST</p>
+                        </div>
                         <div className='centered-text'>
                             <p className="bet-profit-piece">Pending</p>
                         </div>

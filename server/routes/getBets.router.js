@@ -53,8 +53,18 @@ router.delete('/:id', rejectUnauthenticated, (req, res) => {
 
 router.get('/:id', (req, res) => {
 
-    let queryText = `SELECT * FROM "user_bets"
-    WHERE id = $1;`;
+    let queryText = `
+    SELECT "user_bets".*, "games".channel, "scores".home_team, "scores".away_team, "scores".score_id, "scores".away_score, "scores".home_score, "scores".is_over, t1.team_full_name AS chosen_full_name, t2.team_full_name AS un_chosen_full_name FROM user_bets
+    LEFT OUTER JOIN "scores"
+	  ON "scores".score_id = "user_bets".score_id
+	JOIN "games"
+	  ON "games".score_id = "user_bets".score_id
+	JOIN teams t1
+	  ON t1.id = "user_bets".chosen_team_id
+	JOIN teams t2
+	  ON t2.id = "user_bets".un_chosen_team_id
+    WHERE "user_bets".id = $1
+    LIMIT 1;`;
   
     let queryValues = [ req.params.id ];
     console.log(queryValues);
