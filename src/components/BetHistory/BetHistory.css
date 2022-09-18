@@ -17,7 +17,7 @@
 .bet-history-containers-container {
     position: relative;
     width: 1200px;
-    height: 600px;
+    height: 555px;
 }
 
 .net-earnings-container {
@@ -145,7 +145,8 @@
     height: 100px;
     margin-left: auto;
     margin-right: auto;
-    margin-bottom: 20px;
+    margin-bottom: 5px;
+    border-radius: 3px;
 }
 
 .bet-info{
@@ -196,24 +197,42 @@
     position: absolute;
     left: 475px;
     margin: 0;
+    line-height: 30px;
 }
 
 .bet-moneyline-label {
     position: absolute;
     left: 550px;
     margin: 0;
+    line-height: 30px;
 }
 
 .bet-channel-label {
     position: absolute;
     left: 700px;
     margin: 0;
+    line-height: 30px;
 }
 
 .bet-profit-label {
     position: absolute;
     left: 840px;
-    margin: 0; 
+    margin: 0;
+    line-height: 30px;
+}
+
+.bet-game-time-label{
+    position: absolute;
+    left: 10px;
+    margin: 0;
+    line-height: 30px;
+}
+
+.bet-teams-label {
+    position: absolute;
+    left: 250px;
+    margin: 0;
+    line-height: 30px;
 }
 
 .pick-team-info {

@@ -14,7 +14,8 @@
     height: 100px;
     margin-left: auto;
     margin-right: auto;
-    margin-bottom: 20px;
+    margin-bottom: 5px;
+    border-radius: 3px;
 }
 
 .away-team{
@@ -163,8 +164,39 @@
 .labels-container {
     position: relative;
     width: 1200px;
-    height: 25px;
+    height: 30px;
+    margin: 0;
+    margin-top: 5px;
     margin-bottom: 5px;
+    background-color: rgba(255, 255, 255, 0.050);
+    border-radius: 3px;
+}
+
+.none-labels-container {
+    position: relative;
+    width: 1200px;
+    height: 70px;
+    margin: 0;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    background-color: rgba(255, 255, 255, 0.050);
+    border-radius: 3px;
+}
+
+.upcoming-completed-headers {
+    margin: 0;
+    margin-left: 30px;
+}
+
+.none-label {
+    padding: 0;
+    margin: 0;
+    margin-left: 30px;
+    margin-right: auto;
+    line-height: 70px;
+    font-size: 16px;
+    font-weight: 200;
+    font-style: italic;
 }
 
 .week-label {
@@ -187,18 +219,21 @@ select:focus-visible {
     top: 0px;
     left: 250px;
     margin: 0;
+    line-height: 30px;
 }
 
 .moneyline-label {
     position: absolute;
     left: 700px;
     margin: 0;
+    line-height: 30px;
 }
 
 .channel-label{
     position: absolute;
     margin: 0;
     right: 290px;
+    line-height: 30px;
 }
 
 .place-bet-label {
@@ -206,4 +241,47 @@ select:focus-visible {
     margin: 0;
     top: 0;
     right: 80px;
+    line-height: 30px;
+}
+
+.upcoming-games-header {
+    background-color: rgba(255, 255, 255, 0.100);
+    position: relative;
+    margin-top: 30px;
+    border-radius: 3px;
+}
+
+.completed-games-header {
+    background-color: rgba(255, 255, 255, 0.100);
+    margin-top: 30px;
+    border-radius: 3px;
+}
+
+.week-label-view-games {
+    position: absolute;
+    top: 10px;
+    right: 20px;
+}
+
+.week-label-view-games select {
+    background-color: transparent;
+    border: none;
+    color: white;
+}
+
+select:focus-visible {
+    border: none;
+    outline: none;
+}
+
+.date-label {
+    position: absolute;
+    left: 10px;
+    margin: 0;
+    padding: 0;
+    line-height: 30px;
+}
+
+.no-completed-games {
+    color: white;
 }
