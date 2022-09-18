@@ -1,32 +1,60 @@
-.nfl-video-play{
+.info-page-container {
     position: relative;
-    height: 700px;
-    width: 400px;
-    border: 1px solid white;
-    text-align: center;
-    display: inline-block;
+    width: 1200px;
+    height: 800px;
 }
 
-.nflVideo {
-    height: 700px;
-    object-fit: cover;
-}
-
-.video-still-img {
-    filter: grayscale(50%);
-}
-
-.video-overlay-text {
-    width: 400px;
-    height: 700px;
-    line-height: 700px;
-    background-color: rgba(0, 0, 0, 0.500);
-    color: white;
+.tech-used-conatiner {
     position: absolute;
-    top: 0px;
-    z-index: 1;
-    font-weight: 700;
-    font-size: 20px;
+    width: 700px;
+    height: 240px;
+    background-color: rgba(255, 255, 255, 0.100);
+    border-radius: 10px;
+}
+
+.info-page-titles {
+    position: absolute;
+    top: 50px;
+    left: 50px;
     margin: 0;
     padding: 0;
+    font-size: 40px;
+    font-weight: 800;
+    font-style: italic;
+}
+
+.bubble-container {
+    position: absolute;
+    top: 125px;
+    margin-left: 50px;
+    margin-right: 50px;
+    width: 600;
+    height: 75px;
+}
+
+.tech-used-bubbles {
+    background-color: rgba(255, 255, 255, 0.100);
+    width: fit-content;
+    text-align: center;
+    border-radius: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+    display: inline-block;
+    margin-left: 5px;
+    margin-right: 5px;
+    margin-bottom: 10px;
+}
+
+.thank-you-container {
+    position: absolute;
+    width: 490px;
+    height: 240px;
+    background-color: rgba(255, 255, 255, 0.100);
+    border-radius: 10px;
+    top: 0;
+    right: 0;
+}
+
+.thank-you-text {
+    margin-top: -15px;
 }
