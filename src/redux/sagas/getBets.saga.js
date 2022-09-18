@@ -1,7 +1,7 @@
 import { put, takeEvery } from 'redux-saga/effects';
 import axios from 'axios';
 
-function* getBets(action) {
+function* getBets() {
 
     try {
         const response = yield axios.get('/database/bets');
@@ -9,6 +9,24 @@ function* getBets(action) {
       } catch (error) {
         console.log('User get request failed', error);
       }
+}
+
+function* getWinningestTeam() {
+  try{
+    const response = yield axios.get('/database/bets/winningest');
+    yield put({ type: 'SET_WINNINGEST_TEAM', payload: response.data });
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+function* getLosingestTeam() {
+  try{
+    const response = yield axios.get('/database/bets/losingest');
+    yield put({ type: 'SET_LOSINGEST_TEAM', payload: response.data });
+  } catch (error) {
+    console.log(error);
+  }
 }
 
 function* deleteBet(action) {
@@ -43,6 +61,8 @@ function* getBetsSaga() {
     yield takeEvery('DELETE_BET', deleteBet);
     yield takeEvery('EDIT_THIS_BET', editBet);
     yield takeEvery('SUBMIT_EDIT_BET', submitEditBet);
+    yield takeEvery('GET_WINNINGEST_TEAM', getWinningestTeam);
+    yield takeEvery('GET_LOSINGEST_TEAM', getLosingestTeam);
 }
 
 export default getBetsSaga;

@@ -105,7 +105,8 @@ function BetHistoryChart(){
               series={series}
               animations={animations}
               type="line"
-              width="770px"
+              width="580px"
+              height="490px"
             />
         </>
     )

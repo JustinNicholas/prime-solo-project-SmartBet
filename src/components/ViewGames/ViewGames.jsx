@@ -37,6 +37,12 @@ function ViewGames() {
         dispatch({
             type: 'GET_GAMES'
         })
+        dispatch({
+            type: 'GET_WINNINGEST_TEAM'
+        })
+        dispatch({
+            type: 'GET_LOSINGEST_TEAM'
+        })
         // console.log('dipatched!');
     }
 

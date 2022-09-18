@@ -36,6 +36,48 @@ router.get('/', rejectUnauthenticated, (req, res) => {
 
 });
 
+router.get('/winningest', rejectUnauthenticated, (req, res) => {
+    // GET route code here
+      const queryText = `
+      SELECT "user_bets".chosen_team_id, "user_bets".user_id, "teams".team_full_name, SUM("user_bets".profit) FROM user_bets
+      JOIN "teams"
+      ON "teams".id = "user_bets".chosen_team_id
+      WHERE "user_bets".user_id = $1
+      GROUP BY "user_bets".chosen_team_id, "user_bets".user_id, "teams".team_full_name, "user_bets".profit
+      ORDER BY "user_bets".profit DESC
+      LIMIT 1;`;
+  
+      pool.query(queryText, [req.user.id])
+      .then( result => {
+          res.send(result.rows)
+      }).catch( err => {
+          console.log(err);
+          res.sendStatus(500);
+      })
+  
+  });
+
+  router.get('/losingest', rejectUnauthenticated, (req, res) => {
+    // GET route code here
+      const queryText = `
+      SELECT "user_bets".chosen_team_id, "user_bets".user_id, "teams".team_full_name, SUM("user_bets".profit) FROM user_bets
+      JOIN "teams"
+      ON "teams".id = "user_bets".chosen_team_id
+      WHERE "user_bets".user_id = $1
+      GROUP BY "user_bets".chosen_team_id, "user_bets".user_id, "teams".team_full_name, "user_bets".profit
+      ORDER BY "user_bets".profit ASC
+      LIMIT 1;`;
+  
+      pool.query(queryText, [req.user.id])
+      .then( result => {
+          res.send(result.rows)
+      }).catch( err => {
+          console.log(err);
+          res.sendStatus(500);
+      })
+  
+  });
+
 router.delete('/:id', rejectUnauthenticated, (req, res) => {
     const queryText = `
     DELETE FROM "user_bets"

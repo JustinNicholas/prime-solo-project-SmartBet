@@ -6,6 +6,8 @@ import week from './currentWeek.reducer';
 import thisGame from './thisGame.reducer';
 import betHistory from './betHistory.reducer';
 import teams from './teams.reducer';
+import winningestTeam from './winningestTeam.reducer';
+import losingestTeam from './losingestTeam.reducer';
 
 // rootReducer is the primary reducer for our entire project
 // It bundles up all of the other reducers so our project can use them.
@@ -21,6 +23,8 @@ const rootReducer = combineReducers({
   thisGame,
   betHistory,
   teams,
+  winningestTeam,
+  losingestTeam,
 });
 
 export default rootReducer;

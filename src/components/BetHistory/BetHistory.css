@@ -1,3 +1,11 @@
+.loading-spinner-bars {
+    width: 500px;
+    height: 300px;
+    margin-left: 475px;
+    margin-right: auto;
+    margin-top: 50px;
+}
+
 .positive-profit{
     color: greenyellow;
 }
@@ -17,8 +25,8 @@
     left:50px;
     top: 140px;
     background-color: rgba(255, 255, 255, 0.100);
-    width: 295px;
-    height: 110px;
+    width: 242px;
+    height: 120px;
     margin-left: auto;
     margin-right: auto;
     text-align: left;
@@ -41,11 +49,11 @@
 
 .bets-placed-container {
     position: absolute;
-    left:50px;
-    top: 265px;
+    left:302px;
+    top: 140px;
     background-color: rgba(255, 255, 255, 0.100);
-    width: 295px;
-    height: 110px;
+    width: 242px;
+    height: 120px;
     margin-left: auto;
     margin-right: auto;
     text-align: left;
@@ -58,7 +66,7 @@
     padding: 0;
     margin-left: 50px;
     font-style: italic;
-    font-size: 34px;
+    font-size: 40px;
 }
 
 .username-text {
@@ -77,10 +85,23 @@
 .most-profitable-team-info {
     position: absolute;
     left:50px;
-    top: 390px;
+    top: 270px;
     background-color: rgba(255, 255, 255, 0.100);
-    width: 295px;
-    height: 110px;
+    width: 242px;
+    height: 120px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: left;
+    border-radius: 3px;
+}
+
+.least-profitable-team-info {
+    position: absolute;
+    left: 302px;
+    top: 270px;
+    background-color: rgba(255, 255, 255, 0.100);
+    width: 242px;
+    height: 120px;
     margin-left: auto;
     margin-right: auto;
     text-align: left;
@@ -91,7 +112,7 @@
     position: absolute;
     top: 0;
     left: 0;
-    width: 395px;
+    width: 595px;
     height: 480px;
     margin-left: auto;
     margin-right: 0;
@@ -103,7 +124,7 @@
 
 .bet-history-graph-container {
     position: absolute;
-    width: 795px;
+    width: 595px;
     height: 480px;
     top: 0;
     right: 0;

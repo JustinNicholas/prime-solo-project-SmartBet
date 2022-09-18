@@ -5,7 +5,9 @@ import { useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import moment from 'moment';
 import BetHistoryChart from '../BetHistoryChart/BetHistoryChart';
+import CountUp from 'react-countup';
 import './BetHistory.css'
+import ScaleLoader from "react-spinners/ScaleLoader";
 
 
 function BetHistory() {
@@ -18,6 +20,8 @@ function BetHistory() {
     let betTotal = 0;
 
     const bets = useSelector(store => store.betHistory)
+    const winningestTeam = useSelector(store => store.winningestTeam)
+    const losingestTeam = useSelector(store => store.losingestTeam)
     const userId = useSelector(store => store.user.id)
     const username = useSelector((store) => store.user.username);
     //slice makes a copy of the array. we reverse the copy so most recent bet is at the top
@@ -26,12 +30,22 @@ function BetHistory() {
 
     const dispatch = useDispatch();
     const history = useHistory();
+    const [isLoading, setLoading] = useState(true);
 
     const getBetsFromDatabase = () => {
         dispatch({
             type: 'GET_BET_HISTORY'
         })
+        dispatch({
+            type: 'GET_WINNINGEST_TEAM'
+        })
+        dispatch({
+            type: 'GET_LOSINGEST_TEAM'
+        })
         console.log('dipatched!');
+        setTimeout(() => {
+            setLoading(false)
+        }, 500);
     }
 
     const editBet = (bet) => {
@@ -57,7 +71,19 @@ function BetHistory() {
         currency: 'USD',
         minimumFractionDigits: 2
         })
-    
+
+    if (isLoading){
+        return (
+            <div className='loading-spinner-bars'>
+                <ScaleLoader
+                color="#FFF500"
+                height={300}
+                width={50}
+                />
+            </div>
+        )
+    }
+
     return(
         <>
             <div className='bet-history-containers-container'>
@@ -72,17 +98,32 @@ function BetHistory() {
                     <div className='net-earnings-container'>
                         <p className='stats-header'>NET EARNINGS</p>
                         {profitTotal >= 0 ?
-                        <h1 className='positive-profit earnings-info'>+{formatter.format(profitTotal)}</h1>
+                        <h1 className='positive-profit earnings-info'>+<CountUp prefix="$" separator="," duration={1.00} end={profitTotal} decimals={2} /></h1>
                         :
-                        <h1 className='negative-profit earnings-info'>{formatter.format(profitTotal)}</h1>
+                        <h1 className='negative-profit earnings-info'><CountUp prefix="$" separator="," duration={1.00} end={profitTotal} decimals={2} /></h1>
                         }
                     </div>
                     <div className='bets-placed-container'>
-                        <p  className='stats-header'>BETS PLACED</p>
-                        <h1 className='total-bets-info'>{betTotal}</h1>
+                        <p className='stats-header'>BETS PLACED</p>
+                        <h1 className='total-bets-info'><CountUp duration={1.0} end={betTotal} /></h1>
                     </div>
                     <div className='most-profitable-team-info'>
-
+                        <p className='stats-header'>MOST PROFITABLE</p>
+                        <p>{winningestTeam[0].team_full_name}</p>
+                        { winningestTeam[0].sum >= 0 ?
+                        <h1 className='positive-profit earnings-info'>+<CountUp prefix="$" separator="," duration={1.00} end={winningestTeam[0].sum} decimals={2} /></h1>
+                        :
+                        <h1 className='negative-profit earnings-info'><CountUp prefix="$" separator="," duration={1.00} end={winningestTeam[0].sum} decimals={2} /></h1>
+                        }
+                    </div>
+                    <div className='least-profitable-team-info'>
+                        <p className='stats-header'>LEAST PROFITABLE</p>
+                        <p>{losingestTeam[0].team_full_name}</p>
+                        { losingestTeam[0].sum >= 0 ?
+                        <h1 className='positive-profit earnings-info'>+<CountUp prefix="$" separator="," duration={1.00} end={losingestTeam[0].sum} decimals={2} /></h1>
+                        :
+                        <h1 className='negative-profit earnings-info'><CountUp prefix="$" separator="," duration={1.00} end={losingestTeam[0].sum} decimals={2} /></h1>
+                        }
                     </div>
                 </div>
                 <div className='bet-history-graph-container'>
