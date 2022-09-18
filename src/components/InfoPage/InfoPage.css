@@ -4,8 +4,33 @@
     height: 800px;
 }
 
+.about-container {
+    position: absolute;
+    width: 700px;
+    height: 580px;
+    background-color: rgba(255, 255, 255, 0.100);
+    border-radius: 10px;
+    top: 0;
+    left: 0;
+}
+
+.about-text {
+    position: absolute;
+    width: 600px;
+    left: 50px;
+    top: 100px;
+    z-index: 2;
+}
+
+.greyscale-image {
+    filter: brightness(.2);
+    z-index: 1;
+}
+
 .tech-used-conatiner {
     position: absolute;
+    top: 590px;
+    left: 0;
     width: 700px;
     height: 240px;
     background-color: rgba(255, 255, 255, 0.100);
@@ -57,4 +82,31 @@
 
 .thank-you-text {
     margin-top: -15px;
+}
+
+.connect-container {
+    position: absolute;
+    width: 490px;
+    height: 580px;
+    background-color: rgba(255, 255, 255, 0.100);
+    border-radius: 10px;
+    top: 250px;
+    right: 0;
+}
+
+.linkedin-image {
+    position: absolute;
+    top: 200px;
+    left: 50px;
+}
+
+.linkedin-text {
+    position: absolute;
+    top: 100px;
+    left: 50px;
+    width: 390px;
+}
+
+.linkedin-link {
+    color: cornflowerblue;
 }
