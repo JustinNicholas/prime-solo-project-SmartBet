@@ -15,9 +15,11 @@ function BetHistory() {
     }, []);
 
     let profitTotal = 0;
+    let betTotal = 0;
 
     const bets = useSelector(store => store.betHistory)
     const userId = useSelector(store => store.user.id)
+    const username = useSelector((store) => store.user.username);
     //slice makes a copy of the array. we reverse the copy so most recent bet is at the top
     // without slice we were reversing the array globalling and it would change the chart order.
     const reversedBets = bets.slice(0).reverse();
@@ -58,17 +60,36 @@ function BetHistory() {
     
     return(
         <>
-            <h1>Bet History Page</h1>
-            <BetHistoryChart />
+            <div className='bet-history-containers-container'>
+                <div className='bet-history-profile-container'>
+                    <h1 className='bet-history-info-heading'>BETTING HISTORY</h1>
+                    <p className='username-text'>HI, {username.charAt(0).toUpperCase() + username.slice(1)}</p>
+                    {bets.map(bet => {
+                        profitTotal += bet.profit;
+                        betTotal += 1;
+                    })}
 
-            {bets.map(bet => {
-                profitTotal += bet.profit;
-            })}
-               {profitTotal >= 0 ?
-                            <h1 className='positive-profit'>TOTAL PROFIT = {formatter.format(profitTotal)}</h1>
-                            :
-                            <h1 className='negative-profit'>TOTAL PROFIT = {formatter.format(profitTotal)}</h1>
-                            }
+                    <div className='net-earnings-container'>
+                        <p className='stats-header'>NET EARNINGS</p>
+                        {profitTotal >= 0 ?
+                        <h1 className='positive-profit earnings-info'>+{formatter.format(profitTotal)}</h1>
+                        :
+                        <h1 className='negative-profit earnings-info'>{formatter.format(profitTotal)}</h1>
+                        }
+                    </div>
+                    <div className='bets-placed-container'>
+                        <p  className='stats-header'>BETS PLACED</p>
+                        <h1 className='total-bets-info'>{betTotal}</h1>
+                    </div>
+                    <div className='most-profitable-team-info'>
+
+                    </div>
+                </div>
+                <div className='bet-history-graph-container'>
+                    <BetHistoryChart />
+                </div>
+            </div>
+
             <div className='labels-container'>
                 {/* need to style this class in css */}
                 <p className='game-time-label'>TIME</p> 

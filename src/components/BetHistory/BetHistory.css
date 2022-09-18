@@ -6,12 +6,114 @@
     color: red;
 }
 
-/* .team-logo {
-    width: 100px;
-    height: 100px;
+.bet-history-containers-container {
+    position: relative;
+    width: 1200px;
+    height: 600px;
+}
+
+.net-earnings-container {
+    position: absolute;
+    left:50px;
+    top: 140px;
+    background-color: rgba(255, 255, 255, 0.100);
+    width: 295px;
+    height: 110px;
     margin-left: auto;
     margin-right: auto;
-} */
+    text-align: left;
+    border-radius: 3px;
+}
+
+.earnings-info {
+    margin: 0;
+    margin-left: 20px;
+    padding: 0;
+}
+
+.stats-header {
+    font-size: 20px;
+    margin: 0;
+    margin-top: 20px;
+    margin-left: 20px;
+    padding: 0;
+}
+
+.bets-placed-container {
+    position: absolute;
+    left:50px;
+    top: 265px;
+    background-color: rgba(255, 255, 255, 0.100);
+    width: 295px;
+    height: 110px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: left;
+    border-radius: 3px;
+}
+
+.bet-history-info-heading {
+    text-align: left;
+    margin: 0;
+    padding: 0;
+    margin-left: 50px;
+    font-style: italic;
+    font-size: 34px;
+}
+
+.username-text {
+    text-align: left;
+    margin: 0;
+    padding: 0;
+    margin-left: 50px;
+}
+
+.total-bets-info {
+    margin: 0;
+    margin-left: 20px;
+    padding: 0;
+}
+
+.most-profitable-team-info {
+    position: absolute;
+    left:50px;
+    top: 390px;
+    background-color: rgba(255, 255, 255, 0.100);
+    width: 295px;
+    height: 110px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: left;
+    border-radius: 3px;
+}
+
+.bet-history-profile-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 395px;
+    height: 480px;
+    margin-left: auto;
+    margin-right: 0;
+    text-align: center;
+    background-color: rgba(255, 255, 255, 0.100);
+    border-radius: 20px;
+    padding-top: 50px;
+}
+
+.bet-history-graph-container {
+    position: absolute;
+    width: 795px;
+    height: 480px;
+    top: 0;
+    right: 0;
+    margin-left: 0;
+    margin-right: auto;
+    text-align: center;
+    background-color: rgba(255, 255, 255, 0.100);
+    border-radius: 20px;
+    padding-top: 50px;
+}
 
 .bet-listing{
     text-align: center;
@@ -25,29 +127,12 @@
     margin-bottom: 20px;
 }
 
-/* .away-team{
-    position: absolute;
-    top: 0px;
-    left: 100px;
-    height: 150px;
-    width: 150px;
-} */
-
-/* .home-team{
-    position: absolute;
-    top: 0px;
-    left: 300px;
-    height: 150px;
-    width: 150px;
-} */
-
 .bet-info{
     height: 100px;
     width: 250px;
     position: absolute;
     top: 0px;
     right: 0;
-    /* border: 1px solid white; */
 }
 
 .at-seperator{
@@ -61,15 +146,6 @@
     padding: 0;
 }
 
-/* .time-box{
-    position:absolute;
-    left: 10px;
-    width: 100px;
-    height: 100px;
-    margin-left: 0;
-    text-align: left;
-} */
-
 .bet-info-piece {
     padding: 0;
     margin: 0;
@@ -81,23 +157,10 @@
     left: 500px;
     width: 200px;
     text-align: left;
-    /* border: 1px solid white; */
 }
-
-/* .team-moneylines {
-    position: absolute;
-    left: 650px;
-    top: 20px;
-    width: 100px;
-    text-align: right;
-} */
 
 .game-score {
     line-height: 100px;
-}
-
-.bet-buttons-container {
-    /* margin-top: 10px; */
 }
 
 .bet-buttons {
