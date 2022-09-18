@@ -39,12 +39,12 @@ router.get('/', rejectUnauthenticated, (req, res) => {
 router.get('/winningest', rejectUnauthenticated, (req, res) => {
     // GET route code here
       const queryText = `
-      SELECT "user_bets".chosen_team_id, "user_bets".user_id, "teams".team_full_name, SUM("user_bets".profit) FROM user_bets
-      JOIN "teams"
+      SELECT "teams".team_full_name, SUM("user_bets".profit) FROM user_bets
+      LEFT JOIN "teams"
       ON "teams".id = "user_bets".chosen_team_id
       WHERE "user_bets".user_id = $1
-      GROUP BY "user_bets".chosen_team_id, "user_bets".user_id, "teams".team_full_name, "user_bets".profit
-      ORDER BY "user_bets".profit DESC
+      GROUP BY "teams".team_full_name
+      ORDER BY SUM DESC
       LIMIT 1;`;
   
       pool.query(queryText, [req.user.id])
@@ -60,12 +60,12 @@ router.get('/winningest', rejectUnauthenticated, (req, res) => {
   router.get('/losingest', rejectUnauthenticated, (req, res) => {
     // GET route code here
       const queryText = `
-      SELECT "user_bets".chosen_team_id, "user_bets".user_id, "teams".team_full_name, SUM("user_bets".profit) FROM user_bets
-      JOIN "teams"
+      SELECT "teams".team_full_name, SUM("user_bets".profit) FROM user_bets
+      LEFT JOIN "teams"
       ON "teams".id = "user_bets".chosen_team_id
       WHERE "user_bets".user_id = $1
-      GROUP BY "user_bets".chosen_team_id, "user_bets".user_id, "teams".team_full_name, "user_bets".profit
-      ORDER BY "user_bets".profit ASC
+      GROUP BY "teams".team_full_name
+      ORDER BY SUM ASC
       LIMIT 1;`;
   
       pool.query(queryText, [req.user.id])

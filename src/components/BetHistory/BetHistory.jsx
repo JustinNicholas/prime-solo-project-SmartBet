@@ -63,6 +63,9 @@ function BetHistory() {
             type: 'DELETE_BET',
             payload: bet.id
         })
+        setTimeout(() => {
+            getBetsFromDatabase();
+        }, 100)
     }
 
     //money format

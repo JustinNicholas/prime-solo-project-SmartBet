@@ -47,7 +47,7 @@ function AddBet() {
                 }
             })
         console.log(chosenTeam);
-        history.push('/betHistory');
+        setTimeout( () => {history.push('/betHistory')}, 100)
     }
 
     const [chosenTeam, setChosenTeam] = useState({
