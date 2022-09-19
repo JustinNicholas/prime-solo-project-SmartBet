@@ -3,10 +3,13 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-
-  margin: 0 0 30px;
-  background-color: #FFF500;
+  height: 60px;
+  margin: 25px 0 10px;
+  background-color: rgba(255, 255, 255, 0.100);
   overflow: hidden;
+  border-radius: 5px;
+  padding-left: 20px;
+  padding-right: 20px;
 }
 
 .nav a {
@@ -17,28 +20,39 @@
   font-size: 24px;
   font-weight: 700;
   font-style: italic;
-  color: black;
+  color: white;
   padding-left: 10px;
   margin: 0;
 }
 
 .navLink {
   display: inline-block;
-  color: black;
-  background-color: #FFF500;
+  color: white;
+  /* background-color: #FFF500; */
   text-align: center;
-  padding: 24px 10px;
+  padding: 24px 15px;
   text-decoration: none;
-  font-size: 15px;
-
+  font-size: 16px;
+  font-weight: 600;
   /* these last two make the logout button in
   the nav bar look like another link */
-  border: none;
+  /* border: none; */
   cursor: pointer;
   outline: 0;
 }
 
 .navLink:hover {
-  background-color: black;
-  color: #f5d41a;
+  /* background-color: black; */
+  color: #fff500;
+}
+
+.log-out-button {
+  background-color: transparent;
+  border: none;
+}
+
+.smartbet-logo {
+  margin-top: 7px;
+  height: 22px;
+  width: auto;
 }

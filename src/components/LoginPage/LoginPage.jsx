@@ -7,8 +7,7 @@ function LoginPage() {
 
   return (
     <div>
-      <LoginForm />
-    <img src="https://wallpaperaccess.com/full/1912540.jpg" alt="" srcset="" />
+        <LoginForm />
       <center>
         <button
           type="button"

@@ -10,7 +10,7 @@ function Nav() {
   return (
     <div className="nav">
       <Link to="/viewGames">
-        <h2 className="nav-title">SMARTBET</h2>
+      <img className='smartbet-logo' src={process.env.PUBLIC_URL + '/Logo/smartbetLogo.svg'} />
       </Link>
       <div>
         {/* If no user is logged in, show these links */}
@@ -29,22 +29,22 @@ function Nav() {
             </Link> */}
 
             <Link className="navLink" to="/viewGames">
-              View Games
+              VIEW GAMES
             </Link>
 
             <Link className="navLink" to="/addBet">
-              Add Bet
+              ADD BET
             </Link>
 
             <Link className="navLink" to="/betHistory">
-              Bet History
+              BET HISTORY
             </Link>
 
             <Link className="navLink" to="/info">
-              Info Page
+              INFO PAGE
             </Link>
 
-            <LogOutButton className="navLink" />
+            <LogOutButton className="navLink log-out-button" />
           </>
         )}
 

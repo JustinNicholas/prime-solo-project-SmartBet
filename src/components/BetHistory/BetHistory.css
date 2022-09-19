@@ -34,6 +34,17 @@
 }
 
 .earnings-info {
+    position: absolute;
+    top: 82px;
+    left: 50px;
+    margin: 0;
+    margin-left: 20px;
+    padding: 0;
+    font-size: 14px;
+    font-weight: 400;
+}
+
+.net-earnings-info {
     margin: 0;
     margin-left: 20px;
     padding: 0;
@@ -80,6 +91,23 @@
     margin: 0;
     margin-left: 20px;
     padding: 0;
+}
+
+.small-team-logo {
+    position: absolute;
+    left: 20px;
+    top: 60px;
+    width: 40px;
+    height: 40px;
+}
+
+.stats-team-name {
+    position: absolute;
+    top: 50px;
+    left: 70px;
+    font-size: 14px;
+    font-style: italic;
+    font-weight: 700;
 }
 
 .most-profitable-team-info {
@@ -157,7 +185,7 @@
     right: 0;
 }
 
-.at-seperator{
+/* .at-seperator{
     height: 100px;
     width: 10px;
     position: absolute;
@@ -166,7 +194,7 @@
     font-size: 16px;
     margin: 0;
     padding: 0;
-}
+} */
 
 .bet-info-piece {
     padding: 0;
@@ -181,9 +209,9 @@
     text-align: left;
 }
 
-.game-score {
+/* .game-score {
     line-height: 100px;
-}
+} */
 
 .bet-buttons {
     height: 30px;
@@ -285,13 +313,16 @@
 
 .time-box-full {
     position: absolute;
-    top: 25px;
-    left: 10px;
+    top: 15px;
+    left: 30px;
+    width: 100px;
+    text-align: left;
 }
 
 .time-box-short {
     position: absolute;
-    top: 25px;
-    left: 10px;
+    top: 15px;
+    left: 30px;
+    width: 100px;
     text-align: left;
 }

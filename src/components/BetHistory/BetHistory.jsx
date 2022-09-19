@@ -92,7 +92,7 @@ function BetHistory() {
             <div className='bet-history-containers-container'>
                 <div className='bet-history-profile-container'>
                     <h1 className='bet-history-info-heading'>BETTING HISTORY</h1>
-                    <p className='username-text'>HI, {username.charAt(0).toUpperCase() + username.slice(1)}</p>
+                    <p className='username-text'><i>WELCOME BACK,</i> {username.toUpperCase()}</p>
                     {bets.map(bet => {
                         profitTotal += bet.profit;
                         betTotal += 1;
@@ -101,9 +101,9 @@ function BetHistory() {
                     <div className='net-earnings-container'>
                         <p className='stats-header'>NET EARNINGS</p>
                         {profitTotal >= 0 ?
-                        <h1 className='positive-profit earnings-info'>+<CountUp prefix="$" separator="," duration={1.00} end={profitTotal} decimals={2} /></h1>
+                        <h1 className='positive-profit net-earnings-info'>+<CountUp prefix="$" separator="," duration={1.00} end={profitTotal} decimals={2} /></h1>
                         :
-                        <h1 className='negative-profit earnings-info'><CountUp prefix="$" separator="," duration={1.00} end={profitTotal} decimals={2} /></h1>
+                        <h1 className='negative-profit net-earnings-info'><CountUp prefix="$" separator="," duration={1.00} end={profitTotal} decimals={2} /></h1>
                         }
                     </div>
                     <div className='bets-placed-container'>
@@ -112,7 +112,8 @@ function BetHistory() {
                     </div>
                     <div className='most-profitable-team-info'>
                         <p className='stats-header'>MOST PROFITABLE</p>
-                        <p>{winningestTeam[0].team_full_name}</p>
+                        <p className='stats-team-name'>{winningestTeam[0].team_full_name}</p>
+                        <img className='small-team-logo' src={process.env.PUBLIC_URL + '/NflLogos/' + winningestTeam[0].chosen_team + '.svg'} alt="logo" />
                         { winningestTeam[0].sum >= 0 ?
                         <h1 className='positive-profit earnings-info'>+<CountUp prefix="$" separator="," duration={1.00} end={winningestTeam[0].sum} decimals={2} /></h1>
                         :
@@ -121,7 +122,8 @@ function BetHistory() {
                     </div>
                     <div className='least-profitable-team-info'>
                         <p className='stats-header'>LEAST PROFITABLE</p>
-                        <p>{losingestTeam[0].team_full_name}</p>
+                        <p className='stats-team-name'>{losingestTeam[0].team_full_name}</p>
+                        <img className='small-team-logo' src={process.env.PUBLIC_URL + '/NflLogos/' + losingestTeam[0].chosen_team + '.svg'} alt="logo" />
                         { losingestTeam[0].sum >= 0 ?
                         <h1 className='positive-profit earnings-info'>+<CountUp prefix="$" separator="," duration={1.00} end={losingestTeam[0].sum} decimals={2} /></h1>
                         :
@@ -173,7 +175,7 @@ function BetHistory() {
                         <>
                             <div className='time-box-full'>
                                 <h3 className='time-data'>{fullDate}</h3>
-                                <p className='time-data'>{hour} EST</p>
+                                <p className='time-data-hour'>{hour} EST</p>
                             </div>
                             <div className='centered-text'>
                                 {bet.profit > 0 ?
@@ -199,7 +201,7 @@ function BetHistory() {
                         :
                         <>
                         <div className='time-box-short'>
-                            <h3 className='time-data'>{day}, {shortDate}</h3>
+                            <h3 className='time-data'>{day.toUpperCase()} {shortDate.toUpperCase()}</h3>
                             <p className='time-data'>{hour} EST</p>
                         </div>
                         <div className='centered-text'>

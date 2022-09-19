@@ -39,11 +39,11 @@ router.get('/', rejectUnauthenticated, (req, res) => {
 router.get('/winningest', rejectUnauthenticated, (req, res) => {
     // GET route code here
       const queryText = `
-      SELECT "teams".team_full_name, SUM("user_bets".profit) FROM user_bets
+      SELECT "teams".team_full_name, "user_bets".chosen_team, SUM("user_bets".profit) FROM user_bets
       LEFT JOIN "teams"
       ON "teams".id = "user_bets".chosen_team_id
       WHERE "user_bets".user_id = $1
-      GROUP BY "teams".team_full_name
+      GROUP BY "teams".team_full_name, "user_bets".chosen_team
       ORDER BY SUM DESC
       LIMIT 1;`;
   
@@ -60,11 +60,11 @@ router.get('/winningest', rejectUnauthenticated, (req, res) => {
   router.get('/losingest', rejectUnauthenticated, (req, res) => {
     // GET route code here
       const queryText = `
-      SELECT "teams".team_full_name, SUM("user_bets".profit) FROM user_bets
+      SELECT "teams".team_full_name, "user_bets".chosen_team, SUM("user_bets".profit) FROM user_bets
       LEFT JOIN "teams"
       ON "teams".id = "user_bets".chosen_team_id
       WHERE "user_bets".user_id = $1
-      GROUP BY "teams".team_full_name
+      GROUP BY "teams".team_full_name, "user_bets".chosen_team
       ORDER BY SUM ASC
       LIMIT 1;`;
   

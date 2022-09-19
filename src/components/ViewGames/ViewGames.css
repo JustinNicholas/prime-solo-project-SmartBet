@@ -1,8 +1,16 @@
 .team-logo {
-    width: 80px;
-    height: 80px;
+    width: 60px;
+    height: 60px;
     margin-left: auto;
     margin-right: auto;
+}
+
+.grey-team-logo {
+    width: 60px;
+    height: 60px;
+    margin-left: auto;
+    margin-right: auto;
+    opacity: .1;
 }
 
 .game-listing{
@@ -11,49 +19,71 @@
     background-color: rgba(255, 255, 255, 0.100);
     color: white;
     width: 100%;
-    height: 100px;
+    height: 70px;
     margin-left: auto;
     margin-right: auto;
     margin-bottom: 5px;
-    border-radius: 3px;
+    border-radius: 5px;
 }
 
 .away-team{
     position: absolute;
-    top: 15px;
-    left: 115px;
-    height: 150px;
-    width: 150px;
+    top: 5px;
+    left: 180px;
+    height: 60px;
+    width: 60px;
     /* border: 1px solid white; */
 }
 
 .home-team{
     position: absolute;
-    top: 15px;
-    left: 285px;
-    height: 150px;
-    width: 150px;
+    top: 5px;
+    left: 280px;
+    height: 60px;
+    width: 60px;
     /* border: 1px solid white; */
 }
 
 .game-info{
-    height: 100px;
-    width: 250px;
+    height: 70px;
+    width: 105px;
     position: absolute;
     top: 0px;
-    right: 0;
+    right: 30px;
     /* border: 1px solid white; */
 }
 
-.at-seperator{
-    height: 100px;
-    width: 10px;
+.game-over-teams{
+    text-align: left;
+    /* height: 70px; */
+    width: 50px;
     position: absolute;
-    top: 40px;
-    left: 265px;
+    top: 18px;
+    right: 60px;
+}
+.game-over-scores{
+    text-align: center;
+    /* height: 70px; */
+    width: 50px;
+    position: absolute;
+    top: 18px;
+    right: 30px;
+}
+
+
+.at-seperator{
+    /* height: 100px; */
+    line-height: 70px;
+    width: 19px;
+    position: absolute;
+    top: 0px;
+    left: 250px;
     font-size: 16px;
     margin: 0;
     padding: 0;
+    /* border: 1px solid white; */
+    font-size: 14px;
+    font-weight: 700;
 }
 
 .time-box{
@@ -71,50 +101,93 @@
 .time-data {
     padding: 0;
     margin: 0;
+    font-weight: 700;
+    font-size: 14px;
+}
+
+.time-data-hour {
+    padding: 0;
+    margin: 0;
+    font-weight: 400;
+    font-size: 14px;
 }
 
 .team-names {
     position: absolute;
-    left: 480px;
-    width: 220px;
+    top: 14px;
+    left: 400px;
+    width: 250px;
     text-align: left;
+    font-size: 16px;
+    font-weight: 500;
     /* border: 1px solid white; */
+}
+
+.team-name-info-text {
+    margin: 0;
+    margin-bottom: 5px;
+    line-height: 16px;
+    padding: 0;
 }
 
 .team-moneylines {
     position: absolute;
-    top: 0px;
-    left: 650px;
+    top: 17px;
+    left: 670px;
     width: 100px;
-    height: 100px;
-    text-align: right;
+    /* height: 37px; */
+    text-align: center;
     /* border: 1px solid white; */
+    font-size: 16px;
+    font-weight: 400px;
 }
 
 .game-score {
-    line-height: 100px;
+    line-height: 70px;
     margin: 0;
+}
+
+.game-over-score {
+    margin: 0;
+    margin-bottom: 5px;
+    font-size: 16px;
+    line-height: 14px;
+}
+
+.game-over-team-names {
+    margin: 0;
+    margin-bottom: 5px;
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 14px;
 }
 
 .game-channel {
     position: absolute;
-    right: 290px;
-    line-height: 100px;
-    width: 80px;
-    height: 100px;
+    left: 820px;
+    line-height: 70px;
+    width: 75px;
+    height: 70px;
+    text-align: center;
+    /* border: 1px solid white; */
 }
 
 .game-channel-info {
     padding: 0;
     margin: 0;
+    font-weight: 700;
 }
 
 .place-bet-button {
+    position: absolute;
+    right: 0px;
+    top: 20px;
     background-color: #FFF500;
     border: none;
     height: 30px;
-    width: 100px;
-    margin-top: 35px;
+    width: 105px;
+    font-size: 14px;
+    font-weight: 700;
 }
 
 .hero-image-container {
@@ -169,7 +242,7 @@
     margin-top: 5px;
     margin-bottom: 5px;
     background-color: rgba(255, 255, 255, 0.050);
-    border-radius: 3px;
+    border-radius: 5px;
 }
 
 .none-labels-container {
@@ -180,12 +253,15 @@
     margin-top: 5px;
     margin-bottom: 5px;
     background-color: rgba(255, 255, 255, 0.050);
-    border-radius: 3px;
+    border-radius: 5px;
 }
 
 .upcoming-completed-headers {
     margin: 0;
     margin-left: 30px;
+    line-height: 70px;
+    font-size: 30px;
+    letter-spacing: 1px;
 }
 
 .none-label {
@@ -217,56 +293,73 @@ select:focus-visible {
 .teams-label {
     position: absolute;
     top: 0px;
-    left: 250px;
+    left: 180px;
+    width: 439px;
     margin: 0;
     line-height: 30px;
+    font-size: 14px;
+    font-weight: 600;
 }
 
 .moneyline-label {
     position: absolute;
-    left: 700px;
+    left: 669px;
     margin: 0;
     line-height: 30px;
+    width: 100px;
+    text-align: center;
+    font-size: 14px;
+    font-weight: 600;
 }
 
 .channel-label{
     position: absolute;
     margin: 0;
-    right: 290px;
+    left: 819px;
     line-height: 30px;
+    text-align: center;
+    width: 75px;
+    font-size: 14px;
+    font-weight: 600;
 }
 
-.place-bet-label {
+.final-score-label {
     position: absolute;
     margin: 0;
     top: 0;
-    right: 80px;
+    right: 30px;
     line-height: 30px;
+    font-size: 14px;
+    font-weight: 600;
 }
 
 .upcoming-games-header {
     background-color: rgba(255, 255, 255, 0.100);
     position: relative;
     margin-top: 30px;
-    border-radius: 3px;
+    border-radius: 5px;
+    height: 70px;
 }
 
 .completed-games-header {
     background-color: rgba(255, 255, 255, 0.100);
     margin-top: 30px;
-    border-radius: 3px;
+    border-radius: 5px;
 }
 
 .week-label-view-games {
     position: absolute;
-    top: 10px;
-    right: 20px;
+    top: 21px;
+    right: 30px;
+
 }
 
 .week-label-view-games select {
     background-color: transparent;
     border: none;
     color: white;
+    font-size: 14px;
+    font-weight: 700;
 }
 
 select:focus-visible {
@@ -276,12 +369,23 @@ select:focus-visible {
 
 .date-label {
     position: absolute;
-    left: 10px;
+    left: 30px;
+    width: 100px;
     margin: 0;
     padding: 0;
     line-height: 30px;
+    font-size: 14px;
+    font-weight: 600;
 }
 
 .no-completed-games {
     color: white;
+}
+
+.grey-loser {
+    color:rgba(255, 255, 255, 0.100)
+}
+
+.dots {
+    font-size: 20px;
 }
