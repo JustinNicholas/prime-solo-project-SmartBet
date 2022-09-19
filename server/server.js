@@ -41,7 +41,8 @@ app.use('/database/thisGame', betOnThisRouter);
 app.use('/database/bets', getBetsRouter);
 app.use('/database/teams', teamsRouter);
 app.use('/database/scores', updateScores);
-app.use('/database/betCheck', checkBetsRouter)
+app.use('/database/betCheck', checkBetsRouter);
+app.use('/database/updateData', scheduledUpdate);
 
 // Serve static files
 app.use(express.static('build'));

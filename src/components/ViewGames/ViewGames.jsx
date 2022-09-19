@@ -6,6 +6,7 @@ import { useHistory } from 'react-router-dom';
 import moment from 'moment';
 
 import './ViewGames.css'
+import axios from 'axios';
 
 function ViewGames() {
     useEffect(() => {
@@ -51,6 +52,13 @@ function ViewGames() {
             type: 'GET_LOSINGEST_TEAM'
         })
         // console.log('dipatched!');
+    }
+
+    const updateData = () => {
+        console.log('update data');
+        dispatch({
+            type: 'UPDATE_THE_DATA'
+        })
     }
 
     const betOnThis = (game) => {
@@ -248,6 +256,7 @@ function ViewGames() {
                 )
                 }
             })}
+            <button onClick={() => updateData()}>UPDATE DATA</button>
         </div>
     )
 }

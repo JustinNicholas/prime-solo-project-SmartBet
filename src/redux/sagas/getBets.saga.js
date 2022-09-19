@@ -56,6 +56,14 @@ function* editBet(action) {
     }
   }
 
+  function* updateTheData() {
+    try {
+      yield axios.get(`/database/updateData`)
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
 function* getBetsSaga() {
     yield takeEvery('GET_BET_HISTORY', getBets);
     yield takeEvery('DELETE_BET', deleteBet);
@@ -63,6 +71,7 @@ function* getBetsSaga() {
     yield takeEvery('SUBMIT_EDIT_BET', submitEditBet);
     yield takeEvery('GET_WINNINGEST_TEAM', getWinningestTeam);
     yield takeEvery('GET_LOSINGEST_TEAM', getLosingestTeam);
+    yield takeEvery('UPDATE_THE_DATA', updateTheData);
 }
 
 export default getBetsSaga;

@@ -6,6 +6,19 @@ const PORT = process.env.PORT || 5000;
 // have to specify url because it does not recognize where url is.
 axios.defaults.baseURL = 'http://localhost:' + PORT;
 
+router.get('/', (req, res) => {
+  // GET route code here
+  deleteGames();
+    // pool.query(queryText, [req.user.id])
+    // .then( result => {
+    //     res.send(result.rows)
+    // }).catch( err => {
+    //     console.log(err);
+    //     res.sendStatus(500);
+    // })
+
+});
+
 const CronJob = require('cron').CronJob;
 const job = new CronJob(
     // this is set to go off every hour on the hour
