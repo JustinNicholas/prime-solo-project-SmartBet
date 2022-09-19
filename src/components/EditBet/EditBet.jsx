@@ -279,14 +279,14 @@ function EditBet() {
                     <div className='select-logos'>
                     <div className={ awaySelected ? 'away-logo-container-selected' : 'away-logo-container' } onClick={() => pickToWin(game)}>
                             {/* <p>THIS IS THE TEAM YOU PICKED TO WIN</p> */}
-                            <img className='home-select-logo' src={process.env.PUBLIC_URL + '/NflLogos/' + game.chosen_team + '.svg'} alt="logo" />
+                            <img className='home-select-logo' src={process.env.PUBLIC_URL + '/nflLogos/' + game.chosen_team + '.svg'} alt="logo" />
                             <p className='select-team-name'>{game.chosen_full_name}</p>
                             {/* <p>Home: {game.chosen_team}</p>
                             <p>Home Moneyline: {game.chosen_moneyline}</p> */}
                         </div>
                         <div className={ homeSelected ? 'home-logo-container-selected' : 'home-logo-container' } onClick={() => predictedLoser(game)}>
                             {/* <p>THIS IS THE PREDICTED LOSER</p> */}
-                            <img className='away-select-logo' src={process.env.PUBLIC_URL + '/NflLogos/' + game.un_chosen_team + '.svg'} alt="logo" />
+                            <img className='away-select-logo' src={process.env.PUBLIC_URL + '/nflLogos/' + game.un_chosen_team + '.svg'} alt="logo" />
                             <p className='select-team-name'>{game.un_chosen_full_name}</p>
                             {/* <p>Away: {game.un_chosen_team}</p>
                             <p>Away Moneyline: {game.un_chosen_moneyline}</p> */}

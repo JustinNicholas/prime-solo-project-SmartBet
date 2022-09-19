@@ -41,6 +41,7 @@
 }
 
 .away-logo-container-selected {
+    margin-top: 7px;
     width: 590px;
     height: 400px;
     position: absolute;
@@ -52,6 +53,7 @@
 }
 
 .home-logo-container-selected {
+    margin-top: 7px;
     width: 590px;
     height: 400px;
     position: absolute;

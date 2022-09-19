@@ -86,7 +86,13 @@ function BetHistory() {
             </div>
         )
     }
-
+   if (bets.length <= 0 ) {
+    return (
+        <div className='none-labels-container'>
+                <p className='none-label'>NO BET INFOMATION YET</p>
+        </div>
+    )
+   } else {
     return(
         <>
             <div className='bet-history-containers-container'>
@@ -113,7 +119,7 @@ function BetHistory() {
                     <div className='most-profitable-team-info'>
                         <p className='stats-header'>MOST PROFITABLE</p>
                         <p className='stats-team-name'>{winningestTeam[0].team_full_name}</p>
-                        <img className='small-team-logo' src={process.env.PUBLIC_URL + '/NflLogos/' + winningestTeam[0].chosen_team + '.svg'} alt="logo" />
+                        <img className='small-team-logo' src={process.env.PUBLIC_URL + '/nflLogos/' + winningestTeam[0].chosen_team + '.svg'} alt="logo" />
                         { winningestTeam[0].sum >= 0 ?
                         <h1 className='positive-profit earnings-info'>+<CountUp prefix="$" separator="," duration={1.00} end={winningestTeam[0].sum} decimals={2} /></h1>
                         :
@@ -123,7 +129,7 @@ function BetHistory() {
                     <div className='least-profitable-team-info'>
                         <p className='stats-header'>LEAST PROFITABLE</p>
                         <p className='stats-team-name'>{losingestTeam[0].team_full_name}</p>
-                        <img className='small-team-logo' src={process.env.PUBLIC_URL + '/NflLogos/' + losingestTeam[0].chosen_team + '.svg'} alt="logo" />
+                        <img className='small-team-logo' src={process.env.PUBLIC_URL + '/nflLogos/' + losingestTeam[0].chosen_team + '.svg'} alt="logo" />
                         { losingestTeam[0].sum >= 0 ?
                         <h1 className='positive-profit earnings-info'>+<CountUp prefix="$" separator="," duration={1.00} end={losingestTeam[0].sum} decimals={2} /></h1>
                         :
@@ -341,7 +347,7 @@ function BetHistory() {
                 })}
         </>
     )
-
+    }
 }
 
 export default BetHistory;
