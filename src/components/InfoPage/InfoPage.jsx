@@ -32,7 +32,7 @@ function InfoPage() {
       <div className='thank-you-container'>
         <h1 className='info-page-titles'>THANK YOU</h1>
         <div className='bubble-container'>
-          <p className='thank-you-text'>Special thanks to my supoort system at hom an the Prime Academy Mitchison Cohort</p>
+          <p className='thank-you-text'>Special thanks to my supoort system at home and the Prime Academy Mitchison Cohort</p>
         </div>
         <div className='connect-container'>
           <h1 className='info-page-titles'>LETS CONNECT!</h1>

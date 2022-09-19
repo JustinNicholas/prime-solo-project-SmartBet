@@ -33,7 +33,9 @@ function EditBet() {
     }
 
     const returnToBets = () => {
+        setTimeout(() => {
         history.push('/betHistory');
+    }, 300);
     }
 
     const pickToWin = (game) => {
