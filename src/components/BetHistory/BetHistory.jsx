@@ -161,11 +161,11 @@ function BetHistory() {
                         // changed this to bet id because there could be more than one bet on a game.
                     <div className='bet-listing' key={bet.id}>
                         <div className='away-team'>
-                            <img className='team-logo' src={process.env.PUBLIC_URL + '/NflLogos/' + bet.chosen_team + '.svg'} alt="logo" />
+                            <img className='team-logo' src={process.env.PUBLIC_URL + '/nflLogos/' + bet.chosen_team + '.svg'} alt="logo" />
                         </div>
                         <p className='at-seperator'>VS</p>
                         <div className='home-team'>
-                            <img className='team-logo' src={process.env.PUBLIC_URL + '/NflLogos/' + bet.un_chosen_team + '.svg'} alt="logo" />
+                            <img className='team-logo' src={process.env.PUBLIC_URL + '/nflLogos/' + bet.un_chosen_team + '.svg'} alt="logo" />
                         </div>
                         <div className='centered-pick-team'>
                             <p className='pick-team-info'>{bet.chosen_team}</p>
@@ -255,11 +255,11 @@ function BetHistory() {
                         // changed this to bet id because there could be more than one bet on a game.
                     <div className='bet-listing' key={bet.id}>
                         <div className='away-team'>
-                            <img className={bet.profit > 0? 'team-logo': 'grey-team-logo'} src={process.env.PUBLIC_URL + '/NflLogos/' + bet.chosen_team + '.svg'} alt="logo" />
+                            <img className={bet.profit > 0? 'team-logo': 'grey-team-logo'} src={process.env.PUBLIC_URL + '/nflLogos/' + bet.chosen_team + '.svg'} alt="logo" />
                         </div>
                         <p className='at-seperator'>VS</p>
                         <div className='home-team'>
-                            <img className={bet.profit > 0? 'grey-team-logo': 'team-logo'} src={process.env.PUBLIC_URL + '/NflLogos/' + bet.un_chosen_team + '.svg'} alt="logo" />
+                            <img className={bet.profit > 0? 'grey-team-logo': 'team-logo'} src={process.env.PUBLIC_URL + '/nflLogos/' + bet.un_chosen_team + '.svg'} alt="logo" />
                         </div>
                         <div className='centered-pick-team'>
                             <p className='pick-team-info'>{bet.chosen_team}</p>

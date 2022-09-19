@@ -158,11 +158,11 @@ function ViewGames() {
                         <p className='time-data-hour'>{hour} EST</p>
                     </div>
                     <div className='away-team'>
-                        <img className='team-logo' src={process.env.PUBLIC_URL + '/NflLogos/' + game.away_team + '.svg'} alt="logo" />
+                        <img className='team-logo' src={process.env.PUBLIC_URL + '/nflLogos/' + game.away_team + '.svg'} alt="logo" />
                     </div>
                     <p className='at-seperator'>AT</p>
                     <div className='home-team'>
-                        <img className='team-logo' src={process.env.PUBLIC_URL + '/NflLogos/' + game.home_team + '.svg'} alt="logo" />
+                        <img className='team-logo' src={process.env.PUBLIC_URL + '/nflLogos/' + game.home_team + '.svg'} alt="logo" />
                     </div>
                     <div className='team-names'>
                         <p className='team-name-info-text'><span className='dots'>&#9675; </span> {game.away_full_name.toUpperCase()}</p>
@@ -227,11 +227,11 @@ function ViewGames() {
                         <p className='time-data-hour'>{hour} EST</p>
                     </div>
                     <div className='away-team'>
-                        <img className={game.home_score > game.away_score? 'grey-team-logo' : 'team-logo' } src={process.env.PUBLIC_URL + '/NflLogos/' + game.away_team + '.svg'} alt="logo" />
+                        <img className={game.home_score > game.away_score? 'grey-team-logo' : 'team-logo' } src={process.env.PUBLIC_URL + '/nflLogos/' + game.away_team + '.svg'} alt="logo" />
                     </div>
                     <p className='at-seperator'>AT</p>
                     <div className='home-team'>
-                        <img className={game.away_score > game.home_score? 'grey-team-logo' : 'team-logo' } src={process.env.PUBLIC_URL + '/NflLogos/' + game.home_team + '.svg'} alt="logo" />
+                        <img className={game.away_score > game.home_score? 'grey-team-logo' : 'team-logo' } src={process.env.PUBLIC_URL + '/nflLogos/' + game.home_team + '.svg'} alt="logo" />
                     </div>
                     <div className='team-names'>
                         <p className={game.home_score > game.away_score? 'grey-loser team-name-info-text' : 'team-name-info-text' }><span className='dots'>&#9675; </span>{game.away_full_name}</p>

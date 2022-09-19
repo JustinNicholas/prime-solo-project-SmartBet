@@ -192,13 +192,13 @@ function EditBet() {
                             <p className='time-data'>{hour} EST</p>
                         </div>
                         <div className='away-team'>
-                            <img className='team-logo' src={process.env.PUBLIC_URL + '/NflLogos/' + bet.chosen_team + '.svg'} alt="logo" />
+                            <img className='team-logo' src={process.env.PUBLIC_URL + '/nflLogos/' + bet.chosen_team + '.svg'} alt="logo" />
                         
                         {/* <p>Away Moneyline: {game.away_moneyline || 'TBD'}</p> */}
                         </div>
                         <p className='at-seperator'>VS</p>
                         <div className='home-team'>
-                            <img className='team-logo' src={process.env.PUBLIC_URL + '/NflLogos/' + bet.un_chosen_team + '.svg'} alt="logo" />
+                            <img className='team-logo' src={process.env.PUBLIC_URL + '/nflLogos/' + bet.un_chosen_team + '.svg'} alt="logo" />
                         </div>
                         {/* <div className='team-names'>
                             <p>{bet.away_full_name}</p>

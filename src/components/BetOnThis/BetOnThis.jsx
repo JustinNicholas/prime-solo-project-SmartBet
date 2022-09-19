@@ -166,11 +166,11 @@ function BetOnThis() {
                         <p className='time-data'>{hour} EST</p>
                     </div>
                     <div className='away-team'>
-                        <img className='team-logo' src={process.env.PUBLIC_URL + '/NflLogos/' + game.away_team + '.svg'} alt="logo" />
+                        <img className='team-logo' src={process.env.PUBLIC_URL + '/nflLogos/' + game.away_team + '.svg'} alt="logo" />
                     </div>
                     <p className='at-seperator'>at</p>
                     <div className='home-team'>
-                        <img className='team-logo' src={process.env.PUBLIC_URL + '/NflLogos/' + game.home_team + '.svg'} alt="logo" />
+                        <img className='team-logo' src={process.env.PUBLIC_URL + '/nflLogos/' + game.home_team + '.svg'} alt="logo" />
                     </div>
                     <div className='team-names-container'>
                         <p>{game.away_full_name}</p>
@@ -196,11 +196,11 @@ function BetOnThis() {
                     <form onSubmit={ () => addBet(event) }>
                         <div className='select-logos'>
                             <div className={ homeSelected ? 'home-logo-container-selected' : 'home-logo-container' } onClick={() => homeTeam(game)}>
-                                <img className='away-select-logo' src={process.env.PUBLIC_URL + '/NflLogos/' + game.home_team + '.svg'} alt="logo" />
+                                <img className='away-select-logo' src={process.env.PUBLIC_URL + '/nflLogos/' + game.home_team + '.svg'} alt="logo" />
                                 <p className='select-team-name'>{game.home_full_name}</p>
                             </div>
                             <div className={ awaySelected ? 'away-logo-container-selected ' : 'away-logo-container' } onClick={() => awayTeam(game)}>
-                                <img className='home-select-logo' src={process.env.PUBLIC_URL + '/NflLogos/' + game.away_team + '.svg'} alt="logo" />
+                                <img className='home-select-logo' src={process.env.PUBLIC_URL + '/nflLogos/' + game.away_team + '.svg'} alt="logo" />
                                 <p className='select-team-name'>{game.away_full_name}</p>
                             </div>
                         </div>

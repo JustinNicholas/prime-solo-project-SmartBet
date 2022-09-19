@@ -9,6 +9,7 @@ axios.defaults.baseURL = 'http://localhost:' + PORT;
 router.get('/', (req, res) => {
   // GET route code here
   deleteGames();
+  setTimeout(res.sendStatus(200), 500)
     // pool.query(queryText, [req.user.id])
     // .then( result => {
     //     res.send(result.rows)
