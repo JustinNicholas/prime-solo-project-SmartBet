@@ -170,7 +170,7 @@
     background-color: rgba(255, 255, 255, 0.100);
     color: white;
     width: 100%;
-    height: 100px;
+    height: 70px;
     margin-left: auto;
     margin-right: auto;
     margin-bottom: 5px;
@@ -223,23 +223,46 @@
 
 .pick-label {
     position: absolute;
-    left: 475px;
+    left: 369px;
+    width: 100px;
+    text-align: center;
     margin: 0;
     line-height: 30px;
+    font-size: 14px;
+    font-weight: 600;
 }
 
 .bet-moneyline-label {
     position: absolute;
-    left: 550px;
+    left: 519px;
     margin: 0;
+    width: 100px;
+    text-align: center;
     line-height: 30px;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.bet-channel-container {
+    position: absolute;
+    left: 669px;
+    width: 100px;
+    height: 70px;
+    margin: 0;
+    padding: 0;
+    line-height: 70px;   
 }
 
 .bet-channel-label {
     position: absolute;
-    left: 700px;
+    left: 669px;
+    padding: 0;
     margin: 0;
+    width: 100px;
+    text-align: center;
     line-height: 30px;
+    font-size: 14px;
+    font-weight: 600;
 }
 
 .bet-profit-label {
@@ -247,6 +270,8 @@
     left: 840px;
     margin: 0;
     line-height: 30px;
+    font-size: 14px;
+    font-weight: 600;
 }
 
 .bet-game-time-label{
@@ -266,41 +291,68 @@
 .pick-team-info {
     margin: 0;
     padding: 0;
-    line-height: 100px;
+    line-height: 70px;
 }
 
 .centered-pick-team {
     position: absolute;
-    left: 467px;
-    width: 50px;
+    left: 369px;
+    width: 100px;
     text-align: center;
 }
 
 .moneyline-info {
     margin: 0;
     padding: 0;
-    line-height: 100px;
+    line-height: 70px;
 }
 
 .centered-moneyline-info {
     position: absolute;
-    left: 568px;
-    width: 50px;
+    left: 519px;
+    width: 100px;
     text-align: center;
+}
+
+.game-over-score-container {
+    position: absolute;
+    left: 699px;
+    width: 100px;
+    /* height: 37px; */
+    text-align: center;
+    /* border: 1px solid white; */
+    font-size: 16px;
+    font-weight: 400px;
+}
+
+.game-over-score-container-manual-entry {
+    position: absolute;
+    top: 16px;
+    left: 690px;
+    width: 100px;
+    text-align: left;
+    font-size: 16px;
+    font-weight: 400px;
+}
+
+.game-over-manual-entry {
+    margin: 0;
+    margin-bottom: 5px;
+    font-size: 16px;
+    line-height: 14px;
 }
 
 .bet-channel-info {
         margin: 0;
+        margin-top: 5px;
         padding: 0;
-        position: absolute;
-        left: 70px;
-        line-height: 100px;
+        font-weight: 700;
 }
 
 .bet-profit-piece {
     margin: 0;
     padding: 0;
-    line-height: 100px;
+    line-height: 70px;
 }
 
 .centered-text {
