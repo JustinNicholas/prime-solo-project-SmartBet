@@ -256,7 +256,7 @@ function ViewGames() {
                 )
                 }
             })}
-            <button onClick={() => updateData()}>UPDATE DATA</button>
+            {/* <button onClick={() => updateData()}>UPDATE DATA</button> */}
         </div>
     )
 }
