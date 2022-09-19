@@ -11,6 +11,7 @@
 }
 
 .away-logo-container {
+    margin-top: 7px;
     width: 590px;
     height: 400px;
     position: absolute;
@@ -29,6 +30,7 @@
 }
 
 .home-logo-container {
+    margin-top: 7px;
     width: 590px;
     height: 400px;
     position: absolute;
@@ -158,4 +160,24 @@
 
 .cancel-bet-button:hover {
     background-color: rgba(255, 255, 255, 0.200);
+}
+
+.team-names-container {
+    position: absolute;
+    text-align: left;
+    left: 380px;
+    width: 250px;
+    margin: 0;
+    padding: 0;
+    line-height: 14px;
+}
+
+.team-moneylines-container {
+    position: absolute;
+    text-align: center;
+    width: 100px;
+    left: 670px;
+    margin: 0;
+    padding: 0;
+    line-height: 14px;
 }

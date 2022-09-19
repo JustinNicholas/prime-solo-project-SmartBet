@@ -211,7 +211,7 @@ function EditBet() {
                         </div>
                         <div className='bet-wager-container'>
                             {/* <p>Time: {date}</p> */}
-                            <p className='bet-wager-info'>{formatter.format(bet.bet_amount)}</p>
+                            <p className='edit-bet-wager-info'>{formatter.format(bet.bet_amount)}</p>
                         </div>
                             
                             

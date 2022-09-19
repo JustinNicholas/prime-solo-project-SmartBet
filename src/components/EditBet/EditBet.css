@@ -6,8 +6,12 @@
 .bet-wager-container {
 position: absolute;
 top: 0px;
-left: 660px;
+left: 650px;
 width: 100px;
-height: 100px;
+height: 70px;
 text-align: right;
+}
+
+.edit-bet-wager-info {
+    margin-top: 23px;
 }

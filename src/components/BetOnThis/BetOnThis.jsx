@@ -172,11 +172,11 @@ function BetOnThis() {
                     <div className='home-team'>
                         <img className='team-logo' src={process.env.PUBLIC_URL + '/NflLogos/' + game.home_team + '.svg'} alt="logo" />
                     </div>
-                    <div className='team-names'>
+                    <div className='team-names-container'>
                         <p>{game.away_full_name}</p>
                         <p>{game.home_full_name}</p>
                     </div>
-                    <div className='team-moneylines'>
+                    <div className='team-moneylines-container'>
                         <p>{game.away_moneyline || 'TBD'}</p>
                         <p>{game.home_moneyline || 'TBD'}</p>
                     </div>
