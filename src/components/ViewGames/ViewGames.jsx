@@ -15,12 +15,12 @@ function ViewGames() {
 
     // we set the selected week to the current week so users don't have to use the select unless they need to see other weeks.
     useEffect(() => {
-        setSelecetedWeek(currentWeek || 2);
+        setSelecetedWeek(currentWeek || 3);
     }, [currentWeek]);
 
     const games = useSelector(store => store.games)
     const currentWeek = useSelector(store => store.week)
-    const [selectedWeek, setSelecetedWeek] = useState(2)
+    const [selectedWeek, setSelecetedWeek] = useState(3)
     
     for (let i=0; i<games.length; i++) {
         if (games[i].is_over === false) {
