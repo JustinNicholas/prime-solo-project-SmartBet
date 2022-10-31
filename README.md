@@ -15,7 +15,7 @@ Node.js
 
 Fork and Clone this repo
 
-"npm install" in the termianl of this project
+"npm install" in the terminal of this project
 
 "npm run server" to start the server.
 

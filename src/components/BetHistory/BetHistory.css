@@ -221,6 +221,10 @@
     margin: 10px
 }
 
+.bet-buttons:hover {
+    cursor: pointer;
+}
+
 .pick-label {
     position: absolute;
     left: 369px;
