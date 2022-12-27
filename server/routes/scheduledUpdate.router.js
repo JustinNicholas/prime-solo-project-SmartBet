@@ -20,18 +20,18 @@ router.get('/', (req, res) => {
 
 });
 
-const CronJob = require('cron').CronJob;
-const job = new CronJob(
-    // this is set to go off every hour on the hour
-'0 23 15 * * *',
-function() {
-    console.log('Update the games');
-    deleteGames();
-},
-null,
-true,
-'America/Chicago'
-);
+// const CronJob = require('cron').CronJob;
+// const job = new CronJob(
+//     // this is set to go off every hour on the hour
+// '10 * * * *',
+// function() {
+//     console.log('Update the games');
+//     deleteGames();
+// },
+// null,
+// true,
+// 'America/Chicago'
+// );
 
 function deleteGames() {
     console.log('cron task triggered!!!');
