@@ -126,6 +126,7 @@ function getScores() {
     axios.get('/database/scores')
     .then( result => {
       postScores(result);
+      console.log('we got scoresss');
       // res.sendStatus(200)
     }).catch( err => {
       console.log(err);
