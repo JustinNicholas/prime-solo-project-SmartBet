@@ -4,23 +4,39 @@ import { useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import moment from 'moment';
+import ScaleLoader from "react-spinners/ScaleLoader";
 
 import './ViewGames.css'
 import axios from 'axios';
 
 function ViewGames() {
     useEffect(() => {
-        getGamesFromDatabase();
+        getWeekFromDatabase();
     }, []);
 
     // we set the selected week to the current week so users don't have to use the select unless they need to see other weeks.
-    useEffect(() => {
-        setSelecetedWeek(currentWeek || 2);
-    }, [currentWeek]);
+    // useEffect(() => {
+    //     setSelecetedWeek(currentWeek || 3);
+    // }, [currentWeek]);
 
-    const games = useSelector(store => store.games)
-    const currentWeek = useSelector(store => store.week)
-    const [selectedWeek, setSelecetedWeek] = useState(2)
+    const games = useSelector(store => store.games);
+    const currentWeek = useSelector(store => store.week);
+    const [selectedWeek, setSelecetedWeek] = useState(0);
+    const [isLoading, setLoading] = useState(true);
+
+    const getWeekFromDatabase = () => {
+        getGamesFromDatabase();
+        console.log('dipatched!');
+        setTimeout(() => {
+            console.log(currentWeek);
+            setSelecetedWeek(currentWeek || 7);
+            setLoadingScreen();
+        }, 1000);
+    }
+
+    const setLoadingScreen = () => {
+        setLoading(false);
+    }
     
     for (let i=0; i<games.length; i++) {
         if (games[i].is_over === false) {
@@ -29,7 +45,7 @@ function ViewGames() {
             completedGames += 1;
         }
     }
-    // console.log(currentWeek)
+    console.log(currentWeek)
     const dispatch = useDispatch();
     const history = useHistory();
 
@@ -57,7 +73,7 @@ function ViewGames() {
     const updateData = () => {
         console.log('update data');
         dispatch({
-            type: 'UPDATE_THE_DATA'
+            type: 'UPDATE_GAMES'
         })
     }
 
@@ -76,6 +92,17 @@ function ViewGames() {
     let upcomingGames = [];
     let completedGames = [];
 
+    if (isLoading){
+        return (
+            <div className='loading-spinner-bars'>
+                <ScaleLoader
+                color="#FFF500"
+                height={300}
+                width={50}
+                />
+            </div>
+        )
+    } else {
     return(
         
         <div>
@@ -97,6 +124,7 @@ function ViewGames() {
             {/* <h4>WEEK {selectedWeek || 1}</h4> */}
             <div className='upcoming-games-header'>
                 <h1 className='upcoming-completed-headers'>UPCOMING GAMES</h1>
+                <button className='update-games-button' onClick={() => updateData()}>Update Games</button>
                 <div className='week-label-view-games'>
                     <select onChange={() => updateSelecetedWeek(event)}>
                         <option value={selectedWeek}>THIS WEEK</option>
@@ -259,6 +287,7 @@ function ViewGames() {
             {/* <button onClick={() => updateData()}>UPDATE DATA</button> */}
         </div>
     )
+    }
 }
 
 export default ViewGames;

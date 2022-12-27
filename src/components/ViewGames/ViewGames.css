@@ -347,6 +347,13 @@ select:focus-visible {
     border-radius: 5px;
 }
 
+.update-games-button {
+    position: absolute;
+    top: 21px;
+    right: 140px;
+
+}
+
 .week-label-view-games {
     position: absolute;
     top: 21px;

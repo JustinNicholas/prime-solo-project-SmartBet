@@ -21,11 +21,6 @@ router.get('/', rejectUnauthenticated, (req, res) => {
     WHERE user_id = $1
     ORDER BY time;`;
 
-    // `
-    // SELECT * FROM "user_bets"
-    // WHERE user_id = $1
-    // ORDER BY time;`;
-
     pool.query(queryText, [req.user.id])
     .then( result => {
         res.send(result.rows)
